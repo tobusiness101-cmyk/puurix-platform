@@ -38,7 +38,7 @@ export const StickyContact = () => {
             className="mb-4 w-72 overflow-hidden rounded-2xl bg-white shadow-premium border border-border/50 flex flex-col"
           >
             <div className="bg-primary p-4 text-center text-white">
-              <h4 className="text-xs font-extrabold uppercase tracking-widest">PremiumSchoon Hub</h4>
+              <h4 className="text-xs font-extrabold uppercase tracking-widest">Puurix</h4>
             </div>
 
             <div className="flex flex-col">
@@ -83,7 +83,7 @@ export const StickyContact = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-primary mb-0.5">Bel Direct</span>
-                  <span className="text-xs font-medium text-primary/60">+31 6 12 34 56 78</span>
+                  <span className="text-xs font-medium text-primary/60">+31 6 24 47 31 02</span>
                 </div>
               </a>
 
