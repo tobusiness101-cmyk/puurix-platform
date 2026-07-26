@@ -75,7 +75,7 @@ export const StickyContact = () => {
 
               {/* 3. Bellen */}
               <a 
-                href="tel:+31600000000" 
+                href="tel:+31624473102" 
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors hover:bg-muted"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
@@ -89,7 +89,7 @@ export const StickyContact = () => {
 
               {/* 4. WhatsApp */}
               <a 
-                href="https://wa.me/31600000000" 
+                href="https://wa.me/31624473102" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="group flex items-center gap-4 p-4 transition-colors hover:bg-muted"
