@@ -73,7 +73,7 @@ export const QuoteCalculator = () => {
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="flex items-center gap-3 text-white/50 text-sm">
                 <Building className="h-4 w-4" />
-                KVK: 12345678
+                KVK: 
               </div>
             </div>
           </div>

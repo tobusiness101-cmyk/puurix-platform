@@ -265,7 +265,7 @@ export const Rekentool = () => {
                       <input 
                         type="tel" 
                         required 
-                        placeholder="06 12345678" 
+                        placeholder="06 24473102" 
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full bg-white border border-border/80 text-primary placeholder:text-primary/40 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all shadow-sm"
