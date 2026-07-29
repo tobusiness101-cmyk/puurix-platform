@@ -16,24 +16,20 @@ export const LeadMagnet = () => {
     setStatus("Bezig...");
 
     try {
-      // 1. Verstuur de gegevens naar Web3Forms om de mail te ontvangen
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // 1. Verstuur de gegevens naar jouw Formspree-eindpunt
+      const response = await fetch("https://formspree.io/f/mlgqvwqr", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // <-- Vervang dit door jouw Web3Forms Access Key
           email: email,
           subject: "Nieuwe download: 5-Sterren Turnover Checklist via Puurix",
-          from_name: "Puurix Website",
         }),
       });
 
-      const result = await response.json();
-
-      if (result.success) {
+      if (response.ok) {
         // 2. Start direct de download van de PDF uit de public-map
         const link = document.createElement("a");
         link.href = "/puurix-turnover-checklist.pdf";
