@@ -210,7 +210,7 @@ export const QuoteCalculator = () => {
                 disabled={isSubmitting}
                 className="w-full rounded-full bg-accent px-8 py-5 text-sm font-bold uppercase tracking-widest text-white shadow-md transition-all hover:bg-accent/90 hover:shadow-lg disabled:opacity-70 mt-6 flex items-center justify-center gap-3"
               >
-                {isSubmitting ? "Verzenden..." : "Offerte Aanvragen"}
+                {isSubmitting ? "Verzenden..." : "Offerte Aanvragen"} /
               </motion.button>
               
             </form>
