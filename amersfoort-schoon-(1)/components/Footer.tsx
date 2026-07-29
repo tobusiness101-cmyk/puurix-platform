@@ -25,15 +25,15 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm font-medium">
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Amersfoort & Omstreken
+                Breda en Omgeving
               </li>
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Breda Centrum
+                Amersfoort
               </li>
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Utrecht Oosten
+                Noord-Brabant
               </li>
             </ul>
           </div>
