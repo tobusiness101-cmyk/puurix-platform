@@ -213,7 +213,7 @@ export const QuoteCalculator = () => {
                 {isSubmitting ? "Verzenden..." : "Offerte Aanvragen"}
               </motion.button>
               
-            </form>
+            <form action="[https://formsubmit.co/to.business101@gmail.com](https://formsubmit.co/to.business101@gmail.com)" method="POST">
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ export const LeadMagnet = () => {
               <p className="text-center text-xs text-white/40 mt-2">
                 Wij respecteren uw privacy. Geen spam.
               </p>
-            <form action="[https://formsubmit.co/to.business101@gmail.com](https://formsubmit.co/to.business101@gmail.com)" method="POST">
+            </form>
           </div>
 
         </div>
