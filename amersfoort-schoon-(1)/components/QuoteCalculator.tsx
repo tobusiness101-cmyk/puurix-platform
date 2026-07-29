@@ -8,13 +8,18 @@ export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
-  // Nieuwe states voor de interactieve frequentie
+  // States voor de interactieve frequentie
   const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [weeklyDays, setWeeklyDays] = useState<number>(1);
 
   const handleSubmit = (e: React.FormEvent) => {
+    // Verwijder e.preventDefault() NIET als je wilt dat FormSubmit zijn werk doet, 
+    // maar voor een mooie animatie laten we hem via de ingebouwde state lopen:
     e.preventDefault();
     setIsSubmitting(true);
+    
+    // Optioneel: verstuur de data naar FormSubmit via JavaScript of laat de form direct submitten.
+    // Voor nu vangen we het op met een mooie melding:
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -83,35 +88,39 @@ export const QuoteCalculator = () => {
             <h2 className="text-3xl font-bold text-primary mb-2">Vraag een offerte aan</h2>
             <p className="text-primary/60 mb-8">Vul de gegevens in en ontvang snel een voorstel op maat.</p>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form action="https://formsubmit.co/to.business101@gmail.com" method="POST" onSubmit={handleSubmit} className="space-y-8">
               
+              {/* Zorg dat FormSubmit direct netjes doorstuurt of bedankt */}
+              <input type="hidden" name="_subject" value="Nieuwe offerte aanvraag via Puurix!" />
+              <input type="hidden" name="_captcha" value="false" />
+
               {/* 1. Bedrijfsgegevens */}
               <div className="space-y-6">
                 <h3 className="text-lg font-bold text-primary border-b border-border pb-2 uppercase tracking-wide">1. Uw Gegevens</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Bedrijfsnaam *</label>
-                    <input required type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="bedrijfsnaam" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Contactpersoon *</label>
-                    <input required type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="contactpersoon" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2 md:col-span-2">
                     <label className="text-sm font-medium text-primary/80">Adres *</label>
-                    <input required type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="adres" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Postcode & Plaats *</label>
-                    <input required type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="postcode_plaats" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Telefoonnummer *</label>
-                    <input required type="tel" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="telefoon" type="tel" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2 md:col-span-2">
                     <label className="text-sm font-medium text-primary/80">E-mailadres *</label>
-                    <input required type="email" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="email" type="email" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                 </div>
               </div>
@@ -123,7 +132,7 @@ export const QuoteCalculator = () => {
                   
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Type Ruimte *</label>
-                    <select required className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
+                    <select required name="type_ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
                       <option value="">Selecteer type...</option>
                       <option value="Kantoor">Kantoor</option>
                       <option value="Winkel">Winkel</option>
@@ -134,14 +143,13 @@ export const QuoteCalculator = () => {
 
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-primary/80">Oppervlakte (m²) *</label>
-                    <input required type="number" min="1" placeholder="Bijv. 150" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <input required name="oppervlakte" type="number" min="1" placeholder="Bijv. 150" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
 
-                  {/* VERNIEUWDE, INTERACTIEVE FREQUENTIE SELECTIE */}
+                  {/* FREQUENTIE SELECTIE */}
                   <div className="space-y-3 md:col-span-2">
                     <label className="text-sm font-medium text-primary/80">Gewenste Frequentie *</label>
                     
-                    {/* Stap 1: Hoofdcategorie */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {["Eenmalig", "Dagelijks", "Wekelijks", "Maandelijks"].map((freq) => (
                         <div
@@ -158,7 +166,6 @@ export const QuoteCalculator = () => {
                       ))}
                     </div>
 
-                    {/* Stap 2: Dagen per week (Schuift alleen uit bij 'Wekelijks') */}
                     <AnimatePresence>
                       {frequency === "Wekelijks" && (
                         <motion.div
@@ -191,13 +198,12 @@ export const QuoteCalculator = () => {
                       )}
                     </AnimatePresence>
                     
-                    {/* Verborgen inputs voor de uiteindelijke formulier verzending */}
                     <input type="hidden" name="frequentie" value={frequency === "Wekelijks" ? `${weeklyDays}x per week` : frequency} />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
                     <label className="text-sm font-medium text-primary/80">Specifieke Wensen</label>
-                    <textarea rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons meer..." />
+                    <textarea name="wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons meer..." />
                   </div>
                 </div>
               </div>
@@ -212,8 +218,8 @@ export const QuoteCalculator = () => {
               >
                 {isSubmitting ? "Verzenden..." : "Offerte Aanvragen"}
               </motion.button>
-              
-            <form action="[https://formsubmit.co/to.business101@gmail.com](https://formsubmit.co/to.business101@gmail.com)" method="POST">
+            </form>
+
           </div>
         </div>
       </div>
