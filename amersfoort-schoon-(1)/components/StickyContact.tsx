@@ -38,7 +38,7 @@ export const StickyContact = () => {
             className="mb-4 w-72 overflow-hidden rounded-2xl bg-white shadow-premium border border-border/50 flex flex-col"
           >
             <div className="bg-primary p-4 text-center text-white">
-              <h4 className="text-xs font-extrabold uppercase tracking-widest">Puurix</h4>
+              <h4 className="text-xs font-extrabold uppercase tracking-widest"><Puurix></h4>
             </div>
 
             <div className="flex flex-col">
