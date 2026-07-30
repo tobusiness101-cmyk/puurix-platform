@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import { Services } from "@/components/Services";
 import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
+
+// --- DE MAGISCHE SEO CODE VOOR GOOGLE ---
+export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
+  const formattedRegion = params.regio
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
+  return {
+    title: `Schoonmaakbedrijf ${formattedRegion} | Puurix`,
+    description: `Op zoek naar een betrouwbare schoonmaakpartner in ${formattedRegion}? Puurix levert professionele schoonmaakdiensten op maat voor bedrijven en particulieren.`,
+  };
+}
+// --- EINDE SEO CODE ---
 
 // Dit zorgt ervoor dat we de naam uit de URL kunnen lezen
 export default function RegioPage({ params }: { params: { regio: string } }) {
