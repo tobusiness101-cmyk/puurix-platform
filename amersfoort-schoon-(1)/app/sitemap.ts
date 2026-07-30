@@ -1,17 +1,18 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Aangepast naar de canonical URL mét www.
   const baseUrl = 'https://www.puurixschoonmaak.nl'
 
+  // De complete lijst met al jouw lokale steden
   const regios = [
-    'amersfoort',
     'oosterhout',
     'breda',
     'tilburg',
-    'rotterdam',
-    'utrecht',
-    'amsterdam'
+    'etten-leur',
+    'teteringen',
+    'waalwijk',
+    'kaatsheuvel',
+    'amersfoort'
   ]
 
   const regioUrls = regios.map((regio) => ({

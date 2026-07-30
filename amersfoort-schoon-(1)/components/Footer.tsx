@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import Link from 'next/link';
 
 export const Footer = () => {
   return (
@@ -23,18 +23,51 @@ export const Footer = () => {
 
             <h4 className="font-bold text-ink tracking-widest text-xs mb-4 uppercase">Werkgebied</h4>
             <ul className="space-y-3 text-sm font-medium">
+              
+              {/* Lokale SEO Links */}
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Breda en Omgeving
+                <Link href="/schoonmaakbedrijf/oosterhout" className="hover:text-accent transition-colors">
+                  Oosterhout
+                </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Amersfoort
+                <Link href="/schoonmaakbedrijf/breda" className="hover:text-accent transition-colors">
+                  Breda
+                </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
-                Noord-Brabant
+                <Link href="/schoonmaakbedrijf/tilburg" className="hover:text-accent transition-colors">
+                  Tilburg
+                </Link>
               </li>
+              <li className="flex items-center gap-3 text-stone-600">
+                <MapPin size={18} className="text-accent" />
+                <Link href="/schoonmaakbedrijf/etten-leur" className="hover:text-accent transition-colors">
+                  Etten-Leur
+                </Link>
+              </li>
+              <li className="flex items-center gap-3 text-stone-600">
+                <MapPin size={18} className="text-accent" />
+                <Link href="/schoonmaakbedrijf/teteringen" className="hover:text-accent transition-colors">
+                  Teteringen
+                </Link>
+              </li>
+              <li className="flex items-center gap-3 text-stone-600">
+                <MapPin size={18} className="text-accent" />
+                <Link href="/schoonmaakbedrijf/waalwijk" className="hover:text-accent transition-colors">
+                  Waalwijk
+                </Link>
+              </li>
+              <li className="flex items-center gap-3 text-stone-600">
+                <MapPin size={18} className="text-accent" />
+                <Link href="/schoonmaakbedrijf/kaatsheuvel" className="hover:text-accent transition-colors">
+                  Kaatsheuvel
+                </Link>
+              </li>
+
             </ul>
           </div>
 
