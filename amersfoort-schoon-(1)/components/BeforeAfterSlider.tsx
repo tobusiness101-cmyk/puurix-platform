@@ -75,7 +75,9 @@ export const BeforeAfterSlider = () => {
               draggable={false}
               priority
             />
-           
+            *<div className="absolute bottom-6 right-6 rounded-md bg-white/90 px-4 py-2 text-sm font-bold text-primary backdrop-blur-sm shadow-sm">
+              Na
+            </div>*
           </div>
 
           {/* BEFORE Image (Clipped overlay) */}
@@ -90,7 +92,9 @@ export const BeforeAfterSlider = () => {
               className="object-cover grayscale-[30%]"
               draggable={false}
             />
-            
+            <div className="absolute bottom-6 left-6 rounded-md bg-primary/90 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm shadow-sm">
+              Voor
+            </div>
           </div>
 
           {/* Slider Handle */}
