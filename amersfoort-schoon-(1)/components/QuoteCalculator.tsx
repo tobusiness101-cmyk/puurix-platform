@@ -110,28 +110,28 @@ export const QuoteCalculator = () => {
                 <h3 className="text-lg font-bold text-primary border-b border-border pb-2 uppercase tracking-wide">1. Uw Gegevens</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Bedrijfsnaam *</label>
-                    <input required name="Bedrijfsnaam" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="bedrijfsnaam" className="text-sm font-medium text-primary/80">Bedrijfsnaam *</label>
+                    <input id="bedrijfsnaam" required name="Bedrijfsnaam" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Contactpersoon *</label>
-                    <input required name="Contactpersoon" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="contactpersoon" className="text-sm font-medium text-primary/80">Contactpersoon *</label>
+                    <input id="contactpersoon" required name="Contactpersoon" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-medium text-primary/80">Adres *</label>
-                    <input required name="Adres" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="adres" className="text-sm font-medium text-primary/80">Adres *</label>
+                    <input id="adres" required name="Adres" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Postcode & Plaats *</label>
-                    <input required name="Postcode_en_Plaats" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="postcode-plaats" className="text-sm font-medium text-primary/80">Postcode & Plaats *</label>
+                    <input id="postcode-plaats" required name="Postcode_en_Plaats" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Telefoonnummer *</label>
-                    <input required name="Telefoonnummer" type="tel" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="telefoonnummer" className="text-sm font-medium text-primary/80">Telefoonnummer *</label>
+                    <input id="telefoonnummer" required name="Telefoonnummer" type="tel" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                   <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-medium text-primary/80">E-mailadres *</label>
-                    <input required name="Email" type="email" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="email" className="text-sm font-medium text-primary/80">E-mailadres *</label>
+                    <input id="email" required name="Email" type="email" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
                 </div>
               </div>
@@ -142,8 +142,8 @@ export const QuoteCalculator = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Type Ruimte *</label>
-                    <select required name="Type_Ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
+                    <label htmlFor="type-ruimte" className="text-sm font-medium text-primary/80">Type Ruimte *</label>
+                    <select id="type-ruimte" required name="Type_Ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
                       <option value="">Selecteer type...</option>
                       <option value="Kantoor">Kantoor</option>
                       <option value="Winkel">Winkel</option>
@@ -153,8 +153,8 @@ export const QuoteCalculator = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-primary/80">Oppervlakte (m²) *</label>
-                    <input required name="Oppervlakte_m2" type="number" min="1" placeholder="Bijv. 150" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                    <label htmlFor="oppervlakte" className="text-sm font-medium text-primary/80">Oppervlakte (m²) *</label>
+                    <input id="oppervlakte" required name="Oppervlakte_m2" type="number" min="1" placeholder="Bijv. 150" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                   </div>
 
                   {/* FREQUENTIE SELECTIE */}
@@ -166,6 +166,15 @@ export const QuoteCalculator = () => {
                         <div
                           key={freq}
                           onClick={() => setFrequency(freq)}
+                          role="button"
+                          tabIndex={0}
+                          aria-pressed={frequency === freq}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              setFrequency(freq);
+                            }
+                          }}
                           className={`cursor-pointer rounded-xl border px-2 py-3 text-sm text-center font-bold transition-all ${
                             frequency === freq
                               ? "border-accent bg-accent text-white shadow-md"
@@ -194,6 +203,16 @@ export const QuoteCalculator = () => {
                                 <div
                                   key={num}
                                   onClick={() => setWeeklyDays(num)}
+                                  role="button"
+                                  tabIndex={0}
+                                  aria-pressed={weeklyDays === num}
+                                  aria-label={`${num} ${num === 1 ? "dag" : "dagen"} per week`}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                      e.preventDefault();
+                                      setWeeklyDays(num);
+                                    }
+                                  }}
                                   className={`cursor-pointer h-12 w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all border ${
                                     weeklyDays === num
                                       ? "bg-accent text-white border-accent shadow-sm"
@@ -213,8 +232,8 @@ export const QuoteCalculator = () => {
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label className="text-sm font-medium text-primary/80">Specifieke Wensen</label>
-                    <textarea name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons meer..." />
+                    <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">Specifieke Wensen</label>
+                    <textarea id="specifieke-wensen" name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons meer..." />
                   </div>
                 </div>
               </div>
