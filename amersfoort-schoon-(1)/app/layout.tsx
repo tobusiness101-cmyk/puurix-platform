@@ -45,6 +45,9 @@ export default function RootLayout({
               ],
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "‹straat + huisnummer›",
+                "postalCode": "4904",
+                "addressLocality": "Oosterhout",
                 "addressRegion": "Noord-Brabant",
                 "addressCountry": "NL"
               },
