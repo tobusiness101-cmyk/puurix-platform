@@ -6,23 +6,18 @@ import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { getRegioInfo, regioData } from "@/lib/regios";
 import { notFound } from "next/navigation";
+
 export function generateStaticParams() {
   return Object.keys(regioData).map((regio) => ({ regio }));
 }
+
 // --- DE MAGISCHE SEO CODE VOOR GOOGLE ---
 export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
   const formattedRegion = params.regio
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-const formattedRegion = params.regio
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
 
-  const info = getRegioInfo(params.regio);
-
-  return (
   return {
     title: `Schoonmaakbedrijf ${formattedRegion} | Puurix`,
     description: `Op zoek naar een betrouwbare schoonmaakpartner in ${formattedRegion}? Puurix levert professionele schoonmaakdiensten op maat voor bedrijven en particulieren.`,
@@ -33,13 +28,16 @@ const formattedRegion = params.regio
 // Dit zorgt ervoor dat we de naam uit de URL kunnen lezen
 export default function RegioPage({ params }: { params: { regio: string } }) {
   if (!regioData[params.regio]) {
-  notFound();
-}
+    notFound();
+  }
+
   // Maakt van "oosterhout" of "provincie-utrecht" mooi "Oosterhout" of "Provincie Utrecht"
   const formattedRegion = params.regio
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+
+  const info = getRegioInfo(params.regio);
 
   return (
     <main className="relative w-full overflow-hidden">
