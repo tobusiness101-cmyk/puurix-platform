@@ -15,7 +15,14 @@ export async function generateMetadata({ params }: { params: { regio: string } }
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+const formattedRegion = params.regio
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
+  const info = getRegioInfo(params.regio);
+
+  return (
   return {
     title: `Schoonmaakbedrijf ${formattedRegion} | Puurix`,
     description: `Op zoek naar een betrouwbare schoonmaakpartner in ${formattedRegion}? Puurix levert professionele schoonmaakdiensten op maat voor bedrijven en particulieren.`,
@@ -65,8 +72,13 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
             Waarom kiezen voor ons in {formattedRegion}?
           </h2>
           <p className="text-primary/70 text-lg leading-relaxed mb-6">
-            Een schone werkplek is het visitekaartje van uw onderneming. Of u nu een kantoor, winkel of horecazaak heeft in {formattedRegion}, wij leveren maatwerk. We werken met een vast, herkenbaar schoonmaakteam uit de regio, waardoor we snel kunnen schakelen en altijd dichtbij zijn.
+            Een schone werkplek is het visitekaartje van uw onderneming. Of u nu een kantoor, winkel of horecazaak heeft in {formattedRegion}, wij leveren maatwerk. {info.highlight}
           </p>
+          {info.omgeving.length > 0 && (
+            <p className="text-sm font-semibold text-primary/60 tracking-wide">
+              Ook actief in de omgeving van {formattedRegion}: {info.omgeving.join(", ")}.
+            </p>
+          )}
         </div>
       </section>
 
