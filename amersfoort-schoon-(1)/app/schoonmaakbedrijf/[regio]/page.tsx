@@ -4,7 +4,11 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
-
+import { getRegioInfo, regioData } from "@/lib/regios";
+import { notFound } from "next/navigation";
+export function generateStaticParams() {
+  return Object.keys(regioData).map((regio) => ({ regio }));
+}
 // --- DE MAGISCHE SEO CODE VOOR GOOGLE ---
 export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
   const formattedRegion = params.regio
@@ -21,7 +25,9 @@ export async function generateMetadata({ params }: { params: { regio: string } }
 
 // Dit zorgt ervoor dat we de naam uit de URL kunnen lezen
 export default function RegioPage({ params }: { params: { regio: string } }) {
-  
+  if (!regioData[params.regio]) {
+  notFound();
+}
   // Maakt van "oosterhout" of "provincie-utrecht" mooi "Oosterhout" of "Provincie Utrecht"
   const formattedRegion = params.regio
     .split("-")
