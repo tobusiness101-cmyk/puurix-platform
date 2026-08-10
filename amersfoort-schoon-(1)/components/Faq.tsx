@@ -6,17 +6,25 @@ import { ChevronDown } from "lucide-react";
 
 // Premium placeholder data reflecting the B2B and hospitality focus
 const faqs = [
+   {
+    question: "Wat maakt Puurix anders dan andere schoonmaakbedrijven?",
+    answer: "Wij zijn rechtstreeks bereikbaar zonder callcenter of tussenlagen, en denken proactief mee met uw situatie. Persoonlijke aandacht en korte communicatielijnen staan bij ons voorop."
+  },
   {
-    question: "Wat houdt de opleveringsschoonmaak exact in?",
-    answer: "Onze 40-punten checklist zorgt ervoor dat elk detail wordt behandeld. Dit omvat dieptereiniging van sanitair, ontvetten van keukens, streeploos lappen van binnen- en buitenglas, en het stofvrij maken van alle oppervlakken en plinten. Uw object is direct klaar voor de volgende huurder of medewerker."
+    question: "In welke steden en regio's is Puurix actief?",
+    answer: "Wij zijn actief in Breda, Oosterhout, Tilburg, Etten-Leur, Teteringen, Waalwijk, Kaatsheuvel en Amersfoort, en de directe omgeving van elke stad. Bekijk de pagina van uw regio voor meer informatie over ons werkgebied."
   },
   {
     question: "Werken jullie ook in het weekend of buiten kantoortijden?",
     answer: "Absoluut. Voor short-stay turnovers en drukke kantooromgevingen werken wij met flexibele roosters. Wij plannen onze werkzaamheden in wanneer het u en uw gasten het minst verstoort, inclusief weekenden en avonden, zonder verborgen toeslagen."
   },
+   {
+    question: "Wat kost schoonmaak bij Puurix?",
+    answer: "Dat hangt af van de frequentie, oppervlakte en het type object. Gebruik onze rekentool hierboven voor een eerste indicatie, of vraag een offerte op maat aan. Aan een indicatie kunnen geen rechten worden ontleend."
+  },
   {
-    question: "Hoe garanderen jullie de kwaliteit van de schoonmaak?",
-    answer: "Wij werken volledig datagedreven. Na elke ronde vullen onze medewerkers een digitale checklist in, voorzien van voor- en na-foto's. Deze transparante rapportage ontvangt u periodiek, zodat u altijd controle houdt over het resultaat."
+    question: "Wat kan Puurix voor mijn organisatie betekenen?",
+    answer: "Puurix neemt de schoonmaak van uw pand volledig uit handen — van dagelijks onderhoud tot eenmalige opleveringsschoonmaak. Of het nu gaat om een kantoor, winkelcentrum, school, sportcomplex of horecalocatie: wij stemmen onze aanpak af op uw pand en wensen."
   },
   {
     question: "Moet ik zelf schoonmaakmiddelen verzorgen?",
