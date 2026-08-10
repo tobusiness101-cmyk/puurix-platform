@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Leaf, ShieldCheck, Users, Sparkles } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck, Users, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
