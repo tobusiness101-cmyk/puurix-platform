@@ -1,6 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { Services } from "@/components/Services";
+import { HowItWorks } from "@/components/HowItWorks"
 import { InfoSections } from "@/components/InfoSections";
 import { Pricing } from "@/components/Pricing";
 import { Rekentool } from "@/components/Rekentool";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <TrustMarquee />
       <Services />
+      <HowItWorks />
       <InfoSections />
       <Pricing />
       <BeforeAfterSlider />
