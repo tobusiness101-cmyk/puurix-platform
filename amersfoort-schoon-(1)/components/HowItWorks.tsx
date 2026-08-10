@@ -1,62 +1,61 @@
 import { FileText, Users, ClipboardCheck, Sparkles } from "lucide-react";
 
-export const HowItWorks = () => {
-  const steps = [
-    {
-      id: "01",
-      name: "1. Offerte aanvragen",
-      description: "Gebruik de rekentool voor een indicatie, of vraag direct een offerte aan. Binnen 24 uur ontvangt u een reactie met een eerste voorstel.",
-      icon: FileText,
-    },
-    {
-      id: "02",
-      name: "2. Kennismaking",
-      description: "We plannen een vrijblijvende bezichtiging op locatie in en bespreken uw wensen, zodat het schoonmaakplan aansluit op uw pand en branche.",
-      icon: Users,
-    },
-    {
-      id: "03",
-      name: "3. Vast team gekoppeld",
-      description: "Een vast, herkenbaar team wordt aan uw locatie gekoppeld, zodat zij uw pand en afspraken kennen.",
-      icon: ClipboardCheck,
-    },
-    {
-      id: "04",
-      name: "4. Schoonmaak",
-      description: "Wij gaan aan de slag. Elke ronde wordt afgevinkt op een checklist, met voor- en na-foto's als bewijs.",
-      icon: Sparkles,
-    },
-  ];
+const steps = [
+  {
+    number: "1",
+    title: "Offerte aanvragen",
+    desc: "Gebruik de rekentool voor een indicatie, of vraag direct een offerte op maat aan. Wij reageren snel met een voorstel.",
+    icon: FileText,
+  },
+  {
+    number: "2",
+    title: "Kennismaking",
+    desc: "We bespreken uw wensen en stemmen een schoonmaakplan af op uw pand, branche en planning.",
+    icon: Users,
+  },
+  {
+    number: "3",
+    title: "Vast team gekoppeld",
+    desc: "Een vast, herkenbaar team wordt aan uw locatie gekoppeld, zodat zij uw pand en afspraken kennen.",
+    icon: ClipboardCheck,
+  },
+  {
+    number: "4",
+    title: "Schoonmaak",
+    desc: "Wij gaan aan de slag. Elke ronde wordt afgevinkt op een checklist, met voor- en na-foto's als bewijs.",
+    icon: Sparkles,
+  },
+];
 
+export const HowItWorks = () => {
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="mb-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-            In 4 stappen een stralend pand
+    <section className="bg-muted py-24">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="text-center mb-16">
+          <span className="mb-4 inline-block rounded-full border border-accent/20 bg-accent/5 px-4 py-1.5 text-xs font-bold tracking-wide text-accent uppercase">
+            Hoe werkt het?
+          </span>
+          <h2 className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
+            In vier stappen geregeld
           </h2>
-          <p className="mt-4 text-lg text-primary/70">
-            Wij houden van duidelijkheid. Geen ingewikkelde contracten, maar een transparante werkwijze zodat u precies weet waar u aan toe bent.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <div key={step.id} className="relative p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="absolute -top-4 -left-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-white font-bold text-lg shadow-lg">
-                {step.id}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step) => {
+            const Icon = step.icon;
+            return (
+              <div key={step.number} className="relative flex flex-col items-center text-center">
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-premium">
+                  <Icon className="h-7 w-7" />
+                </div>
+                <span className="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
+                  Stap {step.number}
+                </span>
+                <h3 className="mb-2 text-lg font-bold text-primary">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-primary/70">{step.desc}</p>
               </div>
-              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <step.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mb-3 text-xl font-semibold text-primary">
-                {step.name}
-              </h3>
-              <p className="text-primary/70 leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
