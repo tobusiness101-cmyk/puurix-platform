@@ -40,7 +40,7 @@ export const InfoSections = () => {
               Ontdek de topkwaliteit van Puurix.
             </h2>
             <p className="text-lg leading-relaxed text-white/80 font-medium">
-              Purrix is een toonaangevende schoonmaakdienst die zich inzet voor schone en gezonde omgevingen. Onze missie gaat verder dan alleen schoonmaken – we creëren frisse, hygiënische en aangename ruimtes waarin mensen zich prettig voelen. Met een breed scala aan schoonmaakdiensten bieden wij maatwerkoplossingen voor zowel bedrijven als particulieren, altijd met oog voor kwaliteit en detail.
+              Puurix is een toonaangevende schoonmaakdienst die zich inzet voor schone en gezonde omgevingen. Onze missie gaat verder dan alleen schoonmaken – we creëren frisse, hygiënische en aangename ruimtes waarin mensen zich prettig voelen. Met een breed scala aan schoonmaakdiensten bieden wij maatwerkoplossingen voor zowel bedrijven als particulieren, altijd met oog voor kwaliteit en detail.
             </p>
           </motion.div>
         </div>
@@ -70,14 +70,14 @@ export const InfoSections = () => {
               Ruimtes Transformeren: Onze Expertise
             </h2>
             <p className="text-primary/70 mb-10 text-lg">
-              Ontdek de kracht van onze schoonmaakdiensten in cijfers. Deze statistieken benadrukken de prestaties die Purrix tot de juiste keuze maken.
+              Ontdek de kracht van onze schoonmaakdiensten in cijfers. Deze statistieken benadrukken de prestaties die Puurix tot de juiste keuze maken.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {[
                 { num: "10+", label: "Jaren Ervaring", desc: "Dé vertrouwde expert.", icon: ShieldCheck },
-                { num: "5000+", label: "Duurzame Praktijken", desc: "Milieuvriendelijke technieken.", icon: Leaf },
-                { num: "1000+", label: "Tevreden Klanten", desc: "Verwachtingen constant overtroffen.", icon: Users },
+                { num: "24/7", label: "Flexibel Inzetbaar", desc: "Schoonmaak buiten kantooruren of in het weekend, zonder verstoring van uw werkproces.", icon: Clock },
+                { num: "97%", label: "Tevreden Klanten", desc: "Verwachtingen constant overtroffen.", icon: Users },
                 { num: "100%", label: "Oog voor Detail", desc: "Onberispelijke ruimtes.", icon: Sparkles }
               ].map((stat, i) => {
                 const Icon = stat.icon;
@@ -120,7 +120,7 @@ export const InfoSections = () => {
             className="max-w-2xl rounded-3xl bg-white/10 p-8 md:p-12 backdrop-blur-md border border-white/20 shadow-premium"
           >
             <h2 className="text-4xl font-extrabold tracking-tight text-white lg:text-5xl leading-[1.1] mb-6">
-              Laat Uw Ruimte Stralen met Purrix.
+              Laat Uw Ruimte Stralen met Puurix.
             </h2>
             <p className="text-lg text-white/80 leading-relaxed font-medium mb-8">
               Verander uw ruimte in een vlekkeloos toevluchtsoord met onze op maat gemaakte schoonmaakdiensten. Geniet van milieuvriendelijke methoden en uitstekende service.
