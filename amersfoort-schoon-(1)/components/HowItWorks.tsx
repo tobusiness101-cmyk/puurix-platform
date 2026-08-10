@@ -1,29 +1,29 @@
-import { MessageSquare, ClipboardCheck, FileSignature, Sparkles } from "lucide-react";
+import { FileText, Users, ClipboardCheck, Sparkles } from "lucide-react";
 
 export const HowItWorks = () => {
   const steps = [
     {
       id: "01",
-      name: "1. Korte kennismaking",
-      description: "U vraagt een offerte aan of belt ons. We bespreken kort uw wensen en plannen een vrijblijvende bezichtiging in op uw locatie.",
-      icon: MessageSquare,
+      name: "1. Offerte aanvragen",
+      description: "Gebruik de rekentool voor een indicatie, of vraag direct een offerte aan. Binnen 24 uur ontvangt u een reactie met een eerste voorstel.",
+      icon: FileText,
     },
     {
       id: "02",
-      name: "2. Inventarisatie op locatie",
-      description: "We komen langs om de ruimtes te bekijken. We bespreken de knelpunten, de gewenste frequentie en de specifieke hygiëne-eisen van uw pand.",
-      icon: ClipboardCheck,
+      name: "2. Kennismaking",
+      description: "We plannen een vrijblijvende bezichtiging op locatie in en bespreken uw wensen, zodat het schoonmaakplan aansluit op uw pand en branche.",
+      icon: Users,
     },
     {
       id: "03",
-      name: "3. Voorstel op maat",
-      description: "Binnen 24 uur ontvangt u een glashelder voorstel met een transparante prijsopgave en een op maat gemaakt schoonmaakplan. Geen kleine lettertjes.",
-      icon: FileSignature,
+      name: "3. Vast team gekoppeld",
+      description: "Een vast, herkenbaar team wordt aan uw locatie gekoppeld, zodat zij uw pand en afspraken kennen.",
+      icon: ClipboardCheck,
     },
     {
       id: "04",
-      name: "4. Direct een schone start",
-      description: "Na akkoord starten we op de afgesproken datum. U krijgt een vast schoonmaakteam toegewezen voor maximale betrouwbaarheid en kwaliteit.",
+      name: "4. Schoonmaak",
+      description: "Wij gaan aan de slag. Elke ronde wordt afgevinkt op een checklist, met voor- en na-foto's als bewijs.",
       icon: Sparkles,
     },
   ];
