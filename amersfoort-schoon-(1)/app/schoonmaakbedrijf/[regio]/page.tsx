@@ -6,12 +6,12 @@ import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { getRegioInfo, regioData } from "@/lib/regios";
 import { notFound } from "next/navigation";
+import { HowItWorks } from "@/components/HowItWorks";
 
 export function generateStaticParams() {
   return Object.keys(regioData).map((regio) => ({ regio }));
 }
 
-// --- DE MAGISCHE SEO CODE VOOR GOOGLE ---
 export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
   const formattedRegion = params.regio
     .split("-")
@@ -23,15 +23,12 @@ export async function generateMetadata({ params }: { params: { regio: string } }
     description: `Op zoek naar een betrouwbare schoonmaakpartner in ${formattedRegion}? Puurix levert professionele schoonmaakdiensten op maat voor bedrijven en particulieren.`,
   };
 }
-// --- EINDE SEO CODE ---
 
-// Dit zorgt ervoor dat we de naam uit de URL kunnen lezen
 export default function RegioPage({ params }: { params: { regio: string } }) {
   if (!regioData[params.regio]) {
     notFound();
   }
 
-  // Maakt van "oosterhout" of "provincie-utrecht" mooi "Oosterhout" of "Provincie Utrecht"
   const formattedRegion = params.regio
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -41,8 +38,7 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
 
   return (
     <main className="relative w-full overflow-hidden">
-      
-      {/* 1. Unieke Lokale SEO Header */}
+
       <section className="relative pt-40 pb-24 bg-primary text-center">
         <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
         <div className="container relative z-10 mx-auto px-6">
@@ -58,12 +54,10 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
         </div>
       </section>
 
-      {/* 2. Vertrouwenslogo's (Optioneel) */}
       <div className="bg-background py-8">
         <TrustMarquee />
       </div>
 
-      {/* 3. Een SEO-geoptimaliseerde tekstsectie over de regio */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-primary mb-6">
@@ -80,12 +74,13 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
         </div>
       </section>
 
-      {/* 4. We hergebruiken jouw bestaande, perfect werkende componenten! */}
+      <HowItWorks />
+
       <Services />
       <QuoteCalculator />
       <Footer />
       <StickyContact />
-      
+
     </main>
   );
 }
