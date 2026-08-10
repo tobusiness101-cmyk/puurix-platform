@@ -76,7 +76,7 @@ export const InfoSections = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {[
                 { num: "10+", label: "Jaren Ervaring", desc: "Dé vertrouwde expert.", icon: ShieldCheck },
-                { num: "24/7", label: "Flexibel Inzetbaar", desc: "Schoonmaak buiten kantooruren of in het weekend, zonder verstoring van uw werkproces.", icon: Clock },
+                { num: "24/7", label: "Bereikbaar", desc: "Flexibel Inzetbaar", icon: Clock },
                 { num: "97%", label: "Tevreden Klanten", desc: "Verwachtingen constant overtroffen.", icon: Users },
                 { num: "100%", label: "Oog voor Detail", desc: "Onberispelijke ruimtes.", icon: Sparkles }
               ].map((stat, i) => {
