@@ -96,15 +96,35 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Kolom 3: Branches */}
+          {/* Kolom 3: Branches & Diensten (SEO Geoptimaliseerd) */}
           <div>
-            <h4 className="font-bold text-ink text-lg mb-6">Branches</h4>
+            <h4 className="font-bold text-ink text-lg mb-6">Onze Diensten</h4>
             <ul className="space-y-4 text-sm font-medium text-stone-600">
-              <li>Kantoorpanden</li>
-              <li>Short-stay & Airbnb</li>
-              <li>Zorginstellingen</li>
-              <li>Horeca & Recreatie</li>
-              <li>Bouw Opleveringen</li>
+              <li>
+                <Link href="/kantoorschoonmaak" className="hover:text-accent transition-colors">
+                  Kantoorschoonmaak
+                </Link>
+              </li>
+              <li>
+                <Link href="/tandartspraktijk-schoonmaak" className="hover:text-accent transition-colors">
+                  Praktijken & Zorginstellingen
+                </Link>
+              </li>
+              <li>
+                <Link href="/opleveringsschoonmaak" className="hover:text-accent transition-colors">
+                  Opleveringsschoonmaak
+                </Link>
+              </li>
+              <li>
+                <Link href="/glasbewassing" className="hover:text-accent transition-colors">
+                  Glasbewassing & Onderhoud
+                </Link>
+              </li>
+              <li>
+                <Link href="/short-stay" className="hover:text-accent transition-colors">
+                  Short-stay & Airbnb
+                </Link>
+              </li>
             </ul>
           </div>
           
