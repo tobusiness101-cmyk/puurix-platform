@@ -12,27 +12,30 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { LeadMagnet } from "@/components/LeadMagnet";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
+import { StickyCallBar } from "@/components/StickyCallBar";
+import { features } from "@/lib/features";
 
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden">
-      <Hero />
-      <TrustMarquee />
-      <Services />
+      {features.hero && <Hero />}
+      {features.trustMarquee && <TrustMarquee />}
+      {features.services && <Services />}
       <HowItWorks />
-      <InfoSections />
+      {features.infoSections && <InfoSections />}
       <Pricing />
-      <BeforeAfterSlider />
+      {features.beforeAfterSlider && <BeforeAfterSlider />}
       <Testimonials />
-      <Faq />
-      <QuoteCalculator />
-      
-      {/*  <Rekentool />De Rekentool staat nu hier, net voor de Checklist! */}
-     
-      
-      <LeadMagnet />
-      <Footer />
-      <StickyContact />
+      {features.faq && <Faq />}
+
+      {/* Rekentool: directe prijsindicatie + bel-CTA, staat vóór de uitgebreide offerte-aanvraag */}
+      {features.rekentool && <Rekentool />}
+      {features.quoteCalculator && <QuoteCalculator />}
+
+      {features.leadMagnet && <LeadMagnet />}
+      {features.footer && <Footer />}
+      {features.stickyContact && <StickyContact />}
+      <StickyCallBar />
     </main>
   );
 }

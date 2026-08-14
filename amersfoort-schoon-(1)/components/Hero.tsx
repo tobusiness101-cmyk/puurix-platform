@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Info } from "lucide-react";
+import { ArrowRight, Info, Phone } from "lucide-react";
 import Link from "next/link";
 
 export const Hero = () => {
@@ -43,8 +43,19 @@ export const Hero = () => {
           </p>
 
           {/* GEÜPDATETE KNOPPEN (Zelfde 'spirit', passend bij de Hero) */}
-          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-4">
+
+            <a href="tel:+31624473102" className="w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="group flex w-full items-center justify-center gap-3 rounded-full bg-emerald-500 px-8 py-5 text-sm font-bold uppercase tracking-widest text-white shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] transition-all hover:bg-emerald-600"
+              >
+                <Phone className="h-4 w-4" />
+                Bel Nu: 06 24 47 31 02
+              </motion.button>
+            </a>
+
             <Link href="#contact" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.03 }}

@@ -5,10 +5,12 @@ import Link from "next/link";
 import Image from "next/image"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { isPromoActive } from "@/lib/features";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const bannerActive = isPromoActive();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -17,7 +19,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className={`fixed top-0 z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white/95 shadow-sm backdrop-blur-md py-3" : "bg-transparent py-5"}`}>
+    <header className={`fixed ${bannerActive ? "top-10" : "top-0"} z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white/95 shadow-sm backdrop-blur-md py-3" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         
         <Link href="/" className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
