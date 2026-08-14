@@ -2,92 +2,70 @@
 
 import { motion } from "framer-motion";
 import { 
-  Building2, 
-  Factory, 
-  Trash2, 
-  Store, 
-  School, 
-  Droplets, 
-  Coffee, 
+  Briefcase, 
   Activity, 
+  Building2, 
   Sparkles, 
+  Coffee, 
+  Tent,
   ArrowRight 
 } from "lucide-react";
 import Link from "next/link";
 
-// Aan elke dienst is nu een expliciete Tailwind kleurencombinatie toegevoegd voor maximale scanbaarheid
 const services = [
   {
-    id: "TotaleSchoonmaak",
-    title: "Totale Schoonmaak",
-    description: "Totale schoonmaak en onderhoud voor zowel zakelijke bedrijven als particulieren.",
-    icon: Sparkles,
+    id: "Kantoorschoonmaak",
+    title: "Kantoorschoonmaak",
+    description: "Een representatieve, frisse werkomgeving voor uw team. Dagelijks of wekelijks, volledig afgestemd op uw kantoortijden.",
+    icon: Briefcase,
     bgClass: "bg-blue-50",
     colorClass: "text-blue-600",
+    hoverBorder: "hover:border-blue-200",
   },
   {
-    id: "Fabrieken",
-    title: "Fabrieken & Industrie",
-    description: "Totale schoonmaak in fabrieken, kantoren, werkplaatsen, fitnesscentra en musea.",
-    icon: Factory,
-    bgClass: "bg-indigo-50",
-    colorClass: "text-indigo-600",
-  },
-  {
-    id: "Ontruimen",
-    title: "Ontruimen & Bouw",
-    description: "Totale bouwschoonmaak en het professioneel en bezemschoon ontruimen van panden.",
-    icon: Trash2,
-    bgClass: "bg-orange-50",
-    colorClass: "text-orange-600",
-  },
-  {
-    id: "Trappenhuizen",
-    title: "Trappenhuizen",
-    description: "Schoonmaak van trappenhuizen, flats en gemeenschappelijke ruimtes voor coöperaties.",
-    icon: Building2,
+    id: "PraktijkenZorg",
+    title: "Zorg & Praktijken",
+    description: "Klinisch schoon volgens de WIP-richtlijnen. Maximale hygiëne voor tandartspraktijken, fysiotherapeuten en medische centra.",
+    icon: Activity,
     bgClass: "bg-teal-50",
     colorClass: "text-teal-600",
+    hoverBorder: "hover:border-teal-200",
   },
   {
-    id: "Winkelcentra",
-    title: "Winkelcentra",
-    description: "Totaal schoonmaak van winkelcentra, drukke winkelgalerijen en parkeergarages.",
-    icon: Store,
-    bgClass: "bg-violet-50",
-    colorClass: "text-violet-600",
+    id: "VvETrappenhuizen",
+    title: "VvE's & Trappenhuizen",
+    description: "Structureel onderhoud van gemeenschappelijke ruimtes. Wij zorgen voor een schone, frisse en veilige entree voor alle bewoners.",
+    icon: Building2,
+    bgClass: "bg-orange-50",
+    colorClass: "text-orange-600",
+    hoverBorder: "hover:border-orange-200",
   },
   {
-    id: "Scholen",
-    title: "Scholen & Zorg",
-    description: "Totale schoonmaak van scholen, kinderopvang, verpleeghuizen en zorgcentra.",
-    icon: School,
-    bgClass: "bg-rose-50",
-    colorClass: "text-rose-600",
-  },
-  {
-    id: "Sanitair",
-    title: "Sanitair",
-    description: "Totale levering en verzorging van sanitaire voorzieningen en hygiëne-oplossingen.",
-    icon: Droplets,
-    bgClass: "bg-cyan-50",
-    colorClass: "text-cyan-600",
-  },
-  {
-    id: "Horeca",
-    title: "Horecapersoneel",
-    description: "Totaal kantinebeheer en de levering van professionele kantinedames en personeel.",
-    icon: Coffee,
+    id: "Opleveringsschoonmaak",
+    title: "Opleveringsschoonmaak",
+    description: "Nieuwbouw of renovatie afgerond? Wij verwijderen hardnekkig bouwstof en maken het pand 100% representatief en instapklaar.",
+    icon: Sparkles,
     bgClass: "bg-amber-50",
     colorClass: "text-amber-600",
+    hoverBorder: "hover:border-amber-200",
   },
   {
-    id: "Sportcomplexen",
-    title: "Sportcomplexen",
-    description: "Zowel binnen als buiten: grondige reiniging van kantines, kleedkamers en douches.",
-    icon: Activity,
+    id: "HorecaHotels",
+    title: "Horeca & Hotels",
+    description: "Een onberispelijke gastervaring. Van dieptereiniging in keukens (HACCP) tot het spic en span houden van hotelkamers en lobby's.",
+    icon: Coffee,
+    bgClass: "bg-rose-50",
+    colorClass: "text-rose-600",
+    hoverBorder: "hover:border-rose-200",
+  },
+  {
+    id: "RecreatieCampings",
+    title: "Recreatie & Campings",
+    description: "Brandschoon sanitair en frisse vakantiehuisjes, zelfs tijdens het hoogseizoen. Wij snappen de snelle dynamiek van vakantieparken.",
+    icon: Tent,
     bgClass: "bg-emerald-50",
     colorClass: "text-emerald-600",
+    hoverBorder: "hover:border-emerald-200",
   }
 ];
 
@@ -113,26 +91,26 @@ export const Services = () => {
     <section id="diensten" className="bg-muted py-24">
       <div className="container mx-auto px-6 md:px-12">
         
-        {/* Compacte Header */}
-        <div className="mb-12 text-center max-w-3xl mx-auto">
+        {/* Header sectie */}
+        <div className="mb-16 text-center max-w-3xl mx-auto">
           <span className="mb-4 inline-block rounded-full border border-primary/10 bg-primary/5 px-4 py-1.5 text-xs font-bold tracking-wide text-primary uppercase">
-            Onze Diensten
+            Onze Expertise
           </span>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary md:text-4xl lg:text-5xl">
             Schoonmaak op <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-500">maat.</span>
           </h2>
           <p className="text-primary/70 text-lg leading-relaxed font-medium">
-            Als u samenwerkt met Puurix hebt u de garantie dat niets aan de aandacht ontsnapt. Wij verrichten strikt alle werkzaamheden binnen de afgesproken tijd.
+            Elke branche vraagt om een eigen aanpak. Van kantoor tot camping: wij leveren maatwerk, werken strikt volgens afspraak en ontzorgen u volledig.
           </p>
         </div>
 
-        {/* Compact 3x3 Bento Grid */}
+        {/* 2x3 Bento Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
         >
           {services.map((service) => {
             const Icon = service.icon;
@@ -140,27 +118,28 @@ export const Services = () => {
             return (
               <motion.div key={service.id} variants={cardVariants} className="h-full">
                 <Link 
-                  href="#contact"
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-white p-5 md:p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-premium"
+                  href="/#contact"
+                  className={`group flex h-full flex-col justify-between rounded-3xl border border-transparent bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] ${service.hoverBorder}`}
                 >
                   <div>
-                    {/* Icoon en Titel op één regel voor overzichtelijkheid */}
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${service.bgClass} ${service.colorClass}`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <h3 className="text-lg font-bold text-primary leading-tight">
-                        {service.title}
-                      </h3>
+                    {/* Icon */}
+                    <div className={`mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${service.bgClass} ${service.colorClass}`}>
+                      <Icon className="h-7 w-7" />
                     </div>
-                    <p className="leading-relaxed text-primary/70 text-sm mb-4">
+                    
+                    {/* Content */}
+                    <h3 className="text-xl font-bold text-primary mb-3 leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="leading-relaxed text-primary/70 text-sm mb-6">
                       {service.description}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-2 text-xs font-bold text-primary transition-colors group-hover:text-accent mt-auto pt-3 border-t border-border/50">
-                    Offerte aanvragen 
-                    <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                  {/* CTA link onderaan de kaart */}
+                  <div className={`flex items-center gap-2 text-xs font-bold transition-colors mt-auto pt-4 border-t border-border/50 ${service.colorClass} opacity-80 group-hover:opacity-100`}>
+                    Offerte aanvragen
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </Link>
               </motion.div>
@@ -168,15 +147,18 @@ export const Services = () => {
           })}
         </motion.div>
 
-        {/* Afsluitende Tekst */}
-        <div className="mt-16 max-w-3xl mx-auto text-center bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-border/50">
-          <h3 className="text-xl font-bold text-primary mb-3">Totalcleaning door heel de regio</h3>
-          <p className="text-primary/70 text-base leading-relaxed mb-4">
-            Wij beschikken over een ruime ervaring met de belangrijkste schoonmaakmethoden. Zo werkt u altijd in een schone werkomgeving, zonder onnodige zorgen.
+        {/* Afsluitende Trust-Tekst */}
+        <div className="mt-16 max-w-4xl mx-auto text-center bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-border/50 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl rounded-full"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 blur-3xl rounded-full"></div>
+          
+          <h3 className="text-xl md:text-2xl font-bold text-primary mb-4 relative z-10">Totalcleaning door heel de regio</h3>
+          <p className="text-primary/70 text-base leading-relaxed mb-6 max-w-2xl mx-auto relative z-10">
+            Kiest u voor Puurix, dan kiest u voor één vast aanspreekpunt voor al uw facilitaire zaken. Geen loze beloftes, maar zichtbaar resultaat en korte lijnen.
           </p>
-          <p className="font-bold text-primary text-sm uppercase tracking-wide">
-            PUURIX IS DÉ FLEXIBELE PARTNER VOOR TOTALCLEANING.
-          </p>
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-xs font-bold text-white uppercase tracking-wider relative z-10">
+            Jouw betrouwbare partner
+          </div>
         </div>
 
       </div>
