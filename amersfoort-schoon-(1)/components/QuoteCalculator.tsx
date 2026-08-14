@@ -15,7 +15,7 @@ export const QuoteCalculator = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // We versturen de form data direct naar Web3Forms via een fetch request, zodat de mooie animatie werkt!
+    // Web3Forms fetch request voor de vloeiende animatie
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -89,156 +89,129 @@ export const QuoteCalculator = () => {
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="flex items-center gap-3 text-white/50 text-sm">
                 <Building className="h-4 w-4" />
-                KVK: 
+                KVK: 90289136
               </div>
             </div>
           </div>
 
-          {/* Rechterpaneel: Het Offerteformulier */}
+          {/* Rechterpaneel: Het Gestripte Offerteformulier */}
           <div className="p-10 md:p-12 lg:w-2/3">
             <h2 className="text-3xl font-bold text-primary mb-2">Vraag een offerte aan</h2>
-            <p className="text-primary/60 mb-8">Vul de gegevens in en ontvang snel een voorstel op maat.</p>
+            <p className="text-primary/60 mb-8">Vul uw wensen in en ontvang snel een vrijblijvend voorstel op maat.</p>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Web3Forms Access Key */}
               <input type="hidden" name="access_key" value="91b5c30f-03ca-4d2c-ae11-c56124f8f957" />
               <input type="hidden" name="subject" value="Nieuwe offerte aanvraag via Puurix!" />
 
-              {/* 1. Bedrijfsgegevens */}
-              <div className="space-y-6">
-                <h3 className="text-lg font-bold text-primary border-b border-border pb-2 uppercase tracking-wide">1. Uw Gegevens</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="bedrijfsnaam" className="text-sm font-medium text-primary/80">Bedrijfsnaam *</label>
-                    <input id="bedrijfsnaam" required name="Bedrijfsnaam" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="contactpersoon" className="text-sm font-medium text-primary/80">Contactpersoon *</label>
-                    <input id="contactpersoon" required name="Contactpersoon" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="adres" className="text-sm font-medium text-primary/80">Adres *</label>
-                    <input id="adres" required name="Adres" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="postcode-plaats" className="text-sm font-medium text-primary/80">Postcode & Plaats *</label>
-                    <input id="postcode-plaats" required name="Postcode_en_Plaats" type="text" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="telefoonnummer" className="text-sm font-medium text-primary/80">Telefoonnummer *</label>
-                    <input id="telefoonnummer" required name="Telefoonnummer" type="tel" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-                  <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="email" className="text-sm font-medium text-primary/80">E-mailadres *</label>
-                    <input id="email" required name="Email" type="email" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
+              {/* 1. Naam & E-mail (Naast elkaar op desktop) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label htmlFor="naam" className="text-sm font-medium text-primary/80">Naam / Bedrijfsnaam *</label>
+                  <input id="naam" required name="Naam" type="text" placeholder="Hoe mogen we u noemen?" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-primary/80">E-mailadres *</label>
+                  <input id="email" required name="Email" type="email" placeholder="naam@bedrijf.nl" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                 </div>
               </div>
 
-              {/* 2. Schoonmaak Details */}
-              <div className="space-y-6 pt-4">
-                <h3 className="text-lg font-bold text-primary border-b border-border pb-2 uppercase tracking-wide">2. Schoonmaak Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="type-ruimte" className="text-sm font-medium text-primary/80">Type Ruimte *</label>
-                    <select id="type-ruimte" required name="Type_Ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
-                      <option value="">Selecteer type...</option>
-                      <option value="Kantoor">Kantoor</option>
-                      <option value="Winkel">Winkel</option>
-                      <option value="Magazijn">Magazijn</option>
-                      <option value="Anders">Anders</option>
-                    </select>
-                  </div>
+              {/* 2. Type Ruimte */}
+              <div className="space-y-2">
+                <label htmlFor="type-ruimte" className="text-sm font-medium text-primary/80">Type Ruimte *</label>
+                <select id="type-ruimte" required name="Type_Ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
+                  <option value="">Selecteer type...</option>
+                  <option value="Kantoor">Kantoor</option>
+                  <option value="Praktijk / Zorginstelling">Praktijk / Zorginstelling</option>
+                  <option value="Short-stay / Airbnb">Short-stay / Airbnb</option>
+                  <option value="Opleveringsschoonmaak">Opleveringsschoonmaak (Bouw)</option>
+                  <option value="Anders">Anders</option>
+                </select>
+              </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="oppervlakte" className="text-sm font-medium text-primary/80">Oppervlakte (m²) *</label>
-                    <input id="oppervlakte" required name="Oppervlakte_m2" type="number" min="1" placeholder="Bijv. 150" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
-                  </div>
-
-                  {/* FREQUENTIE SELECTIE */}
-                  <div className="space-y-3 md:col-span-2">
-                    <label className="text-sm font-medium text-primary/80">Gewenste Frequentie *</label>
-                    
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {["Eenmalig", "Dagelijks", "Wekelijks", "Maandelijks"].map((freq) => (
-                        <div
-                          key={freq}
-                          onClick={() => setFrequency(freq)}
-                          role="button"
-                          tabIndex={0}
-                          aria-pressed={frequency === freq}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              setFrequency(freq);
-                            }
-                          }}
-                          className={`cursor-pointer rounded-xl border px-2 py-3 text-sm text-center font-bold transition-all ${
-                            frequency === freq
-                              ? "border-accent bg-accent text-white shadow-md"
-                              : "border-border bg-background hover:border-primary/30 text-primary"
-                          }`}
-                        >
-                          {freq}
-                        </div>
-                      ))}
+              {/* 3. Frequentie Selectie */}
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-primary/80">Gewenste Frequentie *</label>
+                
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {["Eenmalig", "Dagelijks", "Wekelijks", "Maandelijks"].map((freq) => (
+                    <div
+                      key={freq}
+                      onClick={() => setFrequency(freq)}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={frequency === freq}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setFrequency(freq);
+                        }
+                      }}
+                      className={`cursor-pointer rounded-xl border px-2 py-3 text-sm text-center font-bold transition-all ${
+                        frequency === freq
+                          ? "border-accent bg-accent text-white shadow-md"
+                          : "border-border bg-background hover:border-primary/30 text-primary"
+                      }`}
+                    >
+                      {freq}
                     </div>
-
-                    <AnimatePresence>
-                      {frequency === "Wekelijks" && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                          animate={{ opacity: 1, height: "auto", marginTop: 16 }}
-                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="p-5 bg-primary/5 border border-primary/10 rounded-2xl">
-                            <label className="block text-xs font-bold text-primary/70 mb-3 uppercase tracking-wider">
-                              Hoeveel dagen per week?
-                            </label>
-                            <div className="flex flex-wrap gap-2">
-                              {[1, 2, 3, 4, 5, 6].map((num) => (
-                                <div
-                                  key={num}
-                                  onClick={() => setWeeklyDays(num)}
-                                  role="button"
-                                  tabIndex={0}
-                                  aria-pressed={weeklyDays === num}
-                                  aria-label={`${num} ${num === 1 ? "dag" : "dagen"} per week`}
-                                  onKeyDown={(e) => {
-                                    if (e.key === "Enter" || e.key === " ") {
-                                      e.preventDefault();
-                                      setWeeklyDays(num);
-                                    }
-                                  }}
-                                  className={`cursor-pointer h-12 w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all border ${
-                                    weeklyDays === num
-                                      ? "bg-accent text-white border-accent shadow-sm"
-                                      : "bg-white text-primary border-border hover:border-primary/30"
-                                  }`}
-                                >
-                                  {num}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                    
-                    <input type="hidden" name="Gewenste_Frequentie" value={frequency === "Wekelijks" ? `${weeklyDays}x per week` : frequency} />
-                  </div>
-
-                  <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">Specifieke Wensen</label>
-                    <textarea id="specifieke-wensen" name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons meer..." />
-                  </div>
+                  ))}
                 </div>
+
+                <AnimatePresence>
+                  {frequency === "Wekelijks" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-5 bg-primary/5 border border-primary/10 rounded-2xl">
+                        <label className="block text-xs font-bold text-primary/70 mb-3 uppercase tracking-wider">
+                          Hoeveel dagen per week?
+                        </label>
+                        <div className="flex flex-wrap gap-2">
+                          {[1, 2, 3, 4, 5, 6].map((num) => (
+                            <div
+                              key={num}
+                              onClick={() => setWeeklyDays(num)}
+                              role="button"
+                              tabIndex={0}
+                              aria-pressed={weeklyDays === num}
+                              aria-label={`${num} ${num === 1 ? "dag" : "dagen"} per week`}
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                  e.preventDefault();
+                                  setWeeklyDays(num);
+                                }
+                              }}
+                              className={`cursor-pointer h-12 w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all border ${
+                                weeklyDays === num
+                                  ? "bg-accent text-white border-accent shadow-sm"
+                                  : "bg-white text-primary border-border hover:border-primary/30"
+                              }`}
+                            >
+                              {num}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                {/* Verborgen veld om de daadwerkelijke frequentie mee te sturen in de mail */}
+                <input type="hidden" name="Gewenste_Frequentie" value={frequency === "Wekelijks" ? `${weeklyDays}x per week` : frequency} />
               </div>
 
-              {/* De Opvallende Contact Knop */}
+              {/* 4. Specifieke Wensen */}
+              <div className="space-y-2">
+                <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">Specifieke Wensen *</label>
+                <textarea id="specifieke-wensen" required name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
+              </div>
+
+              {/* Submit Button */}
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
