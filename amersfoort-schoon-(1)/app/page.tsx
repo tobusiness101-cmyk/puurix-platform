@@ -12,6 +12,7 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { LeadMagnet } from "@/components/LeadMagnet";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
+import { StickyCallBar } from "@/components/StickyCallBar";
 import { features } from "@/lib/features";
 
 export default function Home() {
@@ -27,13 +28,14 @@ export default function Home() {
       <Testimonials />
       {features.faq && <Faq />}
 
-      {/* Rekentool: directe prijsindicatie + bel-CTA, staat vóór de uitgebreide offerte-aanvraag */}
+      {/* Rekentool: directe prijsindicatie + bel-CTA */}
       {features.rekentool && <Rekentool />}
       {features.quoteCalculator && <QuoteCalculator />}
 
       {features.leadMagnet && <LeadMagnet />}
       {features.footer && <Footer />}
       {features.stickyContact && <StickyContact />}
+      <StickyCallBar />
     </main>
   );
 }

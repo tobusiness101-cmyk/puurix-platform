@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { PromoBanner } from "@/components/PromoBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,11 @@ export default function RootLayout({
   return (
     <html lang="nl">
       <body className={inter.className}>
+        <PromoBanner />
         <Navbar />
         {children}
         
-        {/* Gestructureerde Data voor Lokale SEO (Google Maps & Zoekresultaten) */}
+        {/* Gestructureerde Data voor Lokale SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
