@@ -105,7 +105,7 @@ export const QuoteCalculator = () => {
               <input type="hidden" name="access_key" value="91b5c30f-03ca-4d2c-ae11-c56124f8f957" />
               <input type="hidden" name="subject" value="Nieuwe offerte aanvraag via Puurix!" />
 
-              {/* 1. Naam & E-mail (Naast elkaar op desktop) */}
+              {/* 1. Naam & E-mail */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="naam" className="text-sm font-medium text-primary/80">Naam / Bedrijfsnaam *</label>
@@ -205,10 +205,12 @@ export const QuoteCalculator = () => {
                 <input type="hidden" name="Gewenste_Frequentie" value={frequency === "Wekelijks" ? `${weeklyDays}x per week` : frequency} />
               </div>
 
-              {/* 4. Specifieke Wensen */}
+              {/* 4. Specifieke Wensen (Nu optioneel) */}
               <div className="space-y-2">
-                <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">Specifieke Wensen *</label>
-                <textarea id="specifieke-wensen" required name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
+                <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">
+                  Specifieke Wensen <span className="text-primary/50 font-normal">(optioneel)</span>
+                </label>
+                <textarea id="specifieke-wensen" name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
               </div>
 
               {/* Submit Button */}
