@@ -25,7 +25,7 @@ const pricingPlans = [
     id: "gratis",
     title: "Gratis aanbod",
     icon: Sparkles,
-    priceLabel: "Nu 20€",
+    priceLabel: "20",
     priceSub: "/Uur",
     description: "Neem contact met ons op voor een gratis aanbieding voor uw bedrijf of plaats.",
     isDark: true, // Zorgt voor de diep donkerblauwe stijl uit je screenshot
