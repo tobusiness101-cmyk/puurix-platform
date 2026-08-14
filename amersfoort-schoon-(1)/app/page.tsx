@@ -14,10 +14,15 @@ import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { StickyCallBar } from "@/components/StickyCallBar";
 import { features } from "@/lib/features";
+import { WelcomePopup } from "@/components/WelcomePopup";
 
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden">
+      
+      {/* HIER STAAT JE POP-UP! */}
+      <WelcomePopup />
+
       {features.hero && <Hero />}
       {features.trustMarquee && <TrustMarquee />}
       {features.services && <Services />}
@@ -29,7 +34,7 @@ export default function Home() {
       {features.faq && <Faq />}
 
       {/* Rekentool: directe prijsindicatie + bel-CTA */}
-    { features.rekentool && <Rekentool />}
+      {features.rekentool && <Rekentool />}
       {features.quoteCalculator && <QuoteCalculator />}
 
       {features.leadMagnet && <LeadMagnet />}
