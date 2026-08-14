@@ -12,49 +12,65 @@ export const Rekentool = () => {
   const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [weeklyDays, setWeeklyDays] = useState<number>(1);
 
-  // === GEOPTIMALISEERD & SCHERP CONCURREREND PRIJSALGORITME ===
-  // Doel: Altijd onder de prijzen van Blinckschoon duiken (Bijv. 250m² 1x/w = ~€210 i.p.v. €236, 500m² = ~€245 i.p.v. €307)
+  // === HET 'WELKOM BONUS' ALGORITME ===
   const priceIndication = useMemo(() => {
-    // 1. Basis maandtarief per m² per frequentie (vóór volumekorting)
-    let ratePerSqmMonth = 0.95; // Standaard kantoor 1x/week sluit aan op Blinckschoon €0.95/m²
+    // 1. Basis maandtarief per m² per frequentie (Het NORMALE tarief, zonder korting)
+    let ratePerSqmMonth = 0.76; 
 
     if (spaceType === "Kantoor") {
-      ratePerSqmMonth = 0.95;
+      ratePerSqmMonth = 0.76;
     } else if (spaceType === "Praktijk / Zorginstelling") {
-      ratePerSqmMonth = 1.35; // Medisch incl. desinfectie
+      ratePerSqmMonth = 0.95; // Medisch incl. desinfectie
     } else if (spaceType === "Short-stay / Airbnb") {
-      ratePerSqmMonth = 1.50;
+      ratePerSqmMonth = 1.10;
     } else if (spaceType === "Opleveringsschoonmaak") {
-      ratePerSqmMonth = 3.50; // Eenmalig / bouwoplevering
+      ratePerSqmMonth = 2.00; // Eenmalig / bouwoplevering
     } else {
-      ratePerSqmMonth = 0.90;
+      ratePerSqmMonth = 0.70;
     }
 
-    // 2. Schaalvoordeel / Volumekorting per m² (hoe groter het pand, hoe lager de m²-prijs wordt)
+    // 2. Schaalvoordeel / Volumekorting per m² 
     let volumeDiscount = 1.0;
-    if (sqm >= 250 && sqm < 500) volumeDiscount = 0.90;       // 10% korting bij 250+ m²
-    else if (sqm >= 500 && sqm < 1000) volumeDiscount = 0.80;  // 20% korting bij 500+ m² (onderbiedt Blinckschoon 500m2 van €307 naar ~€245)
-    else if (sqm >= 1000) volumeDiscount = 0.70;               // 30% korting bij 1000+ m² (onderbiedt Blinckschoon 1000m2 van €554 naar ~€385)
+    if (sqm >= 500 && sqm < 1000) volumeDiscount = 0.785;  
+    else if (sqm >= 1000) volumeDiscount = 0.595;          
 
-    // Aantal beurten per week bepalen
+    // 3. Aantal beurten per week bepalen inclusief frequentiekorting
     let weeklyMultiplier = 1;
+    let frequencyDiscount = 1.0;
+
     if (frequency === "Eenmalig") {
-      // Eenmalige dieptereiniging of oplevering
-      const singlePrice = sqm * 3.20 * volumeDiscount;
-      return { amount: Math.max(Math.round(singlePrice), 150), period: "eenmalig" };
+      // Eenmalige berekening
+      const singlePrice = sqm * 1.5 * volumeDiscount;
+      const normalPrice = Math.max(Math.round(singlePrice), 120);
+      return { 
+        amount: Math.round(normalPrice * 0.80), // 20% welkomstkorting
+        originalAmount: normalPrice,
+        period: "eenmalig" 
+      };
     } else if (frequency === "Wekelijks") {
-      weeklyMultiplier = weeklyDays; // 1 tot 6 keer per week
+      // Extra korting als ze vaker per week afnemen
+      if (weeklyDays === 1) frequencyDiscount = 1.0;
+      else if (weeklyDays === 2) frequencyDiscount = 0.90; // 10% combikorting
+      else if (weeklyDays === 3) frequencyDiscount = 0.85;
+      else if (weeklyDays === 4) frequencyDiscount = 0.80;
+      else if (weeklyDays >= 5) frequencyDiscount = 0.75;
+
+      weeklyMultiplier = weeklyDays * frequencyDiscount;
     } else if (frequency === "Dagelijks") {
-      weeklyMultiplier = 5; // 5 dagen per week
+      weeklyMultiplier = 5 * 0.75; 
     } else if (frequency === "Maandelijks") {
-      weeklyMultiplier = 0.25; // 1x per 4 weken
+      weeklyMultiplier = 0.25; 
     }
 
-    // Bereken de definitieve maandprijs
-    const monthlyTotal = sqm * ratePerSqmMonth * volumeDiscount * weeklyMultiplier;
+    // 4. Bereken de NORMALE maandprijs
+    const normalMonthlyTotal = sqm * ratePerSqmMonth * volumeDiscount * weeklyMultiplier;
+
+    // 5. Pas de 20% Welkomstkorting toe (Dit raakt exact jouw doelen van €152, €238, etc.)
+    const discountedMonthlyTotal = normalMonthlyTotal * 0.80;
 
     return { 
-      amount: Math.max(Math.round(monthlyTotal), 85), // Minimum introductiebedrag van €85/mnd
+      amount: Math.max(Math.round(discountedMonthlyTotal), 75), 
+      originalAmount: Math.max(Math.round(normalMonthlyTotal), 95),
       period: "per maand" 
     };
   }, [spaceType, frequency, sqm, weeklyDays]);
@@ -71,13 +87,13 @@ export const Rekentool = () => {
             Scherp geprijsd, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-500">altijd onder de concurrentie.</span>
           </h2>
           <p className="mt-4 text-primary/70 text-lg">
-            Ontdek direct onze scherpe maandtarieven voor jouw kantoor of praktijk in Oosterhout.
+            Profiteer tijdelijk van onze <strong className="text-amber-500 font-bold">20% welkomstkorting</strong>. Ontdek direct wat u gaat besparen.
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-8 items-stretch">
 
-          {/* LINKERPANEEL: Inputs + Live Prijsindicatie */}
+          {/* LINKERPANEEL: Inputs */}
           <div className="flex-1 bg-background rounded-3xl p-8 md:p-10 border border-border/50 shadow-sm flex flex-col">
 
             {/* 1. Type Ruimte */}
@@ -197,24 +213,34 @@ export const Rekentool = () => {
               </AnimatePresence>
             </div>
 
-            {/* Live Prijsindicatie */}
+            {/* Live Prijsindicatie MET Korting weergave */}
             <div className="mt-auto pt-6 border-t border-border/50">
-              <div className="bg-white border border-border/60 rounded-2xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-2">
+              <div className="bg-white border border-amber-200 rounded-2xl p-6 shadow-[0_4px_20px_-4px_rgba(251,191,36,0.2)] relative overflow-hidden">
+                
+                {/* Gele glow op de achtergrond */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2 relative z-10">
                   <span className="text-sm font-bold text-primary/70 uppercase tracking-widest">
-                    {priceIndication.period === "eenmalig" ? "Indicatie eenmalig" : "Scherpe indicatie maandelijks"}
+                    {priceIndication.period === "eenmalig" ? "Indicatie eenmalig" : "Scherpe indicatie"}
                   </span>
-                  <span className="text-[10px] font-medium text-primary/50">excl. BTW</span>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 border border-amber-200 px-3 py-1 text-[10px] font-extrabold text-amber-700 uppercase tracking-wider shadow-sm">
+                    🎁 20% Welkomstkorting
+                  </span>
                 </div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-5xl font-extrabold tracking-tighter text-primary">€{priceIndication.amount}</span>
+                
+                <div className="flex items-baseline gap-3 relative z-10">
+                  <span className="text-2xl font-bold text-primary/30 line-through decoration-primary/30 decoration-2">
+                    €{priceIndication.originalAmount}
+                  </span>
+                  <span className="text-5xl font-extrabold tracking-tighter text-primary">
+                    €{priceIndication.amount}
+                  </span>
                   {priceIndication.period !== "eenmalig" && (
                     <span className="text-xl font-medium text-primary/70">/ mnd</span>
                   )}
                 </div>
-                <p className="text-xs text-emerald-600 font-semibold mt-2">
-                  ✨ Gegarandeerd scherper dan landelijke concurrenten in Oosterhout!
-                </p>
+                <span className="block text-[10px] font-bold text-primary/40 uppercase tracking-wider mt-1 relative z-10">excl. BTW</span>
               </div>
             </div>
 
@@ -222,30 +248,30 @@ export const Rekentool = () => {
 
           {/* RECHTERPANEEL: Bel-CTA */}
           <div className="lg:w-2/5 bg-primary rounded-3xl p-8 md:p-10 text-white shadow-sm relative flex flex-col justify-center items-center text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-emerald-400 mb-6">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-amber-400 mb-6">
               <Phone className="h-7 w-7" />
             </div>
             <h4 className="text-[11px] font-extrabold text-white/50 uppercase tracking-[0.2em] mb-4">
               Direct actie
             </h4>
             <h3 className="text-2xl font-bold font-serif mb-3 leading-tight tracking-tight">
-              Claim deze scherpe tarieven
+              Claim uw welkomstkorting
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-8">
-              Op basis van uw berekening van <span className="font-bold text-white">€{priceIndication.amount} {priceIndication.period === "eenmalig" ? "" : "per maand"}</span> leggen we dit direct voor u vast in een vrijblijvende offerte.
+              Leg vandaag nog de scherpe prijs van <span className="font-bold text-white">€{priceIndication.amount} {priceIndication.period === "eenmalig" ? "" : "per maand"}</span> vast in een vrijblijvende offerte.
             </p>
 
             <a href="tel:+31624473102" className="w-full">
               <button
-                className="group w-full flex items-center justify-center gap-3 rounded-xl bg-emerald-500 px-6 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-md transition-all hover:bg-emerald-600"
+                className="group w-full flex items-center justify-center gap-3 rounded-xl bg-amber-500 px-6 py-4 text-sm font-bold uppercase tracking-widest text-primary shadow-md transition-all hover:bg-amber-400"
               >
                 <Phone className="h-4 w-4" />
-                Bel Direkt: 06 24 47 31 02
+                Bel Direct: 06 24 47 31 02
               </button>
             </a>
 
             <a href="/#contact" className="mt-4 text-sm font-medium text-white/60 hover:text-white transition-colors flex items-center gap-1.5">
-              Offerte aanvragen per mail <ArrowRight className="h-3.5 w-3.5" />
+              Liever offerte aanvragen per mail? <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
 
