@@ -2,31 +2,42 @@
 
 import { useState, useMemo } from "react";
 import { Calculator, Phone, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const Rekentool = () => {
   const [spaceType, setSpaceType] = useState<string>("Kantoor");
-  const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [sqm, setSqm] = useState<number>(150);
+  
+  // Zelfde state als in QuoteCalculator
+  const [frequency, setFrequency] = useState<string>("Wekelijks");
+  const [weeklyDays, setWeeklyDays] = useState<number>(1);
 
   // === PRIJSBEREKENING (realistische NL premium tarieven) ===
   const priceIndication = useMemo(() => {
     // Basis tarief per m² per schoonmaakbeurt (premium tarief)
     let baseRate = 2.6;
     if (spaceType === "Kantoor") baseRate = 2.75;
-    else if (spaceType === "Bedrijfspand") baseRate = 2.6;
-    else if (spaceType === "Horeca") baseRate = 3.2;
-    else baseRate = 2.4; // Overig
+    else if (spaceType === "Praktijk / Zorginstelling") baseRate = 3.1;
+    else if (spaceType === "Short-stay / Airbnb") baseRate = 3.5;
+    else if (spaceType === "Opleveringsschoonmaak") baseRate = 4.0;
+    else baseRate = 2.4; // Anders
 
     const sessionPrice = baseRate * sqm;
 
-    let monthlySessions = 4.33; // Wekelijks
-    if (frequency === "2x per week") monthlySessions = 8.66;
-    else if (frequency === "Dagelijks") monthlySessions = 20;
+    // Als het eenmalig is, berekenen we geen maandprijs
+    if (frequency === "Eenmalig") {
+      return { amount: Math.round(sessionPrice), period: "eenmalig" };
+    }
+
+    // Bereken het aantal sessies per maand
+    let monthlySessions = 1; // Standaard voor Maandelijks
+    if (frequency === "Wekelijks") monthlySessions = weeklyDays * 4.33; // Gemiddeld 4.33 weken in een maand
+    else if (frequency === "Dagelijks") monthlySessions = 5 * 4.33; // Uitgaande van 5 werkdagen
 
     const monthlyPrice = Math.round(sessionPrice * monthlySessions);
 
     return { amount: monthlyPrice, period: "per maand" };
-  }, [spaceType, frequency, sqm]);
+  }, [spaceType, frequency, sqm, weeklyDays]);
 
   return (
     <section id="rekentool" className="py-24 bg-white relative">
@@ -40,7 +51,7 @@ export const Rekentool = () => {
             Krijg direct een <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-500">realistische prijsindicatie.</span>
           </h2>
           <p className="mt-4 text-primary/70 text-lg">
-            Twee keuzes, één schuifbalk. Voor een exacte prijs bellen we het liefst even met u.
+            Simpele keuzes, direct resultaat. Voor een exacte prijs bellen we het liefst even met u.
           </p>
         </div>
 
@@ -61,9 +72,10 @@ export const Rekentool = () => {
                 className="w-full bg-white border border-border rounded-xl px-4 py-3.5 text-primary font-medium focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all appearance-none"
               >
                 <option value="Kantoor">Kantoor</option>
-                <option value="Bedrijfspand">Bedrijfspand</option>
-                <option value="Horeca">Horeca</option>
-                <option value="Overig">Overig</option>
+                <option value="Praktijk / Zorginstelling">Praktijk / Zorginstelling</option>
+                <option value="Short-stay / Airbnb">Short-stay / Airbnb</option>
+                <option value="Opleveringsschoonmaak">Opleveringsschoonmaak (Bouw)</option>
+                <option value="Anders">Anders</option>
               </select>
             </div>
 
@@ -91,33 +103,94 @@ export const Rekentool = () => {
               </div>
             </div>
 
-            {/* 3. Frequentie (optioneel, met standaardwaarde) */}
+            {/* 3. Frequentie (Geüpdatet naar het blokken-design) */}
             <div className="mb-8">
-              <label htmlFor="frequentie-rekentool" className="block text-sm font-bold text-primary mb-3 uppercase tracking-wide">
-                3. Frequentie <span className="font-medium normal-case text-primary/50">(optioneel)</span>
+              <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wide">
+                3. Frequentie
               </label>
-              <select
-                id="frequentie-rekentool"
-                value={frequency}
-                onChange={(e) => setFrequency(e.target.value)}
-                className="w-full bg-white border border-border rounded-xl px-4 py-3.5 text-primary font-medium focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all appearance-none"
-              >
-                <option value="Wekelijks">Wekelijks</option>
-                <option value="2x per week">2x per week</option>
-                <option value="Dagelijks">Dagelijks</option>
-              </select>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {["Eenmalig", "Dagelijks", "Wekelijks", "Maandelijks"].map((freq) => (
+                  <div
+                    key={freq}
+                    onClick={() => setFrequency(freq)}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={frequency === freq}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setFrequency(freq);
+                      }
+                    }}
+                    className={`cursor-pointer rounded-xl border px-2 py-3 text-sm text-center font-bold transition-all ${
+                      frequency === freq
+                        ? "border-accent bg-accent text-white shadow-md"
+                        : "border-border bg-white hover:border-primary/30 text-primary"
+                    }`}
+                  >
+                    {freq}
+                  </div>
+                ))}
+              </div>
+
+              <AnimatePresence>
+                {frequency === "Wekelijks" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                    animate={{ opacity: 1, height: "auto", marginTop: 16 }}
+                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 bg-primary/5 border border-primary/10 rounded-2xl">
+                      <label className="block text-xs font-bold text-primary/70 mb-3 uppercase tracking-wider">
+                        Hoeveel dagen per week?
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {[1, 2, 3, 4, 5, 6].map((num) => (
+                          <div
+                            key={num}
+                            onClick={() => setWeeklyDays(num)}
+                            role="button"
+                            tabIndex={0}
+                            aria-pressed={weeklyDays === num}
+                            aria-label={`${num} ${num === 1 ? "dag" : "dagen"} per week`}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                setWeeklyDays(num);
+                              }
+                            }}
+                            className={`cursor-pointer h-12 w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all border ${
+                              weeklyDays === num
+                                ? "bg-accent text-white border-accent shadow-sm"
+                                : "bg-white text-primary border-border hover:border-primary/30"
+                            }`}
+                          >
+                            {num}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Live Prijsindicatie */}
             <div className="mt-auto pt-6 border-t border-border/50">
               <div className="bg-white border border-border/60 rounded-2xl p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-primary/70 uppercase tracking-widest">Indicatie maandelijks</span>
+                  <span className="text-sm font-bold text-primary/70 uppercase tracking-widest">
+                    {priceIndication.period === "eenmalig" ? "Indicatie eenmalig" : "Indicatie maandelijks"}
+                  </span>
                   <span className="text-[10px] font-medium text-primary/50">excl. BTW</span>
                 </div>
                 <div className="flex items-baseline gap-1">
                   <span className="text-5xl font-extrabold tracking-tighter text-primary">€{priceIndication.amount}</span>
-                  <span className="text-xl font-medium text-primary/70">/ {priceIndication.period}</span>
+                  {priceIndication.period !== "eenmalig" && (
+                    <span className="text-xl font-medium text-primary/70">/ mnd</span>
+                  )}
                 </div>
                 <p className="text-xs text-primary/60 mt-2">
                   Realistische indicatie op basis van uw keuzes. Exacte prijs na een kort telefoongesprek.
@@ -139,7 +212,7 @@ export const Rekentool = () => {
               Bel ons voor een exacte offerte
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-8">
-              Op basis van uw indicatie van <span className="font-bold text-white">€{priceIndication.amount} per maand</span> bespreken we in een kort gesprek de exacte prijs en planning.
+              Op basis van uw indicatie van <span className="font-bold text-white">€{priceIndication.amount} {priceIndication.period === "eenmalig" ? "" : "per maand"}</span> bespreken we in een kort gesprek de exacte prijs en planning.
             </p>
 
             <a href="tel:+31624473102" className="w-full">
