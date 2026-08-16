@@ -1,14 +1,17 @@
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { ShieldCheck, Stethoscope, CheckCircle2, ArrowRight, Activity } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Schoonmaak Tandartspraktijk & Zorginstelling | Puurix",
+  description: "Gespecialiseerde schoonmaak voor tandartspraktijken en zorginstellingen in Oosterhout, Breda en Tilburg, conform de WIP-richtlijnen infectiepreventie.",
+};
 
 export default function TandartspraktijkSchoonmaakPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navbar />
-
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-primary text-white">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">

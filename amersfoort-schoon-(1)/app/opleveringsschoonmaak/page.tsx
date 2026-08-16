@@ -1,14 +1,17 @@
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { ClipboardCheck, Camera, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Opleveringsschoonmaak Oosterhout, Breda & Tilburg | Puurix",
+  description: "Vlekkeloze opleveringsschoonmaak na bouw, verbouw of verhuizing voor aannemers, projectontwikkelaars en makelaars in Oosterhout, Breda en Tilburg.",
+};
 
 export default function OpleveringsschoonmaakPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navbar />
-
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-primary text-white">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">

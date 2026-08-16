@@ -1,14 +1,17 @@
-import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { Star, Clock, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Short-stay & Airbnb Schoonmaak Oosterhout, Breda & Tilburg | Puurix",
+  description: "Hotelkwaliteit wisselschoonmaak voor short-stay en Airbnb-verhuurders in Oosterhout, Breda en Tilburg. Strakke planning tussen check-out en check-in.",
+};
 
 export default function ShortStaySchoonmaakPage() {
   return (
     <div className="min-h-screen bg-stone-50">
-      <Navbar />
-
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-primary text-white">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">

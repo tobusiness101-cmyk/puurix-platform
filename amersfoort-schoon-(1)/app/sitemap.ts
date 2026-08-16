@@ -22,6 +22,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  // Dienst-specifieke landingpagina's
+  const dienstPaginas = [
+    'kantoorschoonmaak',
+    'opleveringsschoonmaak',
+    'short-stay',
+    'tandartspraktijk-schoonmaak',
+  ]
+
+  const dienstUrls = dienstPaginas.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
   return [
     {
       url: `${baseUrl}`,
@@ -30,5 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...regioUrls,
+    ...dienstUrls,
   ]
 }
