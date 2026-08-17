@@ -81,11 +81,11 @@ export const Footer = () => {
                 </div>
                 <span className="font-medium text-sm text-ink">+31 6 24 47 31 02</span>
               </a>
-              <a href="mailto:to.business101@gmail.com" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+              <a href="mailto:puurixschoonmaak@gmail.com" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
                 <div className="bg-stone-50 p-2 rounded-md border border-stone-100">
                   <Mail size={18} className="text-ink" />
                 </div>
-                <span className="font-medium text-sm text-ink">to.business101@gmail.com</span>
+                <span className="font-medium text-sm text-ink">puurixschoonmaak@gmail.com</span>
               </a>
               <a href="https://wa.me/31624473102" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
                 <div className="bg-stone-50 p-2 rounded-md border border-stone-100">
