@@ -9,7 +9,7 @@ import { MetaPixel } from "@/components/MetaPixel";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)"),
+  metadataBase: new URL("https://www.puurixschoonmaak.nl"),
   title: {
     default: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     template: "%s | Puurix",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     description:
       "Vaste schoonmaakploeg, transparante tarieven en 20% welkomstkorting op zakelijke schoonmaak.",
-    url: "[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)",
+    url: "https://www.puurixschoonmaak.nl",
     siteName: "Puurix Schoonmaakbedrijf",
     locale: "nl_NL",
     type: "website",
@@ -61,11 +61,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "[https://schema.org](https://schema.org)",
+              "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Puurix",
-              image: "[https://www.puurixschoonmaak.nl/logo.jpg](https://www.puurixschoonmaak.nl/logo.jpg)",
-              url: "[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)",
+              image: "https://www.puurixschoonmaak.nl/logo.jpg",
+              url: "https://www.puurixschoonmaak.nl",
               telephone: "+31624473102",
               email: "puurixschoonmaak@gmail.com",
               areaServed: [
