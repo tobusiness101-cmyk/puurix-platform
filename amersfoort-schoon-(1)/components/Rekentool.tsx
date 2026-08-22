@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { Calculator, Phone, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const Rekentool = () => {
   const [spaceType, setSpaceType] = useState<string>("Kantoor");
@@ -261,7 +262,11 @@ export const Rekentool = () => {
               Leg vandaag nog de scherpe prijs van <span className="font-bold text-white">€{priceIndication.amount} {priceIndication.period === "eenmalig" ? "" : "per maand"}</span> vast in een vrijblijvende offerte.
             </p>
 
-            <a href="tel:+31624473102" className="w-full">
+            <a
+              href="tel:+31624473102"
+              className="w-full"
+              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Rekentool Bel Direct" } })}
+            >
               <button
                 className="group w-full flex items-center justify-center gap-3 rounded-xl bg-amber-500 px-6 py-4 text-sm font-bold uppercase tracking-widest text-primary shadow-md transition-all hover:bg-amber-400"
               >

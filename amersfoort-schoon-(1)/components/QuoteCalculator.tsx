@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Phone, Mail, Building } from "lucide-react";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,6 +28,7 @@ export const QuoteCalculator = () => {
         setIsSubmitting(false);
         if (response.status === 200) {
           setIsSuccess(true);
+          trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
         } else {
           alert("Er is iets misgegaan bij het verzenden. Probeer het opnieuw.");
         }

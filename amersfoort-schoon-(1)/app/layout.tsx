@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { PromoBanner } from "@/components/PromoBanner";
 import { GoogleAnalytics } from '@next/third-parties/google'; // Import voor Analytics
+import { MetaPixel } from "@/components/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,6 +62,9 @@ export default function RootLayout({
 
         {/* Google Analytics script wordt hier veilig geladen */}
         <GoogleAnalytics gaId="G-L4GV9859J5" />
+
+        {/* Meta Pixel (Facebook/Instagram Ads) */}
+        <MetaPixel />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Info, Phone } from "lucide-react";
 import Link from "next/link";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const Hero = () => {
   return (
@@ -45,7 +46,11 @@ export const Hero = () => {
           {/* GEÜPDATETE KNOPPEN (Onder elkaar op mobiel, strak naast elkaar op laptop) */}
           <div className="flex w-full flex-col lg:flex-row items-center justify-center gap-4 px-2 sm:px-0">
 
-            <a href="tel:+31624473102" className="w-full lg:w-auto">
+            <a
+              href="tel:+31624473102"
+              className="w-full lg:w-auto"
+              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Hero Bel Nu" } })}
+            >
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}

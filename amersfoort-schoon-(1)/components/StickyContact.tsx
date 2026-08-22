@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Phone, X, FileText, ChevronUp, Calculator } from "lucide-react";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const StickyContact = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,6 +77,7 @@ export const StickyContact = () => {
               {/* 3. Bellen */}
               <a
                 href="tel:+31624473102"
+                onClick={() => trackMetaEvent("Contact", { customData: { content_name: "StickyContact Bel Direct" } })}
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors hover:bg-muted"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
@@ -92,6 +94,7 @@ export const StickyContact = () => {
                 href="https://wa.me/31624473102"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackMetaEvent("Contact", { customData: { content_name: "StickyContact WhatsApp" } })}
                 className="group flex items-center gap-4 p-4 transition-colors hover:bg-muted"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition-colors">
