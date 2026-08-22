@@ -36,7 +36,7 @@ export const Rekentool = () => {
       isOneTime = true;
       // Eenmalig is een losse klus, dus pakken we het maandtarief x 1.5
       // (Behalve bij Opleveringsschoonmaak, want daar is de basisprijs al heel hoog)
-      let eenmaligMultiplier = spaceType === "Opleveringsschoonmaak" ? 1.0 : 1.5;
+      let eenmaligMultiplier = spaceType === "Opleveringsschoonmaak" ? 1.0 : 0.6;
       
       let singlePrice = sqm * ratePerSqmMonth * volumeDiscount * eenmaligMultiplier;
       normalPrice = Math.max(Math.round(singlePrice), 120); // Minimaal €120 voor eenmalig
