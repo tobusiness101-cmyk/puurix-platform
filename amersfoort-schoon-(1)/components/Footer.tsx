@@ -96,7 +96,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Kolom 3: Branches & Diensten */}
+          {/* Kolom 3: Branches & Diensten (SEO Geoptimaliseerd) */}
           <div>
             <h4 className="font-bold text-ink text-lg mb-6">Onze Diensten</h4>
             <ul className="space-y-4 text-sm font-medium text-stone-600">
@@ -116,6 +116,11 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/glasbewassing" className="hover:text-accent transition-colors">
+                  Glasbewassing & Onderhoud
+                </Link>
+              </li>
+              <li>
                 <Link href="/short-stay" className="hover:text-accent transition-colors">
                   Short-stay & Airbnb
                 </Link>
@@ -129,8 +134,12 @@ export const Footer = () => {
         <div className="pt-8 border-t border-stone-200 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-stone-400">
           <p>&copy; {new Date().getFullYear()} Puurix. Alle rechten voorbehouden.</p>
           <div className="flex gap-4">
-            <Link href="/algemene-voorwaarden" className="hover:text-accent transition-colors">Algemene Voorwaarden</Link>
-            <Link href="/privacybeleid" className="hover:text-accent transition-colors">Privacybeleid</Link>
+           <Link className="hover:text-accent transition-colors" href="/algemene-voorwaarden">
+              Algemene Voorwaarden
+            </Link>
+            <Link className="hover:text-accent transition-colors" href="/privacybeleid">
+              Privacybeleid
+            </Link>
           </div>
         </div>
       </div>
