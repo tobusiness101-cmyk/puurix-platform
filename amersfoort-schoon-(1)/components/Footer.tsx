@@ -9,7 +9,7 @@ export const Footer = () => {
           
           {/* Kolom 1: Logo, Tekst & Werkgebied */}
           <div className="flex flex-col">
-            <Link href="/" className="inline-block cursor-pointer mb-6">
+            <Link className="inline-block cursor-pointer mb-6" href="/">
               <span className="font-sans text-4xl font-black tracking-tighter">
                 <span className="text-ink">Puur</span>
                 <span className="text-stone-600">ix</span>
@@ -24,44 +24,44 @@ export const Footer = () => {
             <h4 className="font-bold text-ink tracking-widest text-xs mb-4 uppercase">Werkgebied</h4>
             <ul className="space-y-3 text-sm font-medium">
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/oosterhout" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/oosterhout">
                   Oosterhout
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/breda" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/breda">
                   Breda
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/tilburg" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/tilburg">
                   Tilburg
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/etten-leur" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/etten-leur">
                   Etten-Leur
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/teteringen" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/teteringen">
                   Teteringen
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/waalwijk" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/waalwijk">
                   Waalwijk
                 </Link>
               </li>
               <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/kaatsheuvel" className="hover:text-accent transition-colors">
+                <MapPin className="text-accent" size="{18}"/>
+                <Link className="hover:text-accent transition-colors" href="/schoonmaakbedrijf/kaatsheuvel">
                   Kaatsheuvel
                 </Link>
               </li>
@@ -74,19 +74,19 @@ export const Footer = () => {
             <div className="space-y-4">
               <a href="tel:+31624473102" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
                 <div className="bg-stone-50 p-2 rounded-md border border-stone-100">
-                  <Phone size={18} className="text-ink" />
+                  <Phone className="text-ink" size="{18}"/>
                 </div>
                 <span className="font-medium text-sm text-ink">+31 6 24 47 31 02</span>
               </a>
               <a href="mailto:puurixschoonmaak@gmail.com" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
                 <div className="bg-stone-50 p-2 rounded-md border border-stone-100">
-                  <Mail size={18} className="text-ink" />
+                  <Mail className="text-ink" size="{18}"/>
                 </div>
                 <span className="font-medium text-sm text-ink">puurixschoonmaak@gmail.com</span>
               </a>
-              <a href="https://wa.me/31624473102" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+              <a href="[https://wa.me/31624473102](https://wa.me/31624473102)" className="flex items-center gap-4 bg-white p-3 rounded-lg shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
                 <div className="bg-stone-50 p-2 rounded-md border border-stone-100">
-                  <MessageCircle size={18} className="text-green-600" />
+                  <MessageCircle className="text-green-600" size="{18}"/>
                 </div>
                 <span className="font-medium text-sm text-ink">WhatsApp Ons Direct</span>
               </a>
@@ -98,22 +98,22 @@ export const Footer = () => {
             <h4 className="font-bold text-ink text-lg mb-6">Onze Diensten</h4>
             <ul className="space-y-4 text-sm font-medium text-stone-600">
               <li>
-                <Link href="/kantoorschoonmaak" className="hover:text-accent transition-colors">
+                <Link className="hover:text-accent transition-colors" href="/kantoorschoonmaak">
                   Kantoorschoonmaak
                 </Link>
               </li>
               <li>
-                <Link href="/tandartspraktijk-schoonmaak" className="hover:text-accent transition-colors">
+                <Link className="hover:text-accent transition-colors" href="/tandartspraktijk-schoonmaak">
                   Praktijken & Zorginstellingen
                 </Link>
               </li>
               <li>
-                <Link href="/opleveringsschoonmaak" className="hover:text-accent transition-colors">
+                <Link className="hover:text-accent transition-colors" href="/opleveringsschoonmaak">
                   Opleveringsschoonmaak
                 </Link>
               </li>
               <li>
-                <Link href="/short-stay" className="hover:text-accent transition-colors">
+                <Link className="hover:text-accent transition-colors" href="/short-stay">
                   Short-stay & Airbnb
                 </Link>
               </li>
@@ -126,10 +126,10 @@ export const Footer = () => {
         <div className="pt-8 border-t border-stone-200 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-stone-400">
           <p>&copy; {new Date().getFullYear()} Puurix. Alle rechten voorbehouden.</p>
           <div className="flex gap-4">
-            <Link href="/algemene-voorwaarden" className="hover:text-accent transition-colors">
+            <Link className="hover:text-accent transition-colors" href="/algemene-voorwaarden">
               Algemene Voorwaarden
             </Link>
-            <Link href="/privacybeleid" className="hover:text-accent transition-colors">
+            <Link className="hover:text-accent transition-colors" href="/privacybeleid">
               Privacybeleid
             </Link>
           </div>
@@ -138,74 +138,3 @@ export const Footer = () => {
     </footer>
   );
 };
-```[cite: 1]
-
----
-
-### 2. Complete `app/sitemap.ts`
-
-Vervang **`app/sitemap.ts`** met deze bijgewerkte code waarin alle regio's, diensten én de twee juridische pagina's staan[cite: 1]:
-
-```typescript
-import type { MetadataRoute } from 'next';
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.puurixschoonmaak.nl';
-
-  const regios = [
-    'oosterhout',
-    'breda',
-    'tilburg',
-    'etten-leur',
-    'teteringen',
-    'waalwijk',
-    'kaatsheuvel',
-    'amersfoort'
-  ];
-
-  const regioUrls = regios.map((regio) => ({
-    url: `${baseUrl}/schoonmaakbedrijf/${regio}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
-
-  const dienstPaginas = [
-    'kantoorschoonmaak',
-    'opleveringsschoonmaak',
-    'short-stay',
-    'tandartspraktijk-schoonmaak',
-  ];
-
-  const dienstUrls = dienstPaginas.map((slug) => ({
-    url: `${baseUrl}/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
-
-  const juridischePaginas = [
-    'privacybeleid',
-    'algemene-voorwaarden',
-  ];
-
-  const juridischeUrls = juridischePaginas.map((slug) => ({
-    url: `${baseUrl}/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.3,
-  }));
-
-  return [
-    {
-      url: `${baseUrl}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    ...regioUrls,
-    ...dienstUrls,
-    ...juridischeUrls,
-  ];
-}
-```[cite: 1]

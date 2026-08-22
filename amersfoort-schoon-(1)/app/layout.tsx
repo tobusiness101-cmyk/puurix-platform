@@ -3,13 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { PromoBanner } from "@/components/PromoBanner";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { MetaPixel } from "@/components/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.puurixschoonmaak.nl"),
+  metadataBase: new URL("[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)"),
   title: {
     default: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     template: "%s | Puurix",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     description:
       "Vaste schoonmaakploeg, transparante tarieven en 20% welkomstkorting op zakelijke schoonmaak.",
-    url: "https://www.puurixschoonmaak.nl",
+    url: "[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)",
     siteName: "Puurix Schoonmaakbedrijf",
     locale: "nl_NL",
     type: "website",
@@ -52,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="nl">
       <body className={inter.className}>
-        <PromoBanner />
-        <Navbar />
+        <PromoBanner/>
+        <Navbar/>
         {children}
 
         {/* Gestructureerde Data voor Lokale SEO */}
@@ -61,14 +61,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
+              "@context": "[https://schema.org](https://schema.org)",
               "@type": "LocalBusiness",
-              "name": "Puurix",
-              "image": "https://www.puurixschoonmaak.nl/logo.jpg",
-              "url": "https://www.puurixschoonmaak.nl",
-              "telephone": "+31624473102",
-              "email": "puurixschoonmaak@gmail.com",
-              "areaServed": [
+              name: "Puurix",
+              image: "[https://www.puurixschoonmaak.nl/logo.jpg](https://www.puurixschoonmaak.nl/logo.jpg)",
+              url: "[https://www.puurixschoonmaak.nl](https://www.puurixschoonmaak.nl)",
+              telephone: "+31624473102",
+              email: "puurixschoonmaak@gmail.com",
+              areaServed: [
                 { "@type": "City", "name": "Oosterhout" },
                 { "@type": "City", "name": "Breda" },
                 { "@type": "City", "name": "Tilburg" },
@@ -78,23 +78,22 @@ export default function RootLayout({
                 { "@type": "City", "name": "Kaatsheuvel" },
                 { "@type": "City", "name": "Amersfoort" }
               ],
-              "address": {
-                /*"@type": "PostalAddress",
-                "postalCode": "4904",*/
-                "addressLocality": "Oosterhout",
-                "addressRegion": "Noord-Brabant",
-                "addressCountry": "NL"
+              address: {
+                "@type": "PostalAddress",
+                postalCode: "4904",
+                addressLocality: "Oosterhout",
+                addressRegion: "Noord-Brabant",
+                addressCountry: "NL"
               },
-              "priceRange": "€€"
+              priceRange: "€€"
             }),
           }}
         />
 
         {/* Analytics & Meta Pixel */}
-        <GoogleAnalytics gaId="G-L4GV9859J5" />
-        <MetaPixel />
+        <GoogleAnalytics gaId="G-L4GV9859J5"/>
+        <MetaPixel/>
       </body>
     </html>
   );
 }
-```[cite: 1]
