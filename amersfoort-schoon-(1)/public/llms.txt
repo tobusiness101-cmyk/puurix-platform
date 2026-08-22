@@ -1,23 +1,31 @@
-# Puurix Schoonmaak
+# Puurix Schoonmaakbedrijf
 
-> Professioneel schoonmaakbedrijf actief in Breda, Amersfoort, Oosterhout, Tilburg en omstreken.
+> Hoogwaardige en betrouwbare schoonmaakdiensten voor de zakelijke en particuliere markt in Noord-Brabant en Amersfoort.
 
-Puurix levert zakelijke en particuliere schoonmaakdiensten: kantoorpanden, 
-short-stay verhuur, zorginstellingen, horeca, en opleveringsschoonmaak na 
-bouw/verbouwing.
+Puurix levert professionele interieurreiniging op maat: kantoorschoonmaak, medische praktijken (conform WIP-richtlijnen), VvE's en trappenhuizen, short-stay en recreatieverblijven, horeca, en specialistische opleveringsschoonmaak na bouw of verbouwing.
 
-## Pagina's
+## Hoofdpagina's & Diensten
 
 - [Homepage](https://www.puurixschoonmaak.nl/)
-- [Schoonmaak Breda](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/breda)
-- [Schoonmaak Amersfoort](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/amersfoort)
-- [Schoonmaak Oosterhout](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/oosterhout)
-- [Schoonmaak Tilburg](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/tilburg)
-- [Schoonmaak Rotterdam](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/rotterdam)
-- [Schoonmaak Utrecht](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/utrecht)
-- [Schoonmaak Amsterdam](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/amsterdam)
+- [Kantoorschoonmaak](https://www.puurixschoonmaak.nl/kantoorschoonmaak)
+- [Tandartspraktijk & Medische Schoonmaak](https://www.puurixschoonmaak.nl/tandartspraktijk-schoonmaak)
+- [Opleveringsschoonmaak](https://www.puurixschoonmaak.nl/opleveringsschoonmaak)
+- [Short-stay & Airbnb Schoonmaak](https://www.puurixschoonmaak.nl/short-stay)
 
-## Contact
+## Regionale Schoonmaakdiensten
 
+- [Schoonmaakbedrijf Oosterhout](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/oosterhout)
+- [Schoonmaakbedrijf Breda](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/breda)
+- [Schoonmaakbedrijf Tilburg](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/tilburg)
+- [Schoonmaakbedrijf Etten-Leur](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/etten-leur)
+- [Schoonmaakbedrijf Teteringen](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/teteringen)
+- [Schoonmaakbedrijf Waalwijk](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/waalwijk)
+- [Schoonmaakbedrijf Kaatsheuvel](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/kaatsheuvel)
+- [Schoonmaakbedrijf Amersfoort](https://www.puurixschoonmaak.nl/schoonmaakbedrijf/amersfoort)
+
+## Bedrijfsgegevens & Contact
+
+- Bedrijfsnaam: Puurix
 - Telefoon: +31 6 24 47 31 02
 - E-mail: puurixschoonmaak@gmail.com
+- Werkgebied: Oosterhout, Breda, Tilburg, Etten-Leur, Teteringen, Waalwijk, Kaatsheuvel, Amersfoort en omliggende regio's.

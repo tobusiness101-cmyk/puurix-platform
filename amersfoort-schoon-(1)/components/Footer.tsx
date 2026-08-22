@@ -23,8 +23,6 @@ export const Footer = () => {
 
             <h4 className="font-bold text-ink tracking-widest text-xs mb-4 uppercase">Werkgebied</h4>
             <ul className="space-y-3 text-sm font-medium">
-              
-              {/* Lokale SEO Links */}
               <li className="flex items-center gap-3 text-stone-600">
                 <MapPin size={18} className="text-accent" />
                 <Link href="/schoonmaakbedrijf/oosterhout" className="hover:text-accent transition-colors">
@@ -67,7 +65,6 @@ export const Footer = () => {
                   Kaatsheuvel
                 </Link>
               </li>
-
             </ul>
           </div>
 
@@ -96,7 +93,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Kolom 3: Branches & Diensten (SEO Geoptimaliseerd) */}
+          {/* Kolom 3: Branches & Diensten */}
           <div>
             <h4 className="font-bold text-ink text-lg mb-6">Onze Diensten</h4>
             <ul className="space-y-4 text-sm font-medium text-stone-600">
@@ -116,11 +113,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/glasbewassing" className="hover:text-accent transition-colors">
-                  Glasbewassing & Onderhoud
-                </Link>
-              </li>
-              <li>
                 <Link href="/short-stay" className="hover:text-accent transition-colors">
                   Short-stay & Airbnb
                 </Link>
@@ -130,15 +122,90 @@ export const Footer = () => {
           
         </div>
         
-        {/* Copyright & Links onderaan */}
+        {/* Copyright & Juridische Links */}
         <div className="pt-8 border-t border-stone-200 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-stone-400">
           <p>&copy; {new Date().getFullYear()} Puurix. Alle rechten voorbehouden.</p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-accent transition-colors">Algemene Voorwaarden</Link>
-            <Link href="#" className="hover:text-accent transition-colors">Privacybeleid</Link>
+            <Link href="/algemene-voorwaarden" className="hover:text-accent transition-colors">
+              Algemene Voorwaarden
+            </Link>
+            <Link href="/privacybeleid" className="hover:text-accent transition-colors">
+              Privacybeleid
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   );
 };
+```[cite: 1]
+
+---
+
+### 2. Complete `app/sitemap.ts`
+
+Vervang **`app/sitemap.ts`** met deze bijgewerkte code waarin alle regio's, diensten én de twee juridische pagina's staan[cite: 1]:
+
+```typescript
+import type { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://www.puurixschoonmaak.nl';
+
+  const regios = [
+    'oosterhout',
+    'breda',
+    'tilburg',
+    'etten-leur',
+    'teteringen',
+    'waalwijk',
+    'kaatsheuvel',
+    'amersfoort'
+  ];
+
+  const regioUrls = regios.map((regio) => ({
+    url: `${baseUrl}/schoonmaakbedrijf/${regio}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  const dienstPaginas = [
+    'kantoorschoonmaak',
+    'opleveringsschoonmaak',
+    'short-stay',
+    'tandartspraktijk-schoonmaak',
+  ];
+
+  const dienstUrls = dienstPaginas.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  const juridischePaginas = [
+    'privacybeleid',
+    'algemene-voorwaarden',
+  ];
+
+  const juridischeUrls = juridischePaginas.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.3,
+  }));
+
+  return [
+    {
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    ...regioUrls,
+    ...dienstUrls,
+    ...juridischeUrls,
+  ];
+}
+```[cite: 1]

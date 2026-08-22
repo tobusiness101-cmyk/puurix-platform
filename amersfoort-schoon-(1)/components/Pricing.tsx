@@ -23,7 +23,7 @@ const pricingPlans = [
   },
   {
     id: "gratis",
-    title: "Gratis aanbod",
+    title: "Vrijblijvende Proef",/**Vrijblijvende Proef/Inventarisatie was eerst Gratis aanbod */
     icon: Sparkles,
     priceLabel: "20",
     priceSub: "/Uur",
