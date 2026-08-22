@@ -66,37 +66,3 @@ export async function trackConversion(eventName: string, payload: AnalyticsPaylo
     // Fail silently to keep user experience smooth
   }
 }
-```[cite: 1]
-
----
-
-### 4. Key Conversion Touchpoints to Track
-
-Use `trackConversion` across these core user actions:
-
-* **Quote Submitted (`QuoteCalculator.tsx`):**
-  ```typescript
-  trackConversion("Lead", {
-    action: "submit_quote_form",
-    category: "Form",
-    label: frequency,
-    customData: { content_name: "Offerte Aanvraag Formulier" }
-  });
-  ```[cite: 1]
-* **Call Clicks (`Hero.tsx`, `StickyCallBar.tsx`, `Rekentool.tsx`):**
-  ```typescript
-  trackConversion("Contact", {
-    action: "click_phone_button",
-    category: "Engagement",
-    label: "Bel Direct",
-    customData: { content_name: "Phone CTA" }
-  });
-  ```[cite: 1]
-* **Lead Magnet Download (`LeadMagnet.tsx`):**
-  ```typescript
-  trackConversion("CompleteRegistration", {
-    action: "download_turnover_checklist",
-    category: "Lead Magnet",
-    label: "Checklist PDF"
-  });
-  ```[cite: 1]
