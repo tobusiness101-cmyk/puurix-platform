@@ -15,64 +15,69 @@ export const Rekentool = () => {
 
   // === HET 'WELKOM BONUS' ALGORITME ===
   const priceIndication = useMemo(() => {
-    // 1. Basis maandtarief per m² per frequentie (Het NORMALE tarief, zonder korting)
+    // 1. Basis maandtarief per m² (Gebaseerd op 1x per week)
     let ratePerSqmMonth = 0.76; 
+    if (spaceType === "Kantoor") ratePerSqmMonth = 0.76;
+    else if (spaceType === "Praktijk / Zorginstelling") ratePerSqmMonth = 0.95; 
+    else if (spaceType === "Short-stay / Airbnb") ratePerSqmMonth = 1.10;
+    else if (spaceType === "Opleveringsschoonmaak") ratePerSqmMonth = 2.00; 
+    else ratePerSqmMonth = 0.70;
 
-    if (spaceType === "Kantoor") {
-      ratePerSqmMonth = 0.76;
-    } else if (spaceType === "Praktijk / Zorginstelling") {
-      ratePerSqmMonth = 0.95; // Medisch incl. desinfectie
-    } else if (spaceType === "Short-stay / Airbnb") {
-      ratePerSqmMonth = 1.10;
-    } else if (spaceType === "Opleveringsschoonmaak") {
-      ratePerSqmMonth = 2.00; // Eenmalig / bouwoplevering
-    } else {
-      ratePerSqmMonth = 0.70;
-    }
-
-    // 2. Schaalvoordeel / Volumekorting per m² 
+    // 2. Schaalvoordeel / Volumekorting per m²
     let volumeDiscount = 1.0;
     if (sqm >= 500 && sqm < 1000) volumeDiscount = 0.785;  
     else if (sqm >= 1000) volumeDiscount = 0.595;          
 
-    // 3. Aantal beurten per week bepalen inclusief frequentiekorting
-    let weeklyMultiplier = 1;
-    let frequencyDiscount = 1.0;
+    let normalPrice = 0;
+    let isOneTime = false;
 
+    // 3. Multipliers op basis van de frequentie
     if (frequency === "Eenmalig") {
-      // Eenmalige berekening
-      const singlePrice = sqm * 1.5 * volumeDiscount;
-      const normalPrice = Math.max(Math.round(singlePrice), 120);
-      return { 
-        amount: Math.round(normalPrice * 0.80), // 20% welkomstkorting
-        originalAmount: normalPrice,
-        period: "eenmalig" 
-      };
-    } else if (frequency === "Wekelijks") {
-      // Extra korting als ze vaker per week afnemen
-      if (weeklyDays === 1) frequencyDiscount = 1.0;
-      else if (weeklyDays === 2) frequencyDiscount = 0.90; // 10% combikorting
-      else if (weeklyDays === 3) frequencyDiscount = 0.85;
-      else if (weeklyDays === 4) frequencyDiscount = 0.80;
-      else if (weeklyDays >= 5) frequencyDiscount = 0.75;
+      isOneTime = true;
+      // Eenmalig is een losse klus, dus pakken we het maandtarief x 1.5
+      // (Behalve bij Opleveringsschoonmaak, want daar is de basisprijs al heel hoog)
+      let eenmaligMultiplier = spaceType === "Opleveringsschoonmaak" ? 1.0 : 1.5;
+      
+      let singlePrice = sqm * ratePerSqmMonth * volumeDiscount * eenmaligMultiplier;
+      normalPrice = Math.max(Math.round(singlePrice), 120); // Minimaal €120 voor eenmalig
+    } 
+    else {
+      let weeklyMultiplier = 1;
+      
+      if (frequency === "Wekelijks") {
+        let frequencyDiscount = 1.0;
+        if (weeklyDays === 2) frequencyDiscount = 0.90; 
+        else if (weeklyDays === 3) frequencyDiscount = 0.85;
+        else if (weeklyDays === 4) frequencyDiscount = 0.80;
+        else if (weeklyDays >= 5) frequencyDiscount = 0.75;
+        weeklyMultiplier = weeklyDays * frequencyDiscount;
+      } 
+      else if (frequency === "Dagelijks") {
+        weeklyMultiplier = 5 * 0.75; 
+      } 
+      else if (frequency === "Maandelijks") {
+        // 1x per maand is per keer duurder dan 1x per week, dus doen we 40% van het maandtarief (ipv 25%)
+        weeklyMultiplier = 0.40; 
+      }
 
-      weeklyMultiplier = weeklyDays * frequencyDiscount;
-    } else if (frequency === "Dagelijks") {
-      weeklyMultiplier = 5 * 0.75; 
-    } else if (frequency === "Maandelijks") {
-      weeklyMultiplier = 0.25; 
+      let monthlyPrice = sqm * ratePerSqmMonth * volumeDiscount * weeklyMultiplier;
+      normalPrice = Math.max(Math.round(monthlyPrice), 95); // Minimaal €95 voor abonnementen
     }
 
-    // 4. Bereken de NORMALE maandprijs
-    const normalMonthlyTotal = sqm * ratePerSqmMonth * volumeDiscount * weeklyMultiplier;
-
-    // 5. Pas de 20% Welkomstkorting toe (Dit raakt exact jouw doelen van €152, €238, etc.)
-    const discountedMonthlyTotal = normalMonthlyTotal * 0.80;
+    // 4. Pas 20% welkomstkorting toe
+    let discountedPrice = normalPrice * 0.80;
+    
+    // Handhaaf absolute bodemprijzen na korting (zodat je nooit verlies draait)
+    if (isOneTime) {
+      discountedPrice = Math.max(discountedPrice, 95); 
+    } else {
+      discountedPrice = Math.max(discountedPrice, 75); 
+    }
 
     return { 
-      amount: Math.max(Math.round(discountedMonthlyTotal), 75), 
-      originalAmount: Math.max(Math.round(normalMonthlyTotal), 95),
-      period: "per maand" 
+      amount: Math.round(discountedPrice), 
+      originalAmount: Math.round(normalPrice),
+      period: isOneTime ? "eenmalig" : "per maand" 
     };
   }, [spaceType, frequency, sqm, weeklyDays]);
 
