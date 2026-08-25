@@ -13,9 +13,12 @@ export const Rekentool = () => {
   const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [weeklyDays, setWeeklyDays] = useState<number>(1);
 
-  // === HET 'WELKOM BONUS' ALGORITME ===
+  // State voor de uitklapbare transparante prijsopbouw
+  const [showBreakdown, setShowBreakdown] = useState(false);
+
+  // === HET ECONOMETRISCHE 'TWO-PART TARIFF' ALGORITME ===
   const priceIndication = useMemo(() => {
-    // 1. Basis maandtarief per m² (Gebaseerd op 1x per week)
+    // 1. Basis maandtarief per m² (p)
     let ratePerSqmMonth = 0.76; 
     if (spaceType === "Kantoor") ratePerSqmMonth = 0.76;
     else if (spaceType === "Praktijk / Zorginstelling") ratePerSqmMonth = 0.95; 
@@ -23,48 +26,52 @@ export const Rekentool = () => {
     else if (spaceType === "Opleveringsschoonmaak") ratePerSqmMonth = 2.00; 
     else ratePerSqmMonth = 0.70;
 
-    // 2. Schaalvoordeel / Volumekorting per m²
+    // 2. Schaalvoordeel / Volumekorting per m² (V(q))
     let volumeDiscount = 1.0;
     if (sqm >= 500 && sqm < 1000) volumeDiscount = 0.785;  
     else if (sqm >= 1000) volumeDiscount = 0.595;          
 
-    let normalPrice = 0;
+    let fixedCost = 0;          // A(f): Vaste setup- en reiskosten
+    let effortMultiplier = 1.0; // E(f): Arbeids- en vuilfactor
     let isOneTime = false;
 
-    // 3. Multipliers op basis van de frequentie
+    // 3. Toepassen van de Two-Part Tariff logica per frequentie
     if (frequency === "Eenmalig") {
       isOneTime = true;
-      // Eenmalig is een losse klus, dus pakken we het maandtarief x 1.5
-      // (Behalve bij Opleveringsschoonmaak, want daar is de basisprijs al heel hoog)
-      let eenmaligMultiplier = spaceType === "Opleveringsschoonmaak" ? 1.0 : 0.6;
-      
-      let singlePrice = sqm * ratePerSqmMonth * volumeDiscount * eenmaligMultiplier;
-      normalPrice = Math.max(Math.round(singlePrice), 120); // Minimaal €120 voor eenmalig
+      fixedCost = 45; // €45 vaste startkosten voor losse planning, transport en opstart
+      // Oplevering = zwaar bouwstaalwerk (1.0). Andere diensten zijn 50% van de maandbasis
+      effortMultiplier = spaceType === "Opleveringsschoonmaak" ? 1.0 : 0.50; 
     } 
-    else {
-      let weeklyMultiplier = 1;
-      
-      if (frequency === "Wekelijks") {
-        let frequencyDiscount = 1.0;
-        if (weeklyDays === 2) frequencyDiscount = 0.90; 
-        else if (weeklyDays === 3) frequencyDiscount = 0.85;
-        else if (weeklyDays === 4) frequencyDiscount = 0.80;
-        else if (weeklyDays >= 5) frequencyDiscount = 0.75;
-        weeklyMultiplier = weeklyDays * frequencyDiscount;
-      } 
-      else if (frequency === "Dagelijks") {
-        weeklyMultiplier = 5 * 0.75; 
-      } 
-      else if (frequency === "Maandelijks") {
-        // 1x per maand is per keer duurder dan 1x per week, dus doen we 40% van het maandtarief (ipv 25%)
-        weeklyMultiplier = 0.40; 
-      }
-
-      let monthlyPrice = sqm * ratePerSqmMonth * volumeDiscount * weeklyMultiplier;
-      normalPrice = Math.max(Math.round(monthlyPrice), 95); // Minimaal €95 voor abonnementen
+    else if (frequency === "Maandelijks") {
+      fixedCost = 25; // €25 vaste opstartkosten per maand voor onregelmatigheid
+      effortMultiplier = 0.40; // 40% van het maandbedrag i.v.m. opgebouwd vuil
+    }
+    else if (frequency === "Wekelijks") {
+      fixedCost = 0; // Routewerk is logistiek geoptimaliseerd
+      let frequencyDiscount = 1.0;
+      if (weeklyDays === 2) frequencyDiscount = 0.90; 
+      else if (weeklyDays === 3) frequencyDiscount = 0.85;
+      else if (weeklyDays === 4) frequencyDiscount = 0.80;
+      else if (weeklyDays >= 5) frequencyDiscount = 0.75;
+      effortMultiplier = weeklyDays * frequencyDiscount;
+    } 
+    else if (frequency === "Dagelijks") {
+      fixedCost = 0;
+      effortMultiplier = 5 * 0.75; 
     }
 
-    // 4. Pas 20% welkomstkorting toe
+    // 4. Totale normale prijs (Vaste kosten + Variabele kosten)
+    let variableCost = sqm * ratePerSqmMonth * volumeDiscount * effortMultiplier;
+    let normalPrice = fixedCost + variableCost;
+    
+    // 5. Handhaaf harde bodemprijzen vóór korting
+    if (isOneTime) {
+      normalPrice = Math.max(Math.round(normalPrice), 120); 
+    } else {
+      normalPrice = Math.max(Math.round(normalPrice), 95);  
+    }
+
+    // 6. Pas de 20% welkomstkorting toe (Marketing Trigger)
     let discountedPrice = normalPrice * 0.80;
     
     // Handhaaf absolute bodemprijzen na korting (zodat je nooit verlies draait)
@@ -77,7 +84,10 @@ export const Rekentool = () => {
     return { 
       amount: Math.round(discountedPrice), 
       originalAmount: Math.round(normalPrice),
-      period: isOneTime ? "eenmalig" : "per maand" 
+      period: isOneTime ? "eenmalig" : "per maand",
+      savings: Math.round(normalPrice - discountedPrice),
+      hasVolumeDiscount: volumeDiscount < 1.0,
+      hasFixedCost: fixedCost > 0
     };
   }, [spaceType, frequency, sqm, weeklyDays]);
 
@@ -219,7 +229,7 @@ export const Rekentool = () => {
               </AnimatePresence>
             </div>
 
-            {/* Live Prijsindicatie MET Korting weergave */}
+            {/* Live Prijsindicatie MET Korting weergave & Prijsopbouw */}
             <div className="mt-auto pt-6 border-t border-border/50">
               <div className="bg-white border border-amber-200 rounded-2xl p-6 shadow-[0_4px_20px_-4px_rgba(251,191,36,0.2)] relative overflow-hidden">
                 
@@ -246,7 +256,64 @@ export const Rekentool = () => {
                     <span className="text-xl font-medium text-primary/70">/ mnd</span>
                   )}
                 </div>
-                <span className="block text-[10px] font-bold text-primary/40 uppercase tracking-wider mt-1 relative z-10">excl. BTW</span>
+                <span className="block text-[10px] font-bold text-primary/40 uppercase tracking-wider mt-1 mb-4 relative z-10">excl. BTW</span>
+
+                {/* Uitklapbare Transparante Prijsopbouw */}
+                <button
+                  onClick={() => setShowBreakdown(!showBreakdown)}
+                  className="text-xs font-bold text-accent hover:text-accent/80 transition-colors flex items-center gap-1.5 relative z-10"
+                >
+                  {showBreakdown ? "Verberg prijsopbouw" : "Bekijk transparante prijsopbouw"}
+                  <motion.svg 
+                    animate={{ rotate: showBreakdown ? 180 : 0 }} 
+                    className="w-3 h-3" 
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </motion.svg>
+                </button>
+
+                <AnimatePresence>
+                  {showBreakdown && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden relative z-10"
+                    >
+                      <div className="pt-4 mt-4 border-t border-amber-100/50 space-y-2 text-xs">
+                        {priceIndication.hasFixedCost && (
+                          <div className="flex justify-between text-primary/70">
+                            <span>Vaste opstart- en reiskosten</span>
+                            <span>Inbegrepen</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between text-primary/70">
+                          <span>Basistarief ({sqm} m² - {spaceType})</span>
+                          <span>€{priceIndication.originalAmount}</span>
+                        </div>
+                        
+                        {priceIndication.hasVolumeDiscount && (
+                          <div className="flex justify-between text-green-600 font-medium">
+                            <span>✓ Volumekorting geactiveerd</span>
+                            <span>Toegepast</span>
+                          </div>
+                        )}
+
+                        <div className="flex justify-between text-amber-600 font-bold bg-amber-50 p-2 rounded-lg">
+                          <span>Welkomstkorting (20%)</span>
+                          <span>- €{priceIndication.savings}</span>
+                        </div>
+
+                        <div className="flex justify-between text-primary font-black pt-2 border-t border-border">
+                          <span>Totaal {priceIndication.period}</span>
+                          <span>€{priceIndication.amount}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
               </div>
             </div>
 
