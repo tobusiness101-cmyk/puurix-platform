@@ -34,7 +34,7 @@ export default function Home() {
       {features.faq && <Faq />}
 
       {/* Rekentool: directe prijsindicatie + bel-CTA */}
-      {features.rekentool && <Rekentool />}
+     {/* {features.rekentool && <Rekentool />}*/}
       {features.quoteCalculator && <QuoteCalculator />}
 
       {features.leadMagnet && <LeadMagnet />}

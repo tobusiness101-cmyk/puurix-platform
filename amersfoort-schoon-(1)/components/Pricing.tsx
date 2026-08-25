@@ -25,8 +25,8 @@ const pricingPlans = [
     id: "gratis",
     title: "Vrijblijvende Proef",/**Vrijblijvende Proef/Inventarisatie was eerst Gratis aanbod */
     icon: Sparkles,
-    priceLabel: "20",
-    priceSub: "/Uur",
+    priceLabel: "Gratis",
+    priceSub: "/Proef",
     description: "Neem contact met ons op voor een gratis aanbieding voor uw bedrijf of plaats.",
     isDark: true, // Zorgt voor de diep donkerblauwe stijl uit je screenshot
     badge: null,
