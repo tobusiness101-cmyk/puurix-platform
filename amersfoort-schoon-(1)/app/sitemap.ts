@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.puurixschoonmaak.nl'
-
+  const baseUrl = 'https://puurix.nl'
   // De complete lijst met al jouw lokale steden
   const regios = [
     'oosterhout',

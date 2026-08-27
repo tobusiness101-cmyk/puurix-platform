@@ -6,7 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    // Aangepast naar de URL mét www.
-    sitemap: 'https://www.puurixschoonmaak.nl/sitemap.xml',
+    sitemap: 'https://puurix.nl/sitemap.xml',
   }
 }

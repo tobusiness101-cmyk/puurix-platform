@@ -9,7 +9,7 @@ import { MetaPixel } from "@/components/MetaPixel";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.puurixschoonmaak.nl"),
+  metadataBase: new URL("https://puurix.nl"),
   title: {
     default: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     template: "%s | Puurix",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     description:
       "Vaste schoonmaakploeg, transparante tarieven en 20% welkomstkorting op zakelijke schoonmaak.",
-    url: "https://www.puurixschoonmaak.nl",
+    url: "https://puurix.nl",
     siteName: "Puurix Schoonmaakbedrijf",
     locale: "nl_NL",
     type: "website",
@@ -64,8 +64,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Puurix",
-              image: "https://www.puurixschoonmaak.nl/logo.jpg",
-              url: "https://www.puurixschoonmaak.nl",
+              image: "https://puurix.nl/logo.jpg",
+              url: "https://puurix.nl",
               telephone: "+31624473102",
               email: "puurixschoonmaak@gmail.com",
               areaServed: [
