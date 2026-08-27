@@ -19,7 +19,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-bold text-primary mb-2">1. Toepasselijkheid</h2>
             <p>
-              Deze voorwaarden zijn van toepassing op alle offertes, overeenkomsten en diensten geleverd door Puurix Schoonmaakbedrijf (KvK: 90289136).
+              Deze voorwaarden zijn van toepassing op alle offertes, overeenkomsten en diensten geleverd door Puurix Schoonmaakbedrijf (KvK: 42149299).
             </p>
           </section>
 
