@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { PromoBanner } from "@/components/PromoBanner"; // TOEGEVOEGD
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks"
@@ -23,6 +24,8 @@ export default function Home() {
       {/* HIER STAAT JE POP-UP!  <WelcomePopup />*/}
      
       {features.hero && <Hero />}
+      {/* JOUW NIEUWE LUXE ACTIEBLOK */}
+      <PromoBanner />
       {features.trustMarquee && <TrustMarquee />}
       {features.services && <Services />}
       <HowItWorks />
