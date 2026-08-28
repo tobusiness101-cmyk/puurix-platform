@@ -1,2 +1,8 @@
 import { createRegioPage } from "@/lib/createRegioPage";
-export const { generateStaticParams, generateMetadata, default: Page } = createRegioPage({ serviceName: "Short-stay Schoonmaak" });
+
+const { generateStaticParams, generateMetadata, Component } = createRegioPage({
+  serviceName: "Short-stay Schoonmaak",
+});
+
+export { generateStaticParams, generateMetadata };
+export default Component;

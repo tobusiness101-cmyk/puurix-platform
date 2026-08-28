@@ -5,39 +5,32 @@ import { Footer } from "@/components/Footer";
 import { Rekentool } from "@/components/Rekentool";
 import { Testimonials } from "@/components/Testimonials";
 
-// Herbruikbare fabriek voor /<dienst-slug>/[regio]/page.tsx.
-// In plaats van dit hele bestand per dienst te kopieren (en per ongeluk de
-// titel/H1 te vergeten aan te passen, zoals nu gebeurde bij "praktijken"),
-// roep je createRegioPage(...) eenmaal aan per dienst en exporteer je het
-// resultaat. Zie het gebruiksvoorbeeld onderaan.
-
-type RegioParams = { params: { regio: string } };
-
 interface RegioPageConfig {
-  /** Zichtbare dienstnaam, bv. "Kantoorschoonmaak" of "Praktijkschoonmaak" */
   serviceName: string;
-  /** Korte beschrijving voor de meta description, bv. "kantoorschoonmaak" (kleine letters, voor in een zin) */
-  serviceDescriptionSlug: string;
 }
 
-export function createRegioPage({ serviceName, serviceDescriptionSlug }: RegioPageConfig) {
+export function createRegioPage({ serviceName }: RegioPageConfig) {
   function generateStaticParams() {
     return Object.keys(regioData).map((regio) => ({ regio }));
   }
 
-  function generateMetadata({ params }: RegioParams): Metadata {
-    const city = params.regio.charAt(0).toUpperCase() + params.regio.slice(1);
+  function generateMetadata({ params }: { params: { regio: string } }): Metadata {
+    const safeRegio = params.regio.toLowerCase();
+    const city = safeRegio.charAt(0).toUpperCase() + safeRegio.slice(1);
+    
     return {
       title: `${serviceName} in ${city} | Puurix`,
-      description: `Professionele ${serviceDescriptionSlug} in ${city} en omgeving. Vaste schoonmaakploeg, geen wurgcontracten.`,
+      description: `Professionele ${serviceName.toLowerCase()} in ${city} en omgeving. Vaste schoonmaakploeg, geen wurgcontracten.`,
     };
   }
 
-  function RegioPage({ params }: RegioParams) {
-    if (!regioData[params.regio]) notFound();
+  function RegioPage({ params }: { params: { regio: string } }) {
+    const safeRegio = params.regio.toLowerCase();
+    
+    if (!regioData[safeRegio]) notFound();
 
-    const city = params.regio.charAt(0).toUpperCase() + params.regio.slice(1);
-    const info = getRegioInfo(params.regio);
+    const city = safeRegio.charAt(0).toUpperCase() + safeRegio.slice(1);
+    const info = getRegioInfo(safeRegio);
 
     return (
       <main className="min-h-screen bg-stone-50">
@@ -50,7 +43,7 @@ export function createRegioPage({ serviceName, serviceDescriptionSlug }: RegioPa
               {serviceName} <span className="text-accent">{city}</span>
             </h1>
             <p className="text-lg text-white/80 leading-relaxed mb-4">
-              Op zoek naar een betrouwbare schoonmaakpartner in {city}? {info.highlight}
+              Op zoek naar een betrouwbare partner voor {serviceName.toLowerCase()} in {city}? {info.highlight}
             </p>
             {info.omgeving.length > 0 && (
               <p className="text-sm text-white/50">
@@ -67,22 +60,5 @@ export function createRegioPage({ serviceName, serviceDescriptionSlug }: RegioPa
     );
   }
 
-  return { generateStaticParams, generateMetadata, default: RegioPage };
+  return { generateStaticParams, generateMetadata, Component: RegioPage };
 }
-
-/*
- * GEBRUIK — plaats dit (2 regels) in elk van je dienst-map bestanden:
- *
- * app/kantoorschoonmaak/[regio]/page.tsx:
- *   import { createRegioPage } from "@/lib/createRegioPage";
- *   export const { generateStaticParams, generateMetadata, default } =
- *     createRegioPage({ serviceName: "Kantoorschoonmaak", serviceDescriptionSlug: "kantoorschoonmaak" });
- *
- * app/tandartspraktijk-schoonmaak/[regio]/page.tsx:
- *   import { createRegioPage } from "@/lib/createRegioPage";
- *   export const { generateStaticParams, generateMetadata, default } =
- *     createRegioPage({ serviceName: "Praktijkschoonmaak", serviceDescriptionSlug: "praktijkschoonmaak" });
- *
- * Zo kan de titel/H1 nooit meer "Kantoorschoonmaak" tonen op een andere
- * dienst-pagina - er is nog maar één plek waar de pagina-logica staat.
- */
