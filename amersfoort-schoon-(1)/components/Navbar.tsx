@@ -24,13 +24,21 @@ export const Navbar = () => {
         
         <Link href="/" className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
           {/* Het P-icoon */}
-          <Image 
-            src="/icon.svg" 
-            alt="Puurix Icoon" 
-            width={40} 
-            height={40} 
-            className="object-contain mix-blend-multiply" 
-          />
+         <div 
+  className="w-10 h-10 shrink-0 overflow-hidden"
+  style={{
+    clipPath: "polygon(0% 0%, 75% 0%, 100% 25%, 100% 65%, 75% 65%, 75% 30%, 35% 30%, 35% 60%, 100% 60%, 100% 65%, 35% 100%, 0% 100%)"
+  }}
+>
+  <Image 
+    src="/icon.png" 
+    alt="Puurix Icoon" 
+    width={40} 
+    height={40} 
+    className="w-full h-full object-cover"
+    priority
+  />
+</div>
           
           {/* De tekst: Dikke letters, strak op elkaar, mét een Hoofdletter P! */}
           <span className="font-sans text-4xl md:text-5xl font-black tracking-tighter mt-1">
