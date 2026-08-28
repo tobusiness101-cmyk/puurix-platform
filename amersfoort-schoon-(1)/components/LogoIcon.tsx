@@ -1,0 +1,66 @@
+export function LogoIcon({ className = "w-10 h-10" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 350 420"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <defs>
+        {/* Gradients voor de geometrische lintvlakken */}
+        <linearGradient id="top-facet" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#057a55" />
+          <stop offset="100%" stopColor="#0e9f6e" />
+        </linearGradient>
+
+        <linearGradient id="right-diag" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#046c4e" />
+          <stop offset="100%" stopColor="#31c48d" />
+        </linearGradient>
+
+        <linearGradient id="right-vert" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#0e9f6e" />
+          <stop offset="100%" stopColor="#03543f" />
+        </linearGradient>
+
+        <linearGradient id="bottom-stem" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#057a55" />
+          <stop offset="100%" stopColor="#046c4e" />
+        </linearGradient>
+
+        <radialGradient id="ripple-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#03543f" />
+          <stop offset="25%" stopColor="#10b981" />
+          <stop offset="55%" stopColor="#046c4e" />
+          <stop offset="85%" stopColor="#064e3b" />
+          <stop offset="100%" stopColor="#03543f" />
+        </radialGradient>
+
+        <clipPath id="inner-p-cut">
+          <polygon points="30,240 255,240 330,315 255,340 115,340 30,240" />
+        </clipPath>
+      </defs>
+
+      {/* 1. Bovenste geometrische balk & vouw */}
+      <polygon points="30,90 255,90 115,190 30,90" fill="url(#top-facet)" />
+      <polygon points="255,90 330,165 255,190 115,190" fill="#0e9f6e" />
+
+      {/* 2. Rechter poot/boog segmenten */}
+      <polygon points="330,165 330,315 255,190" fill="url(#right-vert)" />
+      <polygon points="255,190 330,315 255,240" fill="url(#right-diag)" />
+
+      {/* 3. Waterrimpels in de opening */}
+      <g clipPath="url(#inner-p-cut)">
+        <ellipse cx="180" cy="275" rx="120" ry="45" fill="url(#ripple-glow)" />
+        <ellipse cx="180" cy="275" rx="85" ry="30" fill="none" stroke="#6ee7b7" strokeWidth="2.5" opacity="0.8" />
+        <ellipse cx="180" cy="275" rx="55" ry="18" fill="none" stroke="#a7f3d0" strokeWidth="2" opacity="0.9" />
+        <ellipse cx="180" cy="275" rx="25" ry="8" fill="none" stroke="#d1fae5" strokeWidth="1.5" />
+        <ellipse cx="180" cy="275" rx="8" ry="3" fill="#03543f" />
+      </g>
+
+      {/* 4. Onderste staander en vouw */}
+      <polygon points="30,240 115,240 115,410 30,410" fill="url(#bottom-stem)" />
+      <polygon points="30,240 115,325 30,410" fill="#03543f" opacity="0.9" />
+    </svg>
+  );
+}

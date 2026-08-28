@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { isPromoActive } from "@/lib/features";
+import { LogoIcon } from "@/components/LogoIcon";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,24 +22,17 @@ export const Navbar = () => {
     <header className={`fixed ${bannerActive ? "top-10" : "top-0"} z-50 w-full transition-all duration-300 ${isScrolled ? "bg-white/95 shadow-sm backdrop-blur-md py-3" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         
+        {/* HIER STAAT HET LINK ELEMENT MET HET LOGO */}
         <Link href="/" className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
-          {/* Het P-icoon */}
-          <Image 
-            src="/icon.svg" 
-            alt="Puurix Icoon" 
-            width={40} 
-            height={40} 
-            className="object-contain mix-blend-multiply" 
-          />
+          <LogoIcon className="w-10 h-10 shrink-0" />
           
-          {/* De tekst: Dikke letters, strak op elkaar, mét een Hoofdletter P! */}
           <span className="font-sans text-4xl md:text-5xl font-black tracking-tighter mt-1">
-            <span className="text-ink">Puur</span>
-            <span className="text-stone-600">ix</span>
+            <span className={isScrolled ? "text-ink" : "text-white"}>Puur</span>
+            <span className={isScrolled ? "text-stone-600" : "text-white/70"}>ix</span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-ink">
+        <nav className={`hidden md:flex items-center gap-8 text-sm font-bold transition-colors ${isScrolled ? "text-ink" : "text-white"}`}>
           <Link href="/" className="hover:text-accent transition-colors">Home</Link>
           <Link href="/#meer-weten" className="hover:text-accent transition-colors">Over Ons</Link>
           <Link href="/#diensten" className="hover:text-accent transition-colors">Diensten</Link>
@@ -53,7 +46,7 @@ export const Navbar = () => {
         </div>
 
         <button 
-          className="md:hidden text-ink p-2"
+          className={`md:hidden p-2 transition-colors ${isScrolled ? "text-ink" : "text-white"}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Menu sluiten" : "Menu openen"}
           aria-expanded={mobileMenuOpen}
