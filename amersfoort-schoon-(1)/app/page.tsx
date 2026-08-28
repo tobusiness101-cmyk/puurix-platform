@@ -14,15 +14,14 @@ import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { StickyCallBar } from "@/components/StickyCallBar";
 import { features } from "@/lib/features";
-import { WelcomePopup } from "@/components/WelcomePopup";
+/*import { WelcomePopup } from "@/components/WelcomePopup";*/
 
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden">
       
-      {/* HIER STAAT JE POP-UP! */}
-      <WelcomePopup />
-
+      {/* HIER STAAT JE POP-UP!  <WelcomePopup />*/}
+     
       {features.hero && <Hero />}
       {features.trustMarquee && <TrustMarquee />}
       {features.services && <Services />}
