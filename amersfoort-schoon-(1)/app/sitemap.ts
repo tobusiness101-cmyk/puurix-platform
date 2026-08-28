@@ -35,7 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
-
+// Voeg dit toe in je sitemap.ts net voor de return statement:
+  const kantoorRegioUrls = regios.map((regio) => ({
+    url: `${baseUrl}/kantoorschoonmaak/${regio}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
   return [
     {
       url: `${baseUrl}`,
