@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
-import { PromoBanner } from "@/components/PromoBanner";
+/*import { PromoBanner } from "@/components/PromoBanner";*/
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { MetaPixel } from "@/components/MetaPixel";
 
@@ -52,7 +52,6 @@ export default function RootLayout({
   return (
     <html lang="nl">
       <body className={inter.className}>
-        <PromoBanner/>
         <Navbar/>
         {children}
 
