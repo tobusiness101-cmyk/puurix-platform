@@ -25,7 +25,7 @@ export const Navbar = () => {
         <Link href="/" className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
           {/* Het P-icoon */}
           <Image 
-            src="/icon3.png" 
+            src="/icon.png" 
             alt="Puurix Icoon" 
             width={40} 
             height={40} 
