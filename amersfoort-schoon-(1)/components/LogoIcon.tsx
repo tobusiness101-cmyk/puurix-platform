@@ -1,11 +1,12 @@
 export function LogoIcon({ className = "w-10 h-10" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 350 420"
+      viewBox="20 30 320 390"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
+      {/* Laat de rest van je defs en paths gewoon staan */}
       <defs>
         {/* Gradients voor de geometrische lintvlakken */}
         <linearGradient id="top-facet" x1="0%" y1="0%" x2="100%" y2="100%">
