@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Gespecialiseerde schoonmaak voor medische-schoonmaak en zorginstellingen in Oosterhout, Breda en Tilburg, conform de WIP-richtlijnen infectiepreventie.",
 };
 
-export default function medische-schoonmaak() {
+export default function MedischeSchoonmaakPage() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* HERO SECTION */}
