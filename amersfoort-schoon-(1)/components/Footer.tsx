@@ -106,7 +106,7 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/tandartspraktijk-schoonmaak" className="hover:text-accent transition-colors">
+                <Link href="/medische-schoonmaak" className="hover:text-accent transition-colors">
                   Praktijken & Zorginstellingen
                 </Link>
               </li>

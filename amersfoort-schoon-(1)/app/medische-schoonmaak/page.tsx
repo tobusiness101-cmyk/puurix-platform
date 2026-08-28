@@ -6,10 +6,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Schoonmaak Tandartspraktijk & Zorginstelling | Puurix",
-  description: "Gespecialiseerde schoonmaak voor tandartspraktijken en zorginstellingen in Oosterhout, Breda en Tilburg, conform de WIP-richtlijnen infectiepreventie.",
+  description: "Gespecialiseerde schoonmaak voor medische-schoonmaak en zorginstellingen in Oosterhout, Breda en Tilburg, conform de WIP-richtlijnen infectiepreventie.",
 };
 
-export default function TandartspraktijkSchoonmaakPage() {
+export default function medische-schoonmaak() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* HERO SECTION */}
