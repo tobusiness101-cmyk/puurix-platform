@@ -23,23 +23,27 @@ export const Navbar = () => {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         
         <Link href="/" className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
-          {/* Het P-icoon */}
+          {/* Het P-icoon - icon.png heeft al een transparante achtergrond, dus geen blend-mode meer nodig */}
           <Image 
             src="/icon.png" 
             alt="Puurix Icoon" 
             width={40} 
             height={40} 
-            className="object-contain mix-blend-multiply" 
+            className="object-contain" 
           />
           
-          {/* De tekst: Dikke letters, strak op elkaar, mét een Hoofdletter P! */}
+          {/* De tekst: Dikke letters, strak op elkaar, mét een Hoofdletter P!
+              Kleur wisselt mee met de header-status: op de transparante header
+              (boven aan een pagina met donkere hero) is de tekst wit, zodra je
+              scrollt en de header een witte achtergrond krijgt wordt de tekst
+              weer donker. */}
           <span className="font-sans text-4xl md:text-5xl font-black tracking-tighter mt-1">
-            <span className="text-ink">Puur</span>
-            <span className="text-stone-600">ix</span>
+            <span className={isScrolled ? "text-ink" : "text-white"}>Puur</span>
+            <span className={isScrolled ? "text-stone-600" : "text-white/70"}>ix</span>
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-ink">
+        <nav className={`hidden md:flex items-center gap-8 text-sm font-bold transition-colors ${isScrolled ? "text-ink" : "text-white"}`}>
           <Link href="/" className="hover:text-accent transition-colors">Home</Link>
           <Link href="/#meer-weten" className="hover:text-accent transition-colors">Over Ons</Link>
           <Link href="/#diensten" className="hover:text-accent transition-colors">Diensten</Link>
@@ -53,7 +57,7 @@ export const Navbar = () => {
         </div>
 
         <button 
-          className="md:hidden text-ink p-2"
+          className={`md:hidden p-2 transition-colors ${isScrolled ? "text-ink" : "text-white"}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? "Menu sluiten" : "Menu openen"}
           aria-expanded={mobileMenuOpen}
