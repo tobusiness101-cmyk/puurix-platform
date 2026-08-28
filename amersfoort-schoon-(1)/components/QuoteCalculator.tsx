@@ -82,7 +82,7 @@ export const QuoteCalculator = () => {
                   </div>
                   <div>
                     <div className="text-sm text-white/50 mb-1 uppercase tracking-wider font-bold">E-mail Ons</div>
-                    <a href="mailto:puurixschoonmaak@gmail.com" className="text-lg font-medium hover:text-accent transition-colors">puurixschoonmaak@gmail.com</a>
+                    <a href="mailto:info@puurix.nl" className="text-lg font-medium hover:text-accent transition-colors">info@puurix.nl</a>
                   </div>
                 </li>
               </ul>

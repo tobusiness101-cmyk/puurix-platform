@@ -67,7 +67,7 @@ export default function RootLayout({
               image: "https://puurix.nl/logo.jpg",
               url: "https://puurix.nl",
               telephone: "+31624473102",
-              email: "puurixschoonmaak@gmail.com",
+              email: "info@puurix.nl",
               areaServed: [
                 { "@type": "City", "name": "Oosterhout" },
                 { "@type": "City", "name": "Breda" },

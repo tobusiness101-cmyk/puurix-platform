@@ -50,7 +50,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-primary mb-2">5. Uw rechten</h2>
             <p>
-              U heeft het recht om uw persoonsgegevens in te zien, te corrigeren of te laten verwijderen. Neem hiervoor contact met ons op via <a href="mailto:puurixschoonmaak@gmail.com" className="text-accent underline">puurixschoonmaak@gmail.com</a>.
+              U heeft het recht om uw persoonsgegevens in te zien, te corrigeren of te laten verwijderen. Neem hiervoor contact met ons op via <a href="mailto:info@puurix.nl" className="text-accent underline">info@puurix.nl</a>.
             </p>
           </section>
         </div>
