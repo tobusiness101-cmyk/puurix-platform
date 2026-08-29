@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://puurixschoonmaak.nl'
+  const baseUrl = 'https://puurix.nl'
 
   // Alle actieve steden/regio's
   const regios = [
