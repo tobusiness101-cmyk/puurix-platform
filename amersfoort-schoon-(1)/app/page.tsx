@@ -32,13 +32,13 @@ export default function Home() {
       {features.infoSections && <InfoSections />}
       <Pricing />
       {features.beforeAfterSlider && <BeforeAfterSlider />}
-      <Testimonials />
-      {features.faq && <Faq />}
+     
 
       {/* Rekentool: directe prijsindicatie + bel-CTA */}
      {/* {features.rekentool && <Rekentool />}*/}
       {features.quoteCalculator && <QuoteCalculator />}
-
+ <Testimonials />
+      {features.faq && <Faq />}
       {features.leadMagnet && <LeadMagnet />}
       {features.footer && <Footer />}
       {features.stickyContact && <StickyContact />}
