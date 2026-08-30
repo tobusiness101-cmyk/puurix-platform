@@ -23,12 +23,12 @@ const pricingPlans = [
   },
   {
     id: "gratis",
-    title: "Vrijblijvende Proef",/**Vrijblijvende Proef/Inventarisatie was eerst Gratis aanbod */
+    title: "Vrijblijvende Proef",
     icon: Sparkles,
     priceLabel: "Gratis",
     priceSub: "/Proef",
     description: "Neem contact met ons op voor een gratis aanbieding voor uw bedrijf of plaats.",
-    isDark: true, // Zorgt voor de diep donkerblauwe stijl uit je screenshot
+    isDark: true, 
     badge: null,
     bullets: [
       "Volledige inventarisatie op locatie",
@@ -45,7 +45,7 @@ const pricingPlans = [
     priceSub: "Prijs",
     description: "Voor business en bedrijven hebben we een eerlijke prijs.",
     isDark: false,
-    badge: "Meest gekozen", // De opvallende badge bovenop de kaart
+    badge: "Meest gekozen", 
     bullets: [
       "Wekelijks of meermaals per week",
       "Vast, herkenbaar schoonmaakteam",
@@ -101,8 +101,8 @@ export const Pricing = () => {
               variants={cardVariants}
               className={`relative flex flex-col rounded-3xl p-8 md:p-10 transition-all duration-300 ${
                 plan.isDark 
-                  ? "bg-[#0b132b] text-white shadow-2xl md:-translate-y-4 md:scale-105 z-10" // De donkere middelste kaart
-                  : "bg-[#f8fafc] text-primary border border-border/50 shadow-sm hover:shadow-md mt-4 md:mt-0" // De lichte buitenste kaarten
+                  ? "bg-[#0b132b] text-white shadow-2xl md:-translate-y-4 md:scale-105 z-10" 
+                  : "bg-[#f8fafc] text-primary border border-border/50 shadow-sm hover:shadow-md mt-4 md:mt-0" 
               }`}
             >
               {/* Badge "Meest Gekozen" */}
@@ -112,7 +112,7 @@ export const Pricing = () => {
                 </div>
               )}
 
-              {/* Icoon Links Boven (Zoals in afbeelding) */}
+              {/* Icoon Links Boven */}
               <div className="mb-6 text-accent">
                 <plan.icon className="h-8 w-8" />
               </div>
@@ -126,13 +126,25 @@ export const Pricing = () => {
               </p>
 
               {/* Prijs Weergave */}
-              <div className="flex items-baseline gap-1 mb-8 border-b border-white/10 pb-8">
+              <div className="flex items-baseline gap-1 mb-2">
                 {plan.id === "gratis" && <span className="text-2xl font-bold mt-1">€</span>}
                 <span className="text-5xl font-extrabold tracking-tight">{plan.priceLabel}</span>
                 <span className={`text-sm font-medium ml-1 ${plan.isDark ? "text-white/50" : "text-primary/50"}`}>
                   {plan.priceSub}
                 </span>
               </div>
+
+              {/* Link voor Particulier of Border voor de rest */}
+              {plan.id === "particulier" ? (
+                <Link
+                  href="/particuliere-schoonmaak"
+                  className="text-accent text-sm font-semibold underline hover:text-accent-hover mb-8 inline-block"
+                >
+                  Bekijk gedetailleerde prijslijst
+                </Link>
+              ) : (
+                <div className="mb-8 border-b border-white/10 pb-4"></div>
+              )}
 
               {/* Bullet Points met Vinkjes */}
               <ul className="flex-grow space-y-4 mb-10">

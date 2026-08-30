@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
-// Premium placeholder data reflecting the B2B and hospitality focus
+// Jouw bestaande vragen (ongewijzigd)
 const faqs = [
    {
     question: "Wat maakt Puurix anders dan andere schoonmaakbedrijven?",
@@ -34,11 +34,15 @@ const faqs = [
 
 export const Faq = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  // 1. Nieuwe state voor de 'Toon meer' functionaliteit
+  const [showAll, setShowAll] = useState(false);
 
   const toggleFaq = (index: number) => {
-    // If clicking the currently open FAQ, close it (set to null). Otherwise, open the new one.
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  // 2. We bepalen hier hoeveel vragen we laten zien
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, 3);
 
   return (
     <section id="faq" className="bg-white py-24">
@@ -55,7 +59,8 @@ export const Faq = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            {faqs.map((faq, index) => {
+            {/* 3. We mappen over visibleFaqs in plaats van allemaal */}
+            {visibleFaqs.map((faq, index) => {
               const isActive = activeIndex === index;
 
               return (
@@ -103,6 +108,19 @@ export const Faq = () => {
               );
             })}
           </div>
+
+          {/* 4. De knop die verdwijnt zodra er op is geklikt */}
+          {!showAll && faqs.length > 3 && (
+            <div className="mt-10 flex justify-center">
+              <button
+                onClick={() => setShowAll(true)}
+                className="flex items-center gap-2 rounded-full border border-primary/20 bg-white px-6 py-3 text-sm font-bold text-primary shadow-sm transition-all hover:bg-muted"
+              >
+                Bekijk alle {faqs.length} vragen
+                <ChevronDown className="h-4 w-4" />
+              </button>
+            </div>
+          )}
           
         </div>
       </div>
