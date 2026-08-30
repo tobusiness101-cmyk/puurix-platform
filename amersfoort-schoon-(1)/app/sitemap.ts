@@ -15,12 +15,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'amersfoort',
   ]
 
-  // Diensten landingspagina's (inclusief de paraplu medische-schoonmaak)
+  // Diensten landingspagina's
   const dienstPaginas = [
     'kantoorschoonmaak',
     'opleveringsschoonmaak',
     'short-stay',
     'medische-schoonmaak',
+  ]
+
+  // Vaste, extra landingspagina's
+  const vastePaginas = [
+    'particuliere-schoonmaak',
+    'zakelijke-tarieven',
+    'algemene-voorwaarden',
+    'privacybeleid'
+  ]
+
+  // Actieve projecten / case studies
+  const projecten = [
+    'bouwoplevering-station-breda',
+    'kantoor-dieptereiniging-oosterhout'
   ]
 
   // 1. Regio overzichtspagina's (/schoonmaakbedrijf/[regio])
@@ -49,6 +63,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   )
 
+  // 4. Vaste pagina's (tarieven & voorwaarden)
+  const vasteUrls = vastePaginas.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: slug.includes('tarieven') || slug.includes('particuliere') ? 0.8 : 0.3,
+  }))
+
+  // 5. Project pagina's (/projecten/[slug])
+  const projectUrls = projecten.map((slug) => ({
+    url: `${baseUrl}/projecten/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
   return [
     {
       url: `${baseUrl}`,
@@ -59,5 +89,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...dienstUrls,
     ...regioUrls,
     ...dienstRegioUrls,
+    ...vasteUrls,
+    ...projectUrls,
   ]
 }
