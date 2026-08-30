@@ -26,7 +26,7 @@ export default function KantoorSchoonmaakPage() {
               Kantoorschoonmaak is geen kostenpost, maar een strategische investering. Puurix Schoonmaak transformeert uw kantoor van een verzuimrisico naar een productieve, ultra-schone werkomgeving.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/#rekentool" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+              <Link href="/zakelijke-tarieven" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
                 Bereken Direct Uw Prijs <ArrowRight size={20} />
               </Link>
             </div>
@@ -121,7 +121,7 @@ export default function KantoorSchoonmaakPage() {
                <p className="text-stone-600 mb-8">
                  Geen vage offertetrajecten of verborgen kosten. Gebruik onze transparante rekentool en zie direct wat een schone, productieve werkplek voor uw kantoor kost.
                </p>
-               <Link href="/#rekentool" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
+               <Link href="/zakelijke-tarieven" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
                  Start de Rekentool
                </Link>
             </div>

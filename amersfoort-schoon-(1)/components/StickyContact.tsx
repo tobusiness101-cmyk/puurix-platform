@@ -44,9 +44,9 @@ export const StickyContact = () => {
 
             <div className="flex flex-col">
               
-              {/* 1. Online Rekentool */}
+        {/* 1. Online Rekentool */}
               <a
-                href="/#rekentool"
+                href="/zakelijke-tarieven"
                 onClick={closeMenu}
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors hover:bg-muted cursor-pointer"
               >
@@ -58,7 +58,6 @@ export const StickyContact = () => {
                   <span className="text-xs font-medium text-primary/60">Bereken direct uw prijs</span>
                 </div>
               </a>
-
               {/* 2. Offerte Aanvragen */}
               <a
                 href="/#contact"

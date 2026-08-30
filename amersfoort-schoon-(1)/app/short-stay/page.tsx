@@ -26,7 +26,7 @@ export default function ShortStaySchoonmaakPage() {
               Voor professionele verhuurders en beheerders draait alles om gasttevredenheid. Puurix ontzorgt uw recreatie- en short-stay objecten met hotelkwaliteit schoonmaak en strakke planningen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/#rekentool" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+              <Link href="/zakelijke-tarieven" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
                 Bereken Direct Uw Prijs <ArrowRight size={20} />
               </Link>
             </div>
@@ -121,7 +121,7 @@ export default function ShortStaySchoonmaakPage() {
                <p className="text-stone-600 mb-8">
                  Weten wat het kost om uw vastgoed professioneel te laten beheren tussen boekingen door? Gebruik onze rekentool voor een direct en transparant overzicht.
                </p>
-               <Link href="/#rekentool" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
+               <Link href="/zakelijke-tarieven" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
                  Start de Rekentool
                </Link>
             </div>

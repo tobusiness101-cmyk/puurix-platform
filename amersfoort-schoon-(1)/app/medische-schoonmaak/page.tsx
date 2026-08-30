@@ -26,7 +26,7 @@ export default function MedischeSchoonmaakPage() {
               In de zorg draait alles om patiëntveiligheid en het voorkomen van kruisbesmetting. Puurix ontzorgt uw tandartspraktijk of zorginstelling met gespecialiseerde zakelijke schoonmaak op het allerhoogste niveau.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/#rekentool" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+              <Link href="/zakelijke-tarieven" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
                 Bereken Direct Uw Prijs <ArrowRight size={20} />
               </Link>
             </div>
@@ -121,7 +121,7 @@ export default function MedischeSchoonmaakPage() {
                <p className="text-stone-600 mb-8">
                  Elke praktijk is anders, maar hygiëne is nooit een optie. Gebruik onze transparante rekentool om direct te zien wat een veilig en steriel pand voor u kost.
                </p>
-               <Link href="/#rekentool" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
+               <Link href="/zakelijke-tarieven" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
                  Start de Rekentool
                </Link>
             </div>

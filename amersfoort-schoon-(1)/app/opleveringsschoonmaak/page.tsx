@@ -26,7 +26,7 @@ export default function OpleveringsschoonmaakPage() {
               Voor aannemers, projectontwikkelaars en makelaars is de deadline heilig. Puurix zorgt voor de perfecte eindschoonmaak, inclusief strakke checklists en fotografisch bewijs, zodat u met een gerust hart de sleutel kunt overdragen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/#rekentool" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
+              <Link href="/zakelijke-tarieven" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
                 Bereken Direct Uw Prijs <ArrowRight size={20} />
               </Link>
             </div>
@@ -121,7 +121,7 @@ export default function OpleveringsschoonmaakPage() {
                <p className="text-stone-600 mb-8">
                  Geen verrassingen achteraf voor uw projectbegroting. Gebruik onze online rekentool en bereken direct de kosten voor een vlekkeloze oplevering van uw pand.
                </p>
-               <Link href="/#rekentool" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
+               <Link href="/zakelijke-tarieven" className="w-full block text-center bg-primary text-white font-bold py-4 rounded-lg hover:bg-primary/90 transition-colors">
                  Start de Rekentool
                </Link>
             </div>
