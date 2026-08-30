@@ -115,11 +115,7 @@ export const Footer = () => {
                   Opleveringsschoonmaak
                 </Link>
               </li>
-              <li>
-                <Link href="/glasbewassing" className="hover:text-accent transition-colors">
-                  Glasbewassing & Onderhoud
-                </Link>
-              </li>
+             
               <li>
                 <Link href="/short-stay" className="hover:text-accent transition-colors">
                   Short-stay & Airbnb
