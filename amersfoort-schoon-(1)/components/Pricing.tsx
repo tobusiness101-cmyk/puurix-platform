@@ -134,13 +134,14 @@ export const Pricing = () => {
                 </span>
               </div>
 
-              {/* Link voor Particulier of Border voor de rest */}
+              {/* Link voor Particulier omgebouwd naar een mini-button (Optie B) */}
               {plan.id === "particulier" ? (
                 <Link
                   href="/particuliere-schoonmaak"
-                  className="text-accent text-sm font-semibold underline hover:text-accent-hover mb-8 inline-block"
+                  className="w-full mb-8 inline-flex items-center justify-center gap-2 rounded-xl bg-accent/10 hover:bg-accent/20 text-accent font-bold py-3 px-4 text-sm transition-all"
                 >
-                  Bekijk gedetailleerde prijslijst
+                  <span>Bekijk gedetailleerde prijslijst</span>
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               ) : (
                 <div className="mb-8 border-b border-white/10 pb-4"></div>
