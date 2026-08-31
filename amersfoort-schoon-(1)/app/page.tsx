@@ -43,7 +43,7 @@ export default function Home() {
       {features.leadMagnet && <LeadMagnet />}
       {features.footer && <Footer />}
       {features.stickyContact && <StickyContact />}
-      <StickyCallBar />
+      
     </main>
   );
 }
