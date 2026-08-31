@@ -23,7 +23,8 @@ export const Footer = () => {
 
             <h4 className="font-bold text-ink tracking-widest text-xs mb-3 uppercase">Actief In</h4>
             
-            {/* Het Visuele Kaartje */}
+            {/* TIJDELIJK VERBORGEN: Haal de {/* en */} weg zodra werkgebied.png in je public map staat */}
+            {/* 
             <div className="mb-4 overflow-hidden rounded-xl border border-stone-200 shadow-sm max-w-[240px]">
               <img 
                 src="/werkgebied.png" 
@@ -31,6 +32,7 @@ export const Footer = () => {
                 className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity"
               />
             </div>
+            */}
 
             {/* Subtiele provincie-tekst eronder */}
             <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs font-bold text-stone-500 uppercase tracking-wider">
