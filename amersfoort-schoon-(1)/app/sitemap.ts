@@ -13,6 +13,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'waalwijk',
     'kaatsheuvel',
     'amersfoort',
+    'alphen-chaam',
+    'dongen',
+    'drimmelen',
+    'geertruidenberg',
+    'gilze-en-rijen',
+    'loon-op-zand',
+    'barneveld',
+    'ede',
+    'nijkerk',
+    'scherpenzeel',
+    'leusden',
+    'renswoude',
+    'veenendaal',
+    'woudenberg',
   ]
 
   // Diensten landingspagina's
