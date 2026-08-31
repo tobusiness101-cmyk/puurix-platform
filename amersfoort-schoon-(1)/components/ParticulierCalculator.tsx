@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Minus, Plus, Home, Sparkles, Phone, Tag } from "lucide-react";
+import { Minus, Plus, Home, Sparkles, Phone, Tag, ArrowRight } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
 // === 1. CENTRALE PROMO CONFIGURATIE ===
@@ -18,7 +18,7 @@ const ITEMS = [
     key: "kamer", 
     label: "Kamer (Basis)", 
     desc: "Stofzuigen en dweilen van woon- of slaapkamer.",
-    price: 25, 
+    price: 27, 
     vatRate: 0.09, 
     unit: "per kamer" 
   },
@@ -26,7 +26,7 @@ const ITEMS = [
     key: "badkamer", 
     label: "Badkamer (Diep)", 
     desc: "Toilet, douche, wastafel, spiegel, kalk, tegels & dweilen.",
-    price: 60, 
+    price: 63, 
     vatRate: 0.09, 
     unit: "vast bedrag" 
   },
@@ -192,69 +192,69 @@ export const ParticulierCalculator = () => {
         </div>
       )}
 
-      {/* GECOMBINEERDE TOTAAL & CALL TO ACTION SECTIE */}
-      <div className="mt-8 rounded-3xl overflow-hidden shadow-2xl border border-stone-200">
+      {/* GECOMBINEERDE TOTAAL & CALL TO ACTION SECTIE (Stijl Rekentool) */}
+      <div className="mt-8 bg-primary rounded-3xl p-8 md:p-10 text-white shadow-xl flex flex-col justify-center items-center text-center border border-white/10">
         
-        {/* BOVENKANT: Prijs (Donker) */}
-        <div className="bg-ink p-6 md:p-8 text-white">
-          <div className="flex items-baseline justify-between mb-2">
-            <span className="text-lg font-bold text-white/90">Totaal (incl. btw)</span>
-            <div className="flex flex-col items-end">
-               {PROMO_CONFIG.isActive && breakdown.discount > 0 && (
-                 <span className="text-sm text-white/40 line-through decoration-white/40 mb-1">
-                   €{(breakdown.total + breakdown.discount).toFixed(2).replace(".", ",")}
-                 </span>
-               )}
-               <span className="text-4xl font-black text-amber-400 tracking-tight">
-                 €{breakdown.total.toFixed(2).replace(".", ",")}
+        {/* 1. TOTAAL PRIJS */}
+        <div className="w-full flex items-baseline justify-between mb-4">
+          <span className="text-lg font-bold text-white/90">Totaal (incl. btw)</span>
+          <div className="flex flex-col items-end">
+             {PROMO_CONFIG.isActive && breakdown.discount > 0 && (
+               <span className="text-sm text-white/40 line-through decoration-white/40 mb-1">
+                 €{(breakdown.total + breakdown.discount).toFixed(2).replace(".", ",")}
                </span>
-            </div>
+             )}
+             <span className="text-4xl font-black text-amber-400 tracking-tight">
+               €{breakdown.total.toFixed(2).replace(".", ",")}
+             </span>
           </div>
-          
-          {(breakdown.vat9 > 0 || breakdown.vat21 > 0) && (
-            <div className="border-t border-white/10 pt-3 mt-3 flex justify-between items-center">
-               <span className="text-xs text-white/50 uppercase tracking-widest">Btw specificatie</span>
-               <p className="text-xs text-white/60 text-right font-medium">
-                 €{breakdown.vat9.toFixed(2).replace(".", ",")} (9%)
-                 {breakdown.vat21 > 0 && ` + €${breakdown.vat21.toFixed(2).replace(".", ",")} (21%)`}
-               </p>
-            </div>
-          )}
         </div>
+        
+        {/* 2. BTW SPECIFICATIE */}
+        {(breakdown.vat9 > 0 || breakdown.vat21 > 0) && (
+          <div className="w-full border-t border-white/10 pt-3 flex justify-between items-center mb-8">
+             <span className="text-xs text-white/50 uppercase tracking-widest">Btw specificatie</span>
+             <p className="text-xs text-white/60 text-right font-medium">
+               €{breakdown.vat9.toFixed(2).replace(".", ",")} (9%)
+               {breakdown.vat21 > 0 && ` + €${breakdown.vat21.toFixed(2).replace(".", ",")} (21%)`}
+             </p>
+          </div>
+        )}
 
-        {/* ONDERKANT: Actie (Geel) - Alleen als totaal > 0 is */}
+        {/* 3. CTA (Als totaal > 0 is) */}
         {breakdown.total > 0 ? (
-          <div className="bg-amber-400 p-6 md:p-8 text-slate-900 flex flex-col items-center text-center">
-            <h3 className="text-xl font-black mb-2">Akkoord met de prijs?</h3>
-            <p className="text-amber-900/80 text-sm mb-6 max-w-sm">
-              Leg dit tarief direct vast. Bel ons om een datum in te plannen, of stuur een bericht via WhatsApp.
+          <div className="w-full flex flex-col items-center pt-6 border-t border-white/10">
+            <h3 className="text-2xl font-bold font-serif mb-3 leading-tight tracking-tight">
+              {PROMO_CONFIG.isActive ? "Claim uw welkomstkorting" : "Akkoord met de prijs?"}
+            </h3>
+            <p className="text-white/70 text-sm leading-relaxed mb-8 max-w-sm">
+              Leg vandaag nog de scherpe prijs van <span className="font-bold text-white">€{breakdown.total.toFixed(2).replace(".", ",")}</span> vast in een vrijblijvende offerte.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-              <a
-                href="tel:+31624473102"
-                className="w-full flex-1"
-                onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Particulier Calculator Bel Direct" } })}
-              >
-                <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-4 text-sm font-bold uppercase tracking-widest text-white shadow-md transition-all hover:bg-slate-800">
-                  <Phone className="h-4 w-4" />
-                  Bel: 06 244 731 02
-                </button>
-              </a>
-              <a
-                href="https://wa.me/31624473102"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex-1 flex items-center justify-center gap-2 rounded-xl bg-white/40 border border-amber-600/20 px-6 py-4 text-sm font-bold uppercase tracking-widest text-slate-900 transition-all hover:bg-white/60"
-                onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Particulier Calculator WhatsApp" } })}
-              >
-                WhatsApp
-              </a>
-            </div>
+            <a
+              href="tel:+31624473102"
+              className="w-full max-w-sm"
+              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Particulier Calculator Bel Direct" } })}
+            >
+              <button className="w-full flex items-center justify-center gap-3 rounded-xl bg-amber-500 px-6 py-4 text-sm font-bold uppercase tracking-widest text-primary shadow-md transition-all hover:bg-amber-400">
+                <Phone className="h-4 w-4" />
+                Bel Direct: 06 24 47 31 02
+              </button>
+            </a>
+
+            <a 
+              href="https://wa.me/31624473102" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 text-sm font-medium text-white/60 hover:text-white transition-colors flex items-center gap-1.5"
+              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Particulier Calculator WhatsApp" } })}
+            >
+              Liever contact via WhatsApp? <ArrowRight className="h-3.5 w-3.5" />
+            </a>
           </div>
         ) : (
-          <div className="bg-stone-100 p-6 text-center border-t border-stone-200">
-            <p className="text-sm font-medium text-stone-500">Selecteer minimaal één dienst om aan te vragen.</p>
+          <div className="w-full pt-6 border-t border-white/10 text-center">
+            <p className="text-sm font-medium text-white/50">Selecteer minimaal één dienst om aan te vragen.</p>
           </div>
         )}
 
