@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, Phone, X, FileText, ChevronUp, Calculator } from "lucide-react";
+import { MessageCircle, Phone, X, FileText, Calculator } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const StickyContact = () => {
@@ -27,7 +27,7 @@ export const StickyContact = () => {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className="fixed z-50 flex items-end right-4 top-28 flex-col-reverse gap-4 md:gap-0 md:top-auto md:bottom-6 md:right-6 md:flex-col">
+    <div className="fixed z-50 flex flex-col items-end right-4 bottom-4 md:bottom-6 md:right-6">
       
       <AnimatePresence>
         {isOpen && (
@@ -36,7 +36,7 @@ export const StickyContact = () => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className="w-72 overflow-hidden rounded-2xl bg-white shadow-premium border border-border/50 flex flex-col md:mb-4 origin-top-right md:origin-bottom-right"
+            className="w-72 overflow-hidden rounded-2xl bg-white shadow-premium border border-border/50 flex flex-col mb-4 origin-bottom-right"
           >
             <div className="bg-primary p-4 text-center text-white">
               <h4 className="text-xs font-extrabold uppercase tracking-widest">Puurix</h4>
@@ -44,7 +44,7 @@ export const StickyContact = () => {
 
             <div className="flex flex-col">
               
-        {/* 1. Online Rekentool */}
+              {/* 1. Online Rekentool */}
               <a
                 href="/zakelijke-tarieven"
                 onClick={closeMenu}
@@ -58,6 +58,7 @@ export const StickyContact = () => {
                   <span className="text-xs font-medium text-primary/60">Bereken direct uw prijs</span>
                 </div>
               </a>
+              
               {/* 2. Offerte Aanvragen */}
               <a
                 href="/#contact"

@@ -37,7 +37,7 @@ export function PromoBanner() {
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 w-full">
               {/* Primaire Actieknop naar de Rekentool */}
               <Link 
-                href="#rekentool" 
+                href="/zakelijke-tarieven" 
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl bg-amber-400 px-7 py-4 text-xs sm:text-sm font-black uppercase tracking-wider text-slate-950 shadow-[0_10px_25px_-5px_rgba(251,191,36,0.4)] hover:bg-amber-300 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 Bereken prijs met 20% korting

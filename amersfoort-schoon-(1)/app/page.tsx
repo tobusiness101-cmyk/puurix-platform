@@ -13,7 +13,8 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { LeadMagnet } from "@/components/LeadMagnet";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
-import { StickyCallBar } from "@/components/StickyCallBar";
+/*import { StickyCallBar } from "@/components/StickyCallBar";*/
+
 import { features } from "@/lib/features";
 /*import { WelcomePopup } from "@/components/WelcomePopup";*/
 
