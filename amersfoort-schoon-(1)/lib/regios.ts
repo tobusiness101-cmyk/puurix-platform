@@ -1,3 +1,8 @@
+export type RegioInfo = {
+  omgeving: string[]; 
+  highlight: string; 
+};
+
 export const regioData: Record<string, RegioInfo> = {
   // --- Bestaande Regio's ---
   breda: {
@@ -95,3 +100,13 @@ export const regioData: Record<string, RegioInfo> = {
     highlight: "Centraal gelegen op de Utrechtse Heuvelrug zorgen wij voor een strakke en representatieve uitstraling van uw kantoor of praktijk, perfect passend bij Woudenberg.",
   },
 };
+
+const defaultRegioInfo: RegioInfo = {
+  omgeving: [],
+  highlight:
+    "Wij werken met een vast, herkenbaar schoonmaakteam uit de regio, waardoor we snel kunnen schakelen en altijd dichtbij zijn.",
+};
+
+export function getRegioInfo(slug: string): RegioInfo {
+  return regioData[slug] ?? defaultRegioInfo;
+}
