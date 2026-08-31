@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Actieve projecten / case studies
   const projecten = [
-    'bouwoplevering-station-breda',
+    'bouwoplevering-breda',
     'kantoor-dieptereiniging-oosterhout'
   ]
 

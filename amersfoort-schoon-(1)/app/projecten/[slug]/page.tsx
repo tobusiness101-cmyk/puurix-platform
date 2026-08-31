@@ -6,8 +6,8 @@ import { Footer } from "@/components/Footer";
 
 // Tijdelijke data. Je kunt dit later naar een lib/projecten.ts verplaatsen.
 const projectData = {
-  "bouwoplevering-station-breda": {
-    titel: "Bouwoplevering Station Breda",
+  "bouwoplevering-breda": {
+    titel: "Bouwoplevering  Breda",
     type: "Opleveringsschoonmaak",
     beschrijving: "Na een intensieve verbouwing hebben wij deze locatie volledig stofvrij en glanzend opgeleverd binnen een strakke deadline.",
   },
