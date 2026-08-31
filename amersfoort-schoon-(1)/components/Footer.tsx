@@ -1,4 +1,4 @@
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { Phone, MessageCircle, Mail } from "lucide-react";
 import Link from 'next/link';
 
 export const Footer = () => {
@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           
-          {/* Kolom 1: Logo, Tekst & Werkgebied */}
+          {/* Kolom 1: Logo, Tekst & Werkgebied Kaart */}
           <div className="flex flex-col">
             <Link href="/" className="inline-block cursor-pointer mb-6">
               <span className="font-sans text-4xl font-black tracking-tighter">
@@ -15,60 +15,31 @@ export const Footer = () => {
                 <span className="text-stone-600">ix</span>
               </span>
             </Link>
-            <p className="text-stone-600 leading-relaxed text-sm mb-8">
+            <p className="text-stone-600 leading-relaxed text-sm mb-6">
               Hoogwaardige, datagedreven<br/>
-              schoonmaakdiensten voor de zakelijke markt.<br/>
+              schoonmaakdiensten voor de zakelijke en particuliere markt.<br/>
               Wij garanderen een vlekkeloze operatie.
             </p>
 
-            <h4 className="font-bold text-ink tracking-widest text-xs mb-4 uppercase">Werkgebied</h4>
-            <ul className="space-y-3 text-sm font-medium">
-              
-              {/* Lokale SEO Links */}
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/oosterhout" className="hover:text-accent transition-colors">
-                  Oosterhout
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/breda" className="hover:text-accent transition-colors">
-                  Breda
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/tilburg" className="hover:text-accent transition-colors">
-                  Tilburg
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/etten-leur" className="hover:text-accent transition-colors">
-                  Etten-Leur
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/teteringen" className="hover:text-accent transition-colors">
-                  Teteringen
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/waalwijk" className="hover:text-accent transition-colors">
-                  Waalwijk
-                </Link>
-              </li>
-              <li className="flex items-center gap-3 text-stone-600">
-                <MapPin size={18} className="text-accent" />
-                <Link href="/schoonmaakbedrijf/kaatsheuvel" className="hover:text-accent transition-colors">
-                  Kaatsheuvel
-                </Link>
-              </li>
+            <h4 className="font-bold text-ink tracking-widest text-xs mb-3 uppercase">Actief In</h4>
+            
+            {/* Het Visuele Kaartje */}
+            <div className="mb-4 overflow-hidden rounded-xl border border-stone-200 shadow-sm max-w-[240px]">
+              <img 
+                src="/werkgebied.png" 
+                alt="Werkgebied Puurix: Noord-Brabant, Gelderland & Utrecht" 
+                className="w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </div>
 
-            </ul>
+            {/* Subtiele provincie-tekst eronder */}
+            <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs font-bold text-stone-500 uppercase tracking-wider">
+              <span>Noord-Brabant</span>
+              <span className="text-stone-300">•</span>
+              <span>Gelderland</span>
+              <span className="text-stone-300">•</span>
+              <span>Utrecht</span>
+            </div>
           </div>
 
           {/* Kolom 2: Contact */}
@@ -115,10 +86,14 @@ export const Footer = () => {
                   Opleveringsschoonmaak
                 </Link>
               </li>
-             
               <li>
                 <Link href="/short-stay" className="hover:text-accent transition-colors">
                   Short-stay & Airbnb
+                </Link>
+              </li>
+              <li>
+                <Link href="/particuliere-schoonmaak" className="hover:text-accent transition-colors">
+                  Particuliere Schoonmaak
                 </Link>
               </li>
             </ul>
