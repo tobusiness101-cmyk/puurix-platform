@@ -23,7 +23,7 @@ export const Footer = () => {
 
             <h4 className="font-bold text-ink tracking-widest text-xs mb-3 uppercase">Actief In</h4>
             
-            {/* TIJDELIJK VERBORGEN: Haal de {/* en */} weg zodra werkgebied.png in je public map staat */}
+            {/* TIJDELIJK VERBORGEN: Haal de comment-tags weg zodra werkgebied.png in je public map staat */}
             {/* 
             <div className="mb-4 overflow-hidden rounded-xl border border-stone-200 shadow-sm max-w-[240px]">
               <img 
