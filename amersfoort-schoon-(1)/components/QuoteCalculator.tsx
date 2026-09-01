@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Phone, Mail, Building } from "lucide-react";
+import { Phone, Mail, Building } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
+import { useRouter } from "next/navigation";
 
 export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const router = useRouter();
   
   const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [weeklyDays, setWeeklyDays] = useState<number>(1);
@@ -27,8 +28,9 @@ export const QuoteCalculator = () => {
       .then(async (response) => {
         setIsSubmitting(false);
         if (response.status === 200) {
-          setIsSuccess(true);
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
+          // Stuur de gebruiker direct door naar de nieuwe bedankt-pagina
+          router.push("/bedankt");
         } else {
           alert("Er is iets misgegaan bij het verzenden. Probeer het opnieuw.");
         }
@@ -38,20 +40,6 @@ export const QuoteCalculator = () => {
         alert("Er is een fout opgetreden.");
       });
   };
-
-  if (isSuccess) {
-    return (
-      <section id="contact" className="py-24 bg-muted">
-        <div className="container mx-auto px-6 md:px-12 flex justify-center">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center text-center p-12 bg-white rounded-3xl shadow-premium max-w-2xl w-full">
-            <CheckCircle2 className="h-16 w-16 text-green-500 mb-6" />
-            <h3 className="text-3xl font-bold text-primary mb-4">Aanvraag Ontvangen</h3>
-            <p className="text-primary/70 text-lg">Bedankt voor uw interesse in Puurix. Wij hebben uw gegevens in goede orde ontvangen en nemen binnen 24 uur contact met u op.</p>
-          </motion.div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="contact" className="py-24 bg-muted relative">
