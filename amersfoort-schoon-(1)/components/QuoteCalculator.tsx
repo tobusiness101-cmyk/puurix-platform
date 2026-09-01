@@ -27,9 +27,15 @@ export const QuoteCalculator = () => {
     })
       .then(async (response) => {
         setIsSubmitting(false);
-        if (response.status === 200) {
+       if (response.status === 200) {
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
-          // Stuur de gebruiker direct door naar de nieuwe bedankt-pagina
+          
+          // NIEUW: Sla het e-mailadres veilig op in sessionStorage voor Google Ads
+          const submittedEmail = formData.get("Email")?.toString();
+          if (submittedEmail) {
+            sessionStorage.setItem("puurix_lead_email", submittedEmail);
+          }
+          
           router.push("/bedankt");
         } else {
           alert("Er is iets misgegaan bij het verzenden. Probeer het opnieuw.");

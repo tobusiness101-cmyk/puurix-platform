@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 /*import { PromoBanner } from "@/components/PromoBanner";*/
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 import { MetaPixel } from "@/components/MetaPixel";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -88,6 +89,18 @@ export default function RootLayout({
             }),
           }}
         />
+        <Script
+  src="https://www.googletagmanager.com/gtag/js?id=AW-8023888101"
+  strategy="afterInteractive"
+/>
+<Script id="google-ads-tag" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-8023888101');
+  `}
+</Script>
 
         {/* Analytics & Meta Pixel */}
         <GoogleAnalytics gaId="G-L4GV9859J5"/>
