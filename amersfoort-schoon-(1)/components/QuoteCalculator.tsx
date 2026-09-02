@@ -81,50 +81,67 @@ export const QuoteCalculator = () => {
               </ul>
             </div>
 
-            {/* DIRECT INGEVOEGDE TRUST BADGES */}
-            <div className="mt-10 flex flex-col items-center bg-white/5 p-6 rounded-2xl border border-white/10">
-              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-6 text-center w-full">
-                Geverifieerd partner van
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
-                {/* Trustpilot Widget */}
-                <div className="flex justify-center min-w-[140px]">
-                  <Script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" strategy="lazyOnload" />
-                  <div 
-                    className="trustpilot-widget" 
-                    data-locale="nl-NL" 
-                    data-template-id="56278e9abfbbba0bdcd568bc" 
-                    data-businessunit-id="6a984787e44b78c093bf6c3f" 
-                    data-style-height="52px" 
-                    data-style-width="100%" 
-                    data-token="a98bc103-bf33-4075-98d1-41923a96f581"
-                  >
-                    <a href="https://nl.trustpilot.com/review/puurix.nl" target="_blank" rel="noopener noreferrer">Trustpilot</a>
-                  </div>
-                </div>
+           {/* DIRECT INGEVOEGDE TRUST BADGES */}
+<div className="mt-10 flex flex-col items-center bg-white/5 p-6 rounded-2xl border border-white/10">
+  <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-6 text-center w-full">
+    Geverifieerd partner van
+  </div>
 
-                {/* Verticale scheidingslijn (onzichtbaar op mobiel) */}
-                <div className="hidden sm:block w-px h-12 bg-white/10"></div>
+  <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 w-full">
+    {/* Trustpilot kaart */}
+    <div className="flex-1 flex items-center justify-center bg-white rounded-xl px-4 py-3 h-[64px] min-w-[150px]">
+      <Script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" strategy="lazyOnload" />
+      <div
+        className="trustpilot-widget w-full h-full flex items-center justify-center"
+        data-locale="nl-NL"
+        data-template-id="56278e9abfbbba0bdcd568bc"
+        data-businessunit-id="6a984787e44b78c093bf6c3f"
+        data-style-height="52px"
+        data-style-width="100%"
+        data-token="a98bc103-bf33-4075-98d1-41923a96f581"
+      >
+        <a href="https://nl.trustpilot.com/review/puurix.nl" target="_blank" rel="noopener noreferrer">
+          Trustpilot
+        </a>
+      </div>
+    </div>
 
-                {/* Trustoo Widget */}
-                <div className="flex justify-center min-w-[140px]">
-                  <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
-                  <div 
-                    className="trustoo-widget" 
-                    data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg" 
-                    data-language-code="nl" 
-                    data-country-code="NL" 
-                    data-badge="hidden" 
-                    data-quote="default" 
-                    data-size="small" 
-                    data-type="landscape" 
-                    data-border="hidden" 
-                    data-theme="dark" 
-                    data-background="transparent" 
-                    data-google="hidden"
-                  />
-                </div>
+    {/* Trustoo kaart */}
+    <div className="trustoo-card flex-1 flex items-center justify-center bg-white rounded-xl px-4 py-3 h-[64px] min-w-[150px] overflow-hidden">
+      <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
+      <div
+        className="trustoo-widget"
+        data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg"
+        data-language-code="nl"
+        data-country-code="NL"
+        data-badge="hidden"
+        data-quote="default"
+        data-size="small"
+        data-type="landscape"
+        data-border="hidden"
+        data-theme="light"
+        data-background="transparent"
+        data-google="hidden"
+      />
+    </div>
+  </div>
+
+  {/*
+    Trustoo rendert zijn widget dynamisch in een iframe of losse DOM-nodes,
+    dus de "1 review" tekst kan niet vanuit React zelf verwijderd worden.
+    Open de site in devtools (F12) zodra de widget geladen is, zoek het
+    element met de reviewcount-tekst op, en vul de echte class/selector
+    hieronder in. Werkt alleen als het GEEN iframe is (cross-origin iframes
+    kun je niet met CSS van buitenaf targeten).
+  */}
+  <style jsx global>{`
+    .trustoo-card .review-count,
+    .trustoo-card [class*="review-count"],
+    .trustoo-card [class*="reviewCount"] {
+      display: none !important;
+    }
+  `}</style>
+</div>
               </div>
             </div>
             <div className="mt-12 pt-8 border-t border-white/10">
