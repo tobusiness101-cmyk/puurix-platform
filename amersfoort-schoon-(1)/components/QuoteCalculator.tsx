@@ -91,18 +91,41 @@ export const QuoteCalculator = () => {
               </ul>
             </div>
 
-            {/* DIRECT INGEVOEGDE TRUST BADGES (Nieuwe kaartjes layout) */}
-            <div className="mt-10 flex flex-col items-center bg-white/5 p-6 rounded-2xl border border-white/10">
-              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-6 text-center w-full">
+            {/* DIRECT INGEVOEGDE TRUST BADGES (Gestapelde layout) */}
+            <div className="mt-10 flex flex-col items-center bg-white/5 p-8 rounded-2xl border border-white/10">
+              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-8 text-center w-full">
                 Geverifieerd partner van
               </div>
               
-              <div className="flex flex-col sm:flex-row items-stretch justify-center gap-4 w-full">
-                {/* Trustpilot kaart */}
-                <div className="flex-1 flex items-center justify-center bg-white rounded-xl px-4 py-3 h-[64px] min-w-[150px]">
+              <div className="flex flex-col items-center gap-8 w-full">
+                
+                {/* Trustoo Widget */}
+                <div className="w-full flex justify-center min-h-[80px]">
+                  <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
+                  <div
+                    className="trustoo-widget"
+                    data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg"
+                    data-language-code="nl"
+                    data-country-code="NL"
+                    data-badge="hidden"
+                    data-quote="default"
+                    data-size="small"
+                    data-type="landscape"
+                    data-border="hidden"
+                    data-theme="dark" 
+                    data-background="transparent"
+                    data-google="hidden"
+                  />
+                </div>
+
+                {/* Subtiel lijntje tussen de twee in */}
+                <div className="w-12 h-px bg-white/20"></div>
+
+                {/* Trustpilot Widget */}
+                <div className="w-full flex justify-center">
                   <Script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" strategy="lazyOnload" />
                   <div
-                    className="trustpilot-widget w-full h-full flex items-center justify-center"
+                    className="trustpilot-widget flex justify-center"
                     data-locale="nl-NL"
                     data-template-id="56278e9abfbbba0bdcd568bc"
                     data-businessunit-id="6a984787e44b78c093bf6c3f"
@@ -116,24 +139,6 @@ export const QuoteCalculator = () => {
                   </div>
                 </div>
 
-                {/* Trustoo kaart */}
-                <div className="trustoo-card flex-1 flex items-center justify-center bg-white rounded-xl px-4 py-3 h-[64px] min-w-[150px] overflow-hidden">
-                  <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
-                  <div
-                    className="trustoo-widget"
-                    data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg"
-                    data-language-code="nl"
-                    data-country-code="NL"
-                    data-badge="hidden"
-                    data-quote="default"
-                    data-size="small"
-                    data-type="landscape"
-                    data-border="hidden"
-                    data-theme="light"
-                    data-background="transparent"
-                    data-google="hidden"
-                  />
-                </div>
               </div>
             </div>
             
