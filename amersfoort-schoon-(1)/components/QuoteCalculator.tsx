@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Mail, Building } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
 
 export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,7 +18,6 @@ export const QuoteCalculator = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Web3Forms fetch request voor de vloeiende animatie
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -27,10 +27,9 @@ export const QuoteCalculator = () => {
     })
       .then(async (response) => {
         setIsSubmitting(false);
-       if (response.status === 200) {
+        if (response.status === 200) {
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
           
-          // NIEUW: Sla het e-mailadres veilig op in sessionStorage voor Google Ads
           const submittedEmail = formData.get("Email")?.toString();
           if (submittedEmail) {
             sessionStorage.setItem("puurix_lead_email", submittedEmail);
@@ -81,6 +80,48 @@ export const QuoteCalculator = () => {
                 </li>
               </ul>
             </div>
+
+            {/* DIRECT INGEVOEGDE TRUST BADGES */}
+            <div className="mt-10 flex flex-col gap-5 bg-white/5 p-5 rounded-2xl border border-white/10">
+              <div className="text-sm font-bold text-white/70 uppercase tracking-wider mb-2">
+                Beoordeeld door klanten
+              </div>
+              
+              {/* Trustpilot Widget */}
+              <div className="w-full">
+                <Script src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" strategy="lazyOnload" />
+                <div 
+                  className="trustpilot-widget" 
+                  data-locale="nl-NL" 
+                  data-template-id="56278e9abfbbba0bdcd568bc" 
+                  data-businessunit-id="6a984787e44b78c093bf6c3f" 
+                  data-style-height="52px" 
+                  data-style-width="100%" 
+                  data-token="a98bc103-bf33-4075-98d1-41923a96f581"
+                >
+                  <a href="https://nl.trustpilot.com/review/puurix.nl" target="_blank" rel="noopener noreferrer">Trustpilot</a>
+                </div>
+              </div>
+
+              {/* Trustoo Widget */}
+              <div className="w-full">
+                <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
+                <div 
+                  className="trustoo-widget" 
+                  data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg" 
+                  data-language-code="nl" 
+                  data-country-code="NL" 
+                  data-badge="hidden" 
+                  data-quote="default" 
+                  data-size="small" 
+                  data-type="landscape" 
+                  data-border="hidden" 
+                  data-theme="dark" 
+                  data-background="transparent" 
+                  data-google="hidden"
+                />
+              </div>
+            </div>
             
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="flex items-center gap-3 text-white/50 text-sm">
@@ -97,12 +138,10 @@ export const QuoteCalculator = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               
-              {/* Web3Forms Access Key */}
               <input type="hidden" name="access_key" value="91b5c30f-03ca-4d2c-ae11-c56124f8f957" />
               <input type="hidden" name="subject" value="Nieuwe offerte aanvraag via Puurix!" />
               <input type="hidden" name="from_name" value="Puurix Website - Offerte Aanvraag" />
 
-              {/* 1. Naam & E-mail */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="naam" className="text-sm font-medium text-primary/80">Naam / Bedrijfsnaam *</label>
@@ -114,7 +153,6 @@ export const QuoteCalculator = () => {
                 </div>
               </div>
 
-              {/* 2. Type Ruimte */}
               <div className="space-y-2">
                 <label htmlFor="type-ruimte" className="text-sm font-medium text-primary/80">Type Ruimte *</label>
                 <select id="type-ruimte" required name="Type_Ruimte" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none">
@@ -127,7 +165,6 @@ export const QuoteCalculator = () => {
                 </select>
               </div>
 
-              {/* 3. Frequentie Selectie */}
               <div className="space-y-3">
                 <label className="text-sm font-medium text-primary/80">Gewenste Frequentie *</label>
                 
@@ -198,11 +235,9 @@ export const QuoteCalculator = () => {
                   )}
                 </AnimatePresence>
                 
-                {/* Verborgen veld om de daadwerkelijke frequentie mee te sturen in de mail */}
                 <input type="hidden" name="Gewenste_Frequentie" value={frequency === "Wekelijks" ? `${weeklyDays}x per week` : frequency} />
               </div>
 
-              {/* 4. Specifieke Wensen (Nu optioneel) */}
               <div className="space-y-2">
                 <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">
                   Specifieke Wensen <span className="text-primary/50 font-normal">(optioneel)</span>
@@ -210,7 +245,6 @@ export const QuoteCalculator = () => {
                 <textarea id="specifieke-wensen" name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
               </div>
 
-              {/* Submit Button */}
               <motion.button 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
