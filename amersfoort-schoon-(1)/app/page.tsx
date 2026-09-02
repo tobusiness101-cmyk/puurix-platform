@@ -27,17 +27,19 @@ export default function Home() {
       {features.hero && <Hero />}
       {/* JOUW NIEUWE LUXE ACTIEBLOK */}
       <PromoBanner />
-      {features.trustMarquee && <TrustMarquee />}
+      {/*features.trustMarquee && <TrustMarquee />*/}
       {features.services && <Services />}
       <HowItWorks />
+      {features.quoteCalculator && <QuoteCalculator />}
       {features.infoSections && <InfoSections />}
       <Pricing />
-      {features.beforeAfterSlider && <BeforeAfterSlider />}
+      
      
 
       {/* Rekentool: directe prijsindicatie + bel-CTA */}
      {/* {features.rekentool && <Rekentool />}*/}
-      {features.quoteCalculator && <QuoteCalculator />}
+      
+      {features.beforeAfterSlider && <BeforeAfterSlider />}
  <Testimonials />
       {features.faq && <Faq />}
       {features.leadMagnet && <LeadMagnet />}
