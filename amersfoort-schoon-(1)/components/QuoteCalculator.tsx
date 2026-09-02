@@ -91,20 +91,20 @@ export const QuoteCalculator = () => {
               </ul>
             </div>
 
-            {/* DIRECT INGEVOEGDE TRUST BADGES (Gestapelde layout) */}
-            <div className="mt-10 flex flex-col items-center bg-white/5 p-8 rounded-2xl border border-white/10">
-              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-8 text-center w-full">
+          {/* DIRECT INGEVOEGDE TRUST BADGES (Los, zonder box) */}
+            <div className="mt-12 flex flex-col items-center w-full">
+              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-6 text-center w-full">
                 Geverifieerd partner van
               </div>
               
-              <div className="flex flex-col items-center gap-8 w-full">
+              <div className="flex flex-col items-center gap-6 w-full">
                 
                 {/* Trustoo Widget */}
                 <div className="w-full flex justify-center min-h-[80px]">
                   <Script src="https://static.trustoo.nl/widget/widget_v2.js" strategy="lazyOnload" />
                   <div
                     className="trustoo-widget"
-                    data-id="WlTR39WJypkBEzNVrghtlDHq1ncoHrkXnxrQjnwvp_RKBg"
+                    data-id="fxc7qQ7p7huIxbbEJ5e8mAY6RXOSCkSaWwlalZyH5Gl6FA"
                     data-language-code="nl"
                     data-country-code="NL"
                     data-badge="hidden"
@@ -118,7 +118,7 @@ export const QuoteCalculator = () => {
                   />
                 </div>
 
-                {/* Subtiel lijntje tussen de twee in */}
+                {/* Subtiel lijntje tussen de twee widgets */}
                 <div className="w-12 h-px bg-white/20"></div>
 
                 {/* Trustpilot Widget */}
@@ -129,9 +129,9 @@ export const QuoteCalculator = () => {
                     data-locale="nl-NL"
                     data-template-id="56278e9abfbbba0bdcd568bc"
                     data-businessunit-id="6a984787e44b78c093bf6c3f"
-                    data-style-height="52px"
+                    data-style-height="80px"
                     data-style-width="100%"
-                    data-token="a98bc103-bf33-4075-98d1-41923a96f581"
+                    data-token="20e3699f-69db-409f-a961-930e246b127c"
                   >
                     <a href="https://nl.trustpilot.com/review/puurix.nl" target="_blank" rel="noopener noreferrer">
                       Trustpilot
@@ -141,7 +141,8 @@ export const QuoteCalculator = () => {
 
               </div>
             </div>
-            
+
+            {/* KVK Gedeelte (Dit heeft al de grijze lijn aan de bovenkant) */}
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="flex items-center gap-3 text-white/50 text-sm">
                 <Building className="h-4 w-4" />
