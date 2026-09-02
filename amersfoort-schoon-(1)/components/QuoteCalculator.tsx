@@ -100,6 +100,7 @@ export const QuoteCalculator = () => {
               {/* Web3Forms Access Key */}
               <input type="hidden" name="access_key" value="91b5c30f-03ca-4d2c-ae11-c56124f8f957" />
               <input type="hidden" name="subject" value="Nieuwe offerte aanvraag via Puurix!" />
+              <input type="hidden" name="from_name" value="Puurix Website - Offerte Aanvraag" />
 
               {/* 1. Naam & E-mail */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
