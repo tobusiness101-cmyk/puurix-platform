@@ -19,6 +19,8 @@ import { features } from "@/lib/features";
 /*import { WelcomePopup } from "@/components/WelcomePopup";*/
 
 export default function Home() {
+  // Verander 'false' naar 'true' om hem weer aan te zetten
+const toonTestimonials = false;
   return (
     <main className="relative w-full overflow-hidden">
       
@@ -40,7 +42,7 @@ export default function Home() {
      {/* {features.rekentool && <Rekentool />}*/}
       
       {features.beforeAfterSlider && <BeforeAfterSlider />}
- <Testimonials />
+   {toonTestimonials && <Testimonials />}
       {features.faq && <Faq />}
       {features.leadMagnet && <LeadMagnet />}
       {features.footer && <Footer />}
