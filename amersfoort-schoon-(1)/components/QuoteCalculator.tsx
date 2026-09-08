@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Mail, Building } from "lucide-react";
-import { trackMetaEvent } from "@/lib/meta-pixel";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
+import { trackMetaEvent } from "@/lib/meta-pixel";
+import { trackConversion } from "@/lib/analytics";
 
 export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,10 +28,19 @@ export const QuoteCalculator = () => {
     })
       .then(async (response) => {
         setIsSubmitting(false);
-        if (response.status === 200) {
+       if (response.status === 200) {
+          const submittedEmail = formData.get("Email")?.toString();
+
+          // 1. Fire Google Ads & GA4 (with Enhanced Conversions data)
+          trackConversion("generate_lead", {
+            category: "Form",
+            customData: { email: submittedEmail }
+          });
+
+          // 2. Fire Meta Pixel & CAPI
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
           
-          const submittedEmail = formData.get("Email")?.toString();
+          // 3. Save state and redirect
           if (submittedEmail) {
             sessionStorage.setItem("puurix_lead_email", submittedEmail);
           }

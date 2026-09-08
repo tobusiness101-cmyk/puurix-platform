@@ -5,6 +5,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 declare global {
   interface Window {
     fbq?: (...args: any[]) => void;
+    gtag?: (...args: any[]) => void;
   }
 }
 
@@ -30,7 +31,17 @@ export async function trackConversion(eventName: string, payload: AnalyticsPaylo
   const eventId = generateEventId();
   const eventSourceUrl = typeof window !== "undefined" ? window.location.href : "";
 
-  // 1. Google Analytics (GA4) Event
+  // 1. Google Ads Enhanced Conversions
+  if (typeof window !== "undefined" && window.gtag && payload.customData?.email) {
+    const rawEmail = String(payload.customData.email);
+    const normalizedEmail = rawEmail.trim().toLowerCase();
+
+    window.gtag("set", "user_data", {
+      email: normalizedEmail,
+    });
+  }
+
+  // 2. Google Analytics (GA4) Event
   try {
     sendGAEvent({
       event: eventName,
@@ -42,12 +53,12 @@ export async function trackConversion(eventName: string, payload: AnalyticsPaylo
     console.warn("GA Event error:", err);
   }
 
-  // 2. Meta Pixel (Browser-side)
+  // 3. Meta Pixel (Browser-side)
   if (typeof window !== "undefined" && window.fbq) {
     window.fbq("track", eventName, payload.customData ?? {}, { eventID: eventId });
   }
 
-  // 3. Meta Conversions API (Server-side via Next.js Route)
+  // 4. Meta Conversions API (Server-side via Next.js Route)
   try {
     await fetch("/api/meta-conversion", {
       method: "POST",
