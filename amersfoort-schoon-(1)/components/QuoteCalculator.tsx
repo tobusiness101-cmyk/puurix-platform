@@ -31,12 +31,12 @@ export const QuoteCalculator = () => {
        if (response.status === 200) {
           const submittedEmail = formData.get("Email")?.toString();
 
-          // 1. Fire Google Ads & GA4 (with Enhanced Conversions data)
+     // 1. Fire Google Ads & GA4 (with Enhanced Conversions data)
           trackConversion("generate_lead", {
+            action: "submit", // <-- This required property was missing
             category: "Form",
             customData: { email: submittedEmail }
           });
-
           // 2. Fire Meta Pixel & CAPI
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
           
