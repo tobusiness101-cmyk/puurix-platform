@@ -53,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="nl">
       <body className={inter.className}>
-        <Navbar/>
+        <Navbar />
         {children}
 
         {/* Gestructureerde Data voor Lokale SEO */}
@@ -69,42 +69,55 @@ export default function RootLayout({
               telephone: "+31624473102",
               email: "info@puurix.nl",
               areaServed: [
-                { "@type": "City", "name": "Oosterhout" },
-                { "@type": "City", "name": "Breda" },
-                { "@type": "City", "name": "Tilburg" },
-                { "@type": "City", "name": "Etten-Leur" },
-                { "@type": "City", "name": "Teteringen" },
-                { "@type": "City", "name": "Waalwijk" },
-                { "@type": "City", "name": "Kaatsheuvel" },
-                { "@type": "City", "name": "Amersfoort" }
+                { "@type": "City", name: "Oosterhout" },
+                { "@type": "City", name: "Breda" },
+                { "@type": "City", name: "Tilburg" },
+                { "@type": "City", name: "Etten-Leur" },
+                { "@type": "City", name: "Teteringen" },
+                { "@type": "City", name: "Waalwijk" },
+                { "@type": "City", name: "Kaatsheuvel" },
+                { "@type": "City", name: "Amersfoort" },
               ],
               address: {
                 "@type": "PostalAddress",
                 postalCode: "4904",
                 addressLocality: "Oosterhout",
                 addressRegion: "Noord-Brabant",
-                addressCountry: "NL"
+                addressCountry: "NL",
               },
-              priceRange: "€€"
+              priceRange: "€€",
             }),
           }}
         />
+
+        {/* Google Ads Tracking */}
         <Script
-  src="https://www.googletagmanager.com/gtag/js?id=AW-8023888101"
-  strategy="afterInteractive"
-/>
-<Script id="google-ads-tag" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-8023888101');
-  `}
-</Script>
+          src="https://www.googletagmanager.com/gtag/js?id=AW-8023888101"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-8023888101');
+          `}
+        </Script>
+
+        {/* Microsoft Clarity Tracking */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "yicfm7kwkq");
+          `}
+        </Script>
 
         {/* Analytics & Meta Pixel */}
-        <GoogleAnalytics gaId="G-L4GV9859J5"/>
-        <MetaPixel/>
+        <GoogleAnalytics gaId="G-L4GV9859J5" />
+        <MetaPixel />
       </body>
     </html>
   );
