@@ -13,7 +13,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
-  const formattedRegion = params.regio
+  const safeRegio = params.regio.toLowerCase();
+  const formattedRegion = safeRegio
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
@@ -25,16 +26,18 @@ export async function generateMetadata({ params }: { params: { regio: string } }
 }
 
 export default function RegioPage({ params }: { params: { regio: string } }) {
-  if (!regioData[params.regio]) {
+  const safeRegio = params.regio.toLowerCase();
+
+  if (!regioData[safeRegio]) {
     notFound();
   }
 
-  const formattedRegion = params.regio
+  const formattedRegion = safeRegio
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const info = getRegioInfo(params.regio);
+  const info = getRegioInfo(safeRegio);
 
   return (
     <main className="relative w-full overflow-hidden">
