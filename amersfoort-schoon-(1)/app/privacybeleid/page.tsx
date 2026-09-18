@@ -2,7 +2,7 @@ import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacybeleid | Puurix Schoonmaakbedrijf",
+  title: "Privacybeleid",
   description: "Lees hoe Puurix omgaat met uw persoonsgegevens conform de AVG (GDPR).",
 };
 

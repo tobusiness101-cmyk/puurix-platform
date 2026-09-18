@@ -2,7 +2,7 @@ import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Algemene Voorwaarden | Puurix Schoonmaakbedrijf",
+  title: "Algemene Voorwaarden",
   description: "De algemene leverings- en betalingsvoorwaarden van Puurix Schoonmaakbedrijf.",
 };
 

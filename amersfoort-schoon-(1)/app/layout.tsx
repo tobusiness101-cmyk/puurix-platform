@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://puurix.nl"),
   title: {
     default: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
-    template: "%s | Puurix", // Voegt automatisch '| Puurix' toe aan alle onderliggende pagina's
+    template: "%s | Puurix", // Voegt automatisch '' toe aan alle onderliggende pagina's
   },
   description:
     "Professionele en betrouwbare schoonmaak voor de zakelijke en particuliere markt in Oosterhout, Breda, Tilburg en Amersfoort. Vraag direct een offerte aan.",

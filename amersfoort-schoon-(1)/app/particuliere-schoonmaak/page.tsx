@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { ParticulierCalculator } from "@/components/ParticulierCalculator";
 
 export const metadata: Metadata = {
-  title: "Prijzen Particuliere Schoonmaak | Puurix",
+  title: "Prijzen Particuliere Schoonmaak",
   description:
     "Bereken direct uw eigen prijs voor particuliere schoonmaak in Oosterhout, Breda en Tilburg. Vaste prijzen per onderdeel, geen uurtarief, geen verrassingen.",
 };

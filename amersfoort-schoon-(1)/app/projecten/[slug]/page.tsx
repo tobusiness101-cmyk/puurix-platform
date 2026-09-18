@@ -26,7 +26,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const project = projectData[params.slug as keyof typeof projectData];
   if (!project) return {};
   return {
-    title: `${project.titel} | Puurix Projecten`,
+    title: `${project.titel} |Projecten`,
     description: project.beschrijving,
   };
 }
