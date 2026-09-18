@@ -6,39 +6,46 @@ import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { HowItWorks } from "@/components/HowItWorks";
-import { getRegioInfo, regioData, formatRegionName } from "@/lib/regios";
+import { getRegioInfo, regioData } from "@/lib/regios";
+import { constructMetadata } from "@/lib/seo";
+
+// Zorgt voor nette weergave van steden met koppeltekens
+function formatCityName(slug: string): string {
+  const overrides: Record<string, string> = {
+    "etten-leur": "Etten-Leur",
+    "alphen-chaam": "Alphen-Chaam",
+    "gilze-en-rijen": "Gilze en Rijen",
+    "loon-op-zand": "Loon op Zand",
+  };
+  if (overrides[slug]) return overrides[slug];
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 
 export function generateStaticParams() {
   return Object.keys(regioData).map((regio) => ({ regio }));
 }
 
-export function generateMetadata({ params }: { params: { regio: string } }): Metadata {
+export async function generateMetadata({ params }: { params: { regio: string } }): Promise<Metadata> {
   const safeRegio = decodeURIComponent(params.regio).trim().toLowerCase();
   if (!regioData[safeRegio]) return {};
-  
-  const city = formatRegionName(safeRegio);
-  const canonical = `https://puurix.nl/schoonmaakbedrijf/${safeRegio}`;
 
-  return {
+  const city = formatCityName(safeRegio);
+
+  return constructMetadata({
     title: `Schoonmaakbedrijf ${city}`,
     description: `Professionele schoonmaakdiensten in ${city} en omgeving voor bedrijven en particulieren.`,
-    alternates: { canonical },
-    openGraph: {
-      title: `Schoonmaakbedrijf ${city} | Puurix`,
-      description: `Professionele schoonmaakdiensten in ${city} en omgeving.`,
-      url: canonical,
-      siteName: "Puurix",
-      locale: "nl_NL",
-      type: "website",
-    },
-  };
+    path: `/schoonmaakbedrijf/${safeRegio}`,
+  });
 }
 
 export default function RegioPage({ params }: { params: { regio: string } }) {
   const safeRegio = decodeURIComponent(params.regio).trim().toLowerCase();
   if (!regioData[safeRegio]) notFound();
 
-  const city = formatRegionName(safeRegio);
+  const city = formatCityName(safeRegio);
   const info = getRegioInfo(safeRegio);
 
   return (
@@ -64,14 +71,14 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
       <section className="bg-white py-20">
         <div className="container mx-auto max-w-4xl px-6 text-center">
           <h2 className="mb-6 text-3xl font-bold text-primary">
-            Schoonmaak in {city} en omgeving
+            Waarom kiezen voor ons in {city}?
           </h2>
           <p className="mb-6 text-lg leading-relaxed text-primary/70">
-            We stemmen de schoonmaak af op het type locatie, de gebruiksintensiteit en de gewenste frequentie.
+            Een schone werkplek is het visitekaartje van uw onderneming. Of u nu een kantoor, winkel of horecazaak heeft in {city}, wij leveren maatwerk. {info.highlight}
           </p>
           {info.omgeving.length > 0 && (
             <p className="text-sm font-semibold tracking-wide text-primary/60">
-              Ook actief in: {info.omgeving.join(", ")}.
+              Ook actief in de omgeving van {city}: {info.omgeving.join(", ")}.
             </p>
           )}
         </div>
