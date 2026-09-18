@@ -4,7 +4,7 @@ export type RegioInfo = {
 };
 
 export const regioData: Record<string, RegioInfo> = {
-  // --- Bestaande Regio's ---
+  // --- Noord-Brabant ---
   breda: {
     omgeving: ["Ginneken", "Prinsenbeek", "Bavel", "Ulvenhout", "Teteringen"],
     highlight: "Van kantoorpanden rond het Chassé Park tot bedrijventerreinen bij Hazeldonk: wij kennen Breda en omgeving door en door, en rijden dagelijks door de hele regio.",
@@ -37,8 +37,6 @@ export const regioData: Record<string, RegioInfo> = {
     omgeving: ["Loon op Zand", "De Moer"],
     highlight: "Dankzij de Efteling kent Kaatsheuvel een ongekende dichtheid aan hotels en horecagelegenheden. Wij zorgen voor representatieve, hygiënische ruimtes bij de accommodaties in de omgeving.",
   },
-
-  // --- Nieuwe Regio's: Noord-Brabant ---
   "alphen-chaam": {
     omgeving: ["Alphen", "Chaam", "Galder", "Strijbeek", "Bavel"],
     highlight: "Van de rustige buitengebieden tot de lokale ondernemers in de dorpskernen: wij leveren betrouwbare schoonmaak in de uitgestrekte, groene gemeente Alphen-Chaam.",
@@ -64,7 +62,7 @@ export const regioData: Record<string, RegioInfo> = {
     highlight: "Naast de sterke recreatiesector verzorgen wij tevens de hoogwaardige kantoor- en praktijkschoonmaak voor het lokale MKB in Loon op Zand en de directe omgeving.",
   },
 
-  // --- Nieuwe Regio's: Gelderland ---
+  // --- Gelderland ---
   barneveld: {
     omgeving: ["Voorthuizen", "Kootwijkerbroek", "Terschuur", "Stroe"],
     highlight: "Het kloppend hart van de regio. Van bedrijventerrein De Harselaar tot lokale kantoorpanden: ondernemers in Barneveld kunnen rekenen op onze strakke, grondige aanpak.",
@@ -82,7 +80,7 @@ export const regioData: Record<string, RegioInfo> = {
     highlight: "In deze ambitieuze Gelderse gemeente bieden wij persoonlijke, vaste schoonmaakploegen voor kantoren, moderne showrooms en medische praktijken.",
   },
 
-  // --- Nieuwe Regio's: Utrecht ---
+  // --- Utrecht ---
   leusden: {
     omgeving: ["Achterveld", "Stoutenburg"],
     highlight: "Van het bruisende bedrijventerrein De Horst tot de zakelijke dienstverleners in het groen: Leusden profiteert wekelijks van onze onzichtbare, maar vlekkeloze service.",
@@ -109,4 +107,21 @@ const defaultRegioInfo: RegioInfo = {
 
 export function getRegioInfo(slug: string): RegioInfo {
   return regioData[slug] ?? defaultRegioInfo;
+}
+
+const REGION_NAMES: Record<string, string> = {
+  "etten-leur": "Etten-Leur",
+  "alphen-chaam": "Alphen-Chaam",
+  "gilze-en-rijen": "Gilze en Rijen",
+  "loon-op-zand": "Loon op Zand",
+  "s-hertogenbosch": "'s-Hertogenbosch",
+};
+
+export function formatRegionName(slug: string): string {
+  const safe = slug.trim().toLowerCase();
+  if (REGION_NAMES[safe]) return REGION_NAMES[safe];
+  return safe
+    .split("-")
+    .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
+    .join(" ");
 }
