@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
-/*import { PromoBanner } from "@/components/PromoBanner";*/
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { MetaPixel } from "@/components/MetaPixel";
@@ -13,18 +12,19 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://puurix.nl"),
   title: {
     default: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
-    template: "%s | Puurix",
+    template: "%s | Puurix", // Voegt automatisch '| Puurix' toe aan alle onderliggende pagina's
   },
   description:
     "Professionele en betrouwbare schoonmaak voor de zakelijke en particuliere markt in Oosterhout, Breda, Tilburg en Amersfoort. Vraag direct een offerte aan.",
-  alternates: {
-    canonical: "/",
+  robots: {
+    index: true,
+    follow: true,
   },
+  // 'alternates: { canonical: "/" }' is hier bewust verwijderd!
   openGraph: {
     title: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     description:
       "Vaste schoonmaakploeg, transparante tarieven en 20% welkomstkorting op zakelijke schoonmaak.",
-    url: "https://puurix.nl",
     siteName: "Puurix Schoonmaakbedrijf",
     locale: "nl_NL",
     type: "website",
