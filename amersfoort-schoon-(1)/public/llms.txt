@@ -1,16 +1,18 @@
 # Puurix Schoonmaakbedrijf
 
-> Hoogwaardige en betrouwbare schoonmaakdiensten voor de zakelijke en particuliere markt in Noord-Brabant en Amersfoort.
-
-Puurix levert professionele interieurreiniging op maat: kantoorschoonmaak, medische praktijken (conform WIP-richtlijnen), VvE's en trappenhuizen, short-stay en recreatieverblijven, horeca, en specialistische opleveringsschoonmaak na bouw of verbouwing.
+> Professionele schoonmaakdiensten voor zakelijke en particuliere klanten in Noord-Brabant, Gelderland, Utrecht en omliggende regio's.
 
 ## Hoofdpagina's & Diensten
 
 - [Homepage](https://puurix.nl/)
 - [Kantoorschoonmaak](https://puurix.nl/kantoorschoonmaak)
-- [Tandartspraktijk & Medische Schoonmaak](https://puurix.nl/tandartspraktijk-schoonmaak)
+- [Medische Schoonmaak](https://puurix.nl/medische-schoonmaak)
 - [Opleveringsschoonmaak](https://puurix.nl/opleveringsschoonmaak)
-- [Short-stay & Airbnb Schoonmaak](https://puurix.nl/short-stay)
+- [Short-stay Schoonmaak](https://puurix.nl/short-stay)
+- [Particuliere Schoonmaak](https://puurix.nl/particuliere-schoonmaak)
+- [Zakelijke Tarieven](https://puurix.nl/zakelijke-tarieven)
+- [Project: Bouwoplevering Breda](https://puurix.nl/projecten/bouwoplevering-breda)
+- [Project: Kantoor Dieptereiniging Oosterhout](https://puurix.nl/projecten/kantoor-dieptereiniging-oosterhout)
 
 ## Regionale Schoonmaakdiensten
 
@@ -22,10 +24,17 @@ Puurix levert professionele interieurreiniging op maat: kantoorschoonmaak, medis
 - [Schoonmaakbedrijf Waalwijk](https://puurix.nl/schoonmaakbedrijf/waalwijk)
 - [Schoonmaakbedrijf Kaatsheuvel](https://puurix.nl/schoonmaakbedrijf/kaatsheuvel)
 - [Schoonmaakbedrijf Amersfoort](https://puurix.nl/schoonmaakbedrijf/amersfoort)
+- [Schoonmaakbedrijf Barneveld](https://puurix.nl/schoonmaakbedrijf/barneveld)
+- [Schoonmaakbedrijf Ede](https://puurix.nl/schoonmaakbedrijf/ede)
+- [Schoonmaakbedrijf Nijkerk](https://puurix.nl/schoonmaakbedrijf/nijkerk)
+- [Schoonmaakbedrijf Veenendaal](https://puurix.nl/schoonmaakbedrijf/veenendaal)
+- [Schoonmaakbedrijf Leusden](https://puurix.nl/schoonmaakbedrijf/leusden)
+- [Schoonmaakbedrijf Dongen](https://puurix.nl/schoonmaakbedrijf/dongen)
+- [Schoonmaakbedrijf Geertruidenberg](https://puurix.nl/schoonmaakbedrijf/geertruidenberg)
 
-## Bedrijfsgegevens & Contact
+## Contact
 
 - Bedrijfsnaam: Puurix
 - Telefoon: +31 6 24 47 31 02
 - E-mail: info@puurix.nl
-- Werkgebied: Oosterhout, Breda, Tilburg, Etten-Leur, Teteringen, Waalwijk, Kaatsheuvel, Amersfoort en omliggende regio's.
+- Website: https://puurix.nl
