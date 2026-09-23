@@ -2,12 +2,13 @@ import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { TrendingUp, ShieldCheck, HeartHandshake, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Kantoorschoonmaak Oosterhout, Breda & Tilburg",
-  description: "Professionele kantoorschoonmaak voor de zakelijke markt in Oosterhout, Breda en Tilburg. Vaste schoonmaakploeg, transparante prijzen, geen wurgcontracten.",
-};
+export const metadata = constructMetadata({
+  title: "KKantoorschoonmaak Brabant & Gelderland",
+  description: "PProfessionele kantoorschoonmaak voor de zakelijke markt in Brabant en de regio Amersfoort-Gelderland. Vaste schoonmaakploeg, transparante prijzen, geen wurgcontracten.",
+  path: "/kantoorschoonmaak",
+});
 
 export default function KantoorSchoonmaakPage() {
   return (

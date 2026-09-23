@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Puurix", // Voegt automatisch '' toe aan alle onderliggende pagina's
   },
   description:
-    "Professionele en betrouwbare schoonmaak voor de zakelijke en particuliere markt in Oosterhout, Breda, Tilburg en Amersfoort. Vraag direct een offerte aan.",
+    "Professionele en betrouwbare schoonmaak voor de zakelijke en particuliere markt in Brabant en de regio Amersfoort-Gelderland. Vraag direct een offerte aan.",
   robots: {
     index: true,
     follow: true,

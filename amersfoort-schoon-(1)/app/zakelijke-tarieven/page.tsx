@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { Rekentool } from "@/components/Rekentool";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Tarieven Zakelijke Schoonmaak | Puurix",
-  description:
-    "Bereken direct uw zakelijke schoonmaaktarieven voor kantoor, praktijk of short-stay in Oosterhout en Breda.",
-};
+export const metadata = constructMetadata({
+  title: "Tarieven Zakelijke Schoonmaak",
+  description: "Bereken direct uw zakelijke schoonmaaktarieven voor kantoor, praktijk of short-stay.",
+  path: "/zakelijke-tarieven",
+});
 
 export default function ZakelijkeTarievenPage() {
   return (

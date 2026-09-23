@@ -26,9 +26,9 @@ export function PromoBanner() {
               Tijdelijke Welkomstactie
             </span>
             
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-3">
               Laat uw bedrijfspand <br className="hidden sm:inline" />weer stralen.
-            </h3>
+            </h2>
             
             <p className="text-sm sm:text-base text-slate-300 max-w-lg mb-8 leading-relaxed">
               Vraag deze maand een offerte aan en profiteer direct van <strong>20% welkomstkorting</strong> op uw periodieke kantoor- of praktijkschoonmaak.

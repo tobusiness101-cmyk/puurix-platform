@@ -2,12 +2,13 @@ import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { Star, Clock, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Short-stay & Airbnb Schoonmaak Oosterhout, Breda & Tilburg | Puurix",
-  description: "Hotelkwaliteit wisselschoonmaak voor short-stay en Airbnb-verhuurders in Oosterhout, Breda en Tilburg. Strakke planning tussen check-out en check-in.",
-};
+export const metadata = constructMetadata({
+  title: "Short-stay Schoonmaak Brabant & Gelderland",
+  description: "Hotelkwaliteit wisselschoonmaak voor short-stay en Airbnb-verhuurders in Brabant en de regio Amersfoort-Gelderland. Strakke planning tussen check-out en check-in.",
+  path: "/short-stay",
+});
 
 export default function ShortStaySchoonmaakPage() {
   return (

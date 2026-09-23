@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import { ParticulierCalculator } from "@/components/ParticulierCalculator";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = constructMetadata({
   title: "Prijzen Particuliere Schoonmaak",
-  description:
-    "Bereken direct uw eigen prijs voor particuliere schoonmaak in Oosterhout, Breda en Tilburg. Vaste prijzen per onderdeel, geen uurtarief, geen verrassingen.",
-};
+  description: "Bereken direct uw eigen prijs voor particuliere schoonmaak. Vaste prijzen per onderdeel, geen uurtarief, geen verrassingen.",
+  path: "/particuliere-schoonmaak",
+});
 
 const included = [
   "Grondige reiniging op maat",

@@ -17,7 +17,11 @@ import { StickyContact } from "@/components/StickyContact";
 
 import { features } from "@/lib/features";
 /*import { WelcomePopup } from "@/components/WelcomePopup";*/
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 export default function Home() {
   // Verander 'false' naar 'true' om hem weer aan te zetten
 const toonTestimonials = false;

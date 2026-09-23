@@ -2,12 +2,13 @@ import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { ShieldCheck, Stethoscope, CheckCircle2, ArrowRight, Activity } from "lucide-react";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Schoonmaak Tandartspraktijk & Zorginstelling | Puurix",
-  description: "Gespecialiseerde schoonmaak voor medische-schoonmaak en zorginstellingen in Oosterhout, Breda en Tilburg, conform de WIP-richtlijnen infectiepreventie.",
-};
+export const metadata = constructMetadata({
+  title: "Medische Schoonmaak Brabant & Gelderland",
+  description: "Gespecialiseerde schoonmaak voor tandartspraktijken en zorginstellingen in Brabant en de regio Amersfoort-Gelderland, conform de WIP-richtlijnen infectiepreventie.",
+  path: "/medische-schoonmaak",
+});
 
 export default function MedischeSchoonmaakPage() {
   return (

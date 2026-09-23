@@ -2,12 +2,13 @@ import { Footer } from "@/components/Footer";
 import { Testimonials } from "@/components/Testimonials";
 import { ClipboardCheck, Camera, Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Opleveringsschoonmaak Oosterhout, Breda & Tilburg | Puurix",
-  description: "Vlekkeloze opleveringsschoonmaak na bouw, verbouw of verhuizing voor aannemers, projectontwikkelaars en makelaars in Oosterhout, Breda en Tilburg.",
-};
+export const metadata = constructMetadata({
+  title: "Opleveringsschoonmaak Brabant & Gelderland",
+  description: "Vlekkeloze opleveringsschoonmaak na bouw, verbouw of verhuizing voor aannemers, projectontwikkelaars en makelaars in Brabant en de regio Amersfoort-Gelderland.",
+  path: "/opleveringsschoonmaak",
+});
 
 export default function OpleveringsschoonmaakPage() {
   return (

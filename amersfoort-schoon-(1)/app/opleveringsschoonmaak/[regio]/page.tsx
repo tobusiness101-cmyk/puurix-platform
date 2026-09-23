@@ -2,6 +2,7 @@ import { createRegioPage } from "@/lib/createRegioPage";
 
 const { generateStaticParams, generateMetadata, Component } = createRegioPage({
   serviceName: "Opleveringsschoonmaak",
+    basePath: "opleveringsschoonmaak",
 });
 
 export { generateStaticParams, generateMetadata };
