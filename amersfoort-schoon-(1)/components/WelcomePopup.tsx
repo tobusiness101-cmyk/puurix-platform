@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 
-// Willekeurige foto per bezoek. Vervang door je eigen bedrijfsfoto's.
 const FOTOS = [
   "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80",
   "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=80",
@@ -16,15 +15,36 @@ export const WelcomePopup = () => {
   const [foto, setFoto] = useState(FOTOS[0]);
 
   useEffect(() => {
-    // Willekeurige foto kiezen bij elk nieuw bezoek
     setFoto(FOTOS[Math.floor(Math.random() * FOTOS.length)]);
 
     const hasSeenPopup = sessionStorage.getItem("puurix_welcome_seen");
+    if (hasSeenPopup) return;
 
-    if (!hasSeenPopup) {
-      const timer = setTimeout(() => setIsOpen(true), 2000);
-      return () => clearTimeout(timer);
-    }
+    // Trigger 1: Exit intent (Desktop)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        setIsOpen(true);
+        cleanup();
+      }
+    };
+
+    // Trigger 2: Scroll depth (Mobile & Desktop)
+    const handleScroll = () => {
+      if (window.scrollY > 600) { // Triggers after scrolling 600px down
+        setIsOpen(true);
+        cleanup();
+      }
+    };
+
+    const cleanup = () => {
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("scroll", handleScroll);
+
+    return cleanup;
   }, []);
 
   const closePopup = () => {
@@ -43,7 +63,6 @@ export const WelcomePopup = () => {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 sm:px-0">
-          {/* Donkere, wazige achtergrond */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -52,14 +71,12 @@ export const WelcomePopup = () => {
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
           />
 
-          {/* De Pop-up zelf */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative w-full max-w-[380px] overflow-hidden rounded-[2rem] bg-[#0e2a22] p-6 pt-6 text-center text-white shadow-2xl z-10 border border-white/10 flex flex-col items-center"
           >
-            {/* Sluitknop */}
             <button
               onClick={closePopup}
               className="absolute right-4 top-4 z-20 rounded-full bg-white/10 p-2 text-white/70 transition-colors hover:bg-white/20 hover:text-white"
@@ -68,13 +85,11 @@ export const WelcomePopup = () => {
               <X className="h-4 w-4" />
             </button>
 
-            {/* Label */}
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-emerald-300 border border-white/15 mb-4 mt-1">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
               Speciaal voor nieuwe klanten
             </span>
 
-            {/* Uitgesneden foto met zwevende badge */}
             <div className="relative mb-4">
               <img
                 src={foto}
@@ -88,7 +103,6 @@ export const WelcomePopup = () => {
               </span>
             </div>
 
-            {/* Koptekst */}
             <h2 className="text-2xl font-black tracking-tight leading-tight uppercase mb-1">
               Claim uw <span className="text-amber-300">korting</span>
             </h2>
@@ -98,11 +112,9 @@ export const WelcomePopup = () => {
             </p>
 
             <p className="text-xs text-slate-300 leading-relaxed mb-6 px-2">
-              Omdat wij groeien in Oosterhout en omstreken, profiteert u tijdelijk van een
-              exclusief actietarief.
+              Omdat wij groeien in Oosterhout en omstreken, profiteert u tijdelijk van een exclusief actietarief.
             </p>
 
-            {/* Twee knoppen */}
             <div className="space-y-2.5 w-full">
               <button
                 onClick={goNaarRekentool}
