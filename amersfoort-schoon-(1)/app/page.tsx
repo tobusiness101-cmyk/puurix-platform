@@ -1,8 +1,8 @@
 import { Hero } from "@/components/Hero";
-import { PromoBanner } from "@/components/PromoBanner"; // TOEGEVOEGD
+import { PromoBanner } from "@/components/PromoBanner";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { Services } from "@/components/Services";
-import { HowItWorks } from "@/components/HowItWorks"
+import { HowItWorks } from "@/components/HowItWorks";
 import { InfoSections } from "@/components/InfoSections";
 import { Pricing } from "@/components/Pricing";
 import { Rekentool } from "@/components/Rekentool";
@@ -13,45 +13,65 @@ import { QuoteCalculator } from "@/components/QuoteCalculator";
 import { LeadMagnet } from "@/components/LeadMagnet";
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
-/*import { StickyCallBar } from "@/components/StickyCallBar";*/
 
 import { features } from "@/lib/features";
-/*import { WelcomePopup } from "@/components/WelcomePopup";*/
+import { regioData, formatCityName } from "@/lib/regios";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
+
 export default function Home() {
-  // Verander 'false' naar 'true' om hem weer aan te zetten
-const toonTestimonials = false;
+  const toonTestimonials = false;
+
+  // Genereer dynamisch alle steden uit lib/regios.ts voor het schema
+  const areaServed = Object.keys(regioData).map((slug) => ({
+    "@type": "City",
+    name: formatCityName(slug),
+  }));
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://puurix.nl/#business",
+    name: "Puurix",
+    url: "https://puurix.nl",
+    telephone: "+31624473102",
+    email: "info@puurix.nl",
+    image: "https://puurix.nl/logo.jpg",
+    areaServed: areaServed,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Oldenbarnevelderweg [HUISNUMMER]",
+      postalCode: "[POSTCODE]", 
+      addressLocality: "Barneveld",
+      addressRegion: "Gelderland",
+      addressCountry: "NL",
+    },
+    priceRange: "€€",
+  };
+
   return (
     <main className="relative w-full overflow-hidden">
-      
-      {/* HIER STAAT JE POP-UP!  <WelcomePopup />*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
      
       {features.hero && <Hero />}
-      {/* JOUW NIEUWE LUXE ACTIEBLOK */}
       <PromoBanner />
-      {/*features.trustMarquee && <TrustMarquee />*/}
       {features.services && <Services />}
       <HowItWorks />
       {features.quoteCalculator && <QuoteCalculator />}
       {features.infoSections && <InfoSections />}
       <Pricing />
-      
-     
-
-      {/* Rekentool: directe prijsindicatie + bel-CTA */}
-     {/* {features.rekentool && <Rekentool />}*/}
-      
       {features.beforeAfterSlider && <BeforeAfterSlider />}
-   {toonTestimonials && <Testimonials />}
+      {toonTestimonials && <Testimonials />}
       {features.faq && <Faq />}
       {features.leadMagnet && <LeadMagnet />}
       {features.footer && <Footer />}
       {features.stickyContact && <StickyContact />}
-      
     </main>
   );
 }

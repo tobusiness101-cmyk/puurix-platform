@@ -125,3 +125,23 @@ export function formatRegionName(slug: string): string {
     .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
     .join(" ");
 }
+// Voeg dit toe onderaan lib/regios.ts
+export function parseRegioSlug(slug: string): string {
+  return decodeURIComponent(slug).trim().toLowerCase();
+}
+
+export function formatCityName(slug: string): string {
+  const overrides: Record<string, string> = {
+    "etten-leur": "Etten-Leur",
+    "alphen-chaam": "Alphen-Chaam",
+    "gilze-en-rijen": "Gilze en Rijen",
+    "loon-op-zand": "Loon op Zand",
+    "s-hertogenbosch": "'s-Hertogenbosch",
+  };
+  const safe = slug.trim().toLowerCase();
+  if (overrides[safe]) return overrides[safe];
+  return safe
+    .split("-")
+    .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
+    .join(" ");
+}
