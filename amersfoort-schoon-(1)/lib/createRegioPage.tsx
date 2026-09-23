@@ -1,15 +1,17 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getRegioInfo, regioData } from "@/lib/regios";
+import { constructMetadata } from "@/lib/seo";
 import { Footer } from "@/components/Footer";
 import { Rekentool } from "@/components/Rekentool";
 import { Testimonials } from "@/components/Testimonials";
 
 interface RegioPageConfig {
   serviceName: string;
+  basePath: string; // e.g. "kantoorschoonmaak" -> canonical becomes /kantoorschoonmaak/[regio]
 }
 
-export function createRegioPage({ serviceName }: RegioPageConfig) {
+export function createRegioPage({ serviceName, basePath }: RegioPageConfig) {
   function generateStaticParams() {
     return Object.keys(regioData).map((regio) => ({ regio }));
   }
@@ -17,16 +19,17 @@ export function createRegioPage({ serviceName }: RegioPageConfig) {
   function generateMetadata({ params }: { params: { regio: string } }): Metadata {
     const safeRegio = params.regio.toLowerCase();
     const city = safeRegio.charAt(0).toUpperCase() + safeRegio.slice(1);
-    
-    return {
-      title: `${serviceName} in ${city} | Puurix`,
+
+    return constructMetadata({
+      title: `${serviceName} in ${city}`,
       description: `Professionele ${serviceName.toLowerCase()} in ${city} en omgeving. Vaste schoonmaakploeg, geen wurgcontracten.`,
-    };
+      path: `/${basePath}/${safeRegio}`,
+    });
   }
 
   function RegioPage({ params }: { params: { regio: string } }) {
     const safeRegio = params.regio.toLowerCase();
-    
+
     if (!regioData[safeRegio]) notFound();
 
     const city = safeRegio.charAt(0).toUpperCase() + safeRegio.slice(1);
