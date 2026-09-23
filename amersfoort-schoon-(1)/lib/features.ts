@@ -1,5 +1,5 @@
-// Toggle any section on or off without touching component code.
-// Set a flag to `false` to hide that section from the page.
+// lib/features.ts
+
 export const features = {
   hero: true,
   trustMarquee: true,
@@ -15,23 +15,25 @@ export const features = {
   promoBanner: true,
 } as const;
 
-// === Actiebanner configuratie ===
-// Pas hier de tekst en einddatum aan, of zet `promoBanner` hierboven op
-// `false` om de actie volledig uit te schakelen zonder de config te wissen.
 export const promoConfig = {
-  discountLabel: "20% korting",
-  ctaText: "bij aanvraag deze maand",
-  // Formaat: JJJJ-MM-DD. Na deze datum verdwijnt de banner automatisch,
-  // ook als de flag hierboven op `true` blijft staan.
-  validUntil: "2026-09-30",
-  linkHref: "/#contact",
-};
+  isEnabled: true,
+  discountPercentage: 20,
 
-// Eén plek die bepaalt of de banner echt getoond moet worden:
-// zowel de flag als de geldigheidsdatum moeten kloppen.
-export const isPromoActive = () => {
-  if (!features.promoBanner) return false;
-  const today = new Date();
-  const deadline = new Date(promoConfig.validUntil + "T23:59:59");
-  return today <= deadline;
-};
+  // Laatste seconde van 30 september 2026 in Nederlandse tijd.
+  validUntil: "2026-09-30T23:59:59+02:00",
+
+  discountLabel: "welkomstkorting",
+  ctaText: "bij aanvraag deze maand",
+  linkHref: "/#contact",
+
+  appliesTo: {
+    b2b: true,
+    particulier: false,
+  },
+} as const;
+
+export function isPromoActive(): boolean {
+  if (!promoConfig.isEnabled) return false;
+
+  return new Date() <= new Date(promoConfig.validUntil);
+}

@@ -43,8 +43,8 @@ export default function Home() {
     areaServed: areaServed,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Oldenbarnevelderweg [HUISNUMMER]",
-      postalCode: "[POSTCODE]", 
+      streetAddress: "Oldenbarnevelderweg",
+      postalCode: "[3772 GD]", 
       addressLocality: "Barneveld",
       addressRegion: "Gelderland",
       addressCountry: "NL",
