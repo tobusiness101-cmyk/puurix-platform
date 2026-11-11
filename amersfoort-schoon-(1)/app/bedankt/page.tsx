@@ -6,18 +6,13 @@ import { CheckCircle2 } from "lucide-react";
 
 export default function BedanktPage() {
   useEffect(() => {
-    // We gebruiken exact de naam die we in QuoteCalculator hebben ingesteld
-    const email = sessionStorage.getItem("puurix_lead_email");
+    const submitted = sessionStorage.getItem("puurix_lead_submitted");
+    if (submitted !== "true") return;
+    sessionStorage.removeItem("puurix_lead_submitted");
     const gtag = (window as any).gtag;
 
     if (gtag) {
-      if (email) {
-        gtag("set", "user_data", { email: email });
-        sessionStorage.removeItem("puurix_lead_email");
-      }
-
-      // VUL HIER JOUW EXACTE LABEL IN UIT STAP 1
-     gtag("event", "conversion", {
+      gtag("event", "conversion", {
         send_to: "AW-8023888101/7743177979", 
       });
     }

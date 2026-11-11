@@ -12,6 +12,8 @@ export const LeadMagnet = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    const form = e.currentTarget as HTMLFormElement;
+    const gotcha = new FormData(form).get("_gotcha")?.toString() ?? "";
 
     setStatus("Bezig...");
 
@@ -26,6 +28,7 @@ export const LeadMagnet = () => {
         body: JSON.stringify({
           email: email,
           subject: "Nieuwe download: 5-Sterren Turnover Checklist via Puurix",
+          _gotcha: gotcha,
         }),
       });
 
@@ -60,18 +63,24 @@ export const LeadMagnet = () => {
               Download onze 5-Sterren Turnover Checklist.
             </h2>
             <p className="text-lg leading-relaxed text-white/70 max-w-lg mx-auto md:mx-0">
-              Ontdek de exacte 40-punten checklist die wij gebruiken om short-stay accommodaties en kantoren vlekkeloos op te leveren[cite: 4].
+              Ontdek onze praktische checklist voor het zorgvuldig opleveren van short-stay accommodaties en kantoren.
             </p>
           </div>
 
           <div className="w-full max-w-md flex-none">
             {!submitted ? (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-xl bg-white/5 p-6 backdrop-blur-md border border-white/10">
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="lead-website">Laat dit veld leeg</label>
+                  <input id="lead-website" name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium text-white/80">E-mailadres</label>
+                  <label htmlFor="lead-email" className="text-sm font-medium text-white/80">E-mailadres</label>
                   <input 
+                    id="lead-email"
                     type="email" 
                     required
+                    maxLength={254}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="naam@bedrijf.nl" 
@@ -87,15 +96,15 @@ export const LeadMagnet = () => {
                   {status ? status : "Download Nu"}
                   <Download className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
                 </motion.button>
-                <p className="text-center text-xs text-white/40 mt-2">
-                  Wij respecteren uw privacy. Geen spam.
+                <p className="text-center text-xs text-white/60 mt-2">
+                  We gebruiken uw e-mailadres voor deze download. Lees meer in ons <a href="/privacybeleid" className="underline">privacybeleid</a>.
                 </p>
               </form>
             ) : (
               <div className="rounded-xl bg-white/10 p-6 text-center border border-white/20">
                 <h3 className="text-xl font-bold text-white mb-2">Bedankt!</h3>
                 <p className="text-sm text-white/80">
-                  Je e-mail is opgeslagen en je download is automatisch gestart. Veel succes met de checklist[cite: 4]!
+                  Je e-mail is opgeslagen en je download is automatisch gestart. Veel succes met de checklist!
                 </p>
               </div>
             )}

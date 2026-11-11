@@ -36,9 +36,9 @@ export const StickyContact = () => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className="w-72 overflow-hidden rounded-2xl bg-white shadow-premium border border-border/50 flex flex-col mb-4 origin-bottom-right"
+            className="mb-4 flex w-72 origin-bottom-right flex-col overflow-hidden border border-border bg-white shadow-premium"
           >
-            <div className="bg-primary p-4 text-center text-white">
+            <div className="bg-accent p-4 text-center text-white">
               <h4 className="text-xs font-extrabold uppercase tracking-widest">Puurix</h4>
             </div>
 
@@ -50,7 +50,7 @@ export const StickyContact = () => {
                 onClick={closeMenu}
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors hover:bg-muted cursor-pointer"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border bg-background text-accent transition-colors group-hover:bg-accent group-hover:text-white">
                   <Calculator className="h-5 w-5" />
                 </div>
                 <div className="flex flex-col">
@@ -65,7 +65,7 @@ export const StickyContact = () => {
                 onClick={closeMenu}
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors bg-accent/5 hover:bg-accent/10 cursor-pointer"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-md transition-transform group-hover:scale-105">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-accent text-white transition-transform group-hover:scale-105">
                   <FileText className="h-5 w-5" />
                 </div>
                 <div className="flex flex-col">
@@ -80,7 +80,7 @@ export const StickyContact = () => {
                 onClick={() => trackMetaEvent("Contact", { customData: { content_name: "StickyContact Bel Direct" } })}
                 className="group flex items-center gap-4 border-b border-border/50 p-4 transition-colors hover:bg-muted"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border bg-background text-primary transition-colors group-hover:bg-primary group-hover:text-white">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div className="flex flex-col">
@@ -115,7 +115,7 @@ export const StickyContact = () => {
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center gap-3 rounded-full bg-emerald-500 px-7 py-4 md:px-8 md:py-5 text-white shadow-[0_10px_40px_-10px_rgba(16,185,129,0.5)] transition-all hover:bg-emerald-600 focus:outline-none"
+        className="flex min-h-12 items-center justify-center gap-3 bg-accent px-6 py-3.5 text-white shadow-soft transition-colors hover:bg-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 md:px-7"
         aria-label="Contact menu openen"
       >
         <span className="text-sm font-bold uppercase tracking-widest mt-0.5">

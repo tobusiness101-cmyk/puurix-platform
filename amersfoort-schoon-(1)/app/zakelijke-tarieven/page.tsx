@@ -28,7 +28,7 @@ export default function ZakelijkeTarievenPage() {
             Bereken direct uw <span className="text-accent">zakelijke tarief</span>
           </h1>
           <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-            Geen lange offertetrajecten. Vul uw gegevens in, zie direct wat een schone werkomgeving kost en profiteer van onze welkomstkorting.
+            Geen lange offertetrajecten. Vul uw gegevens in en bekijk direct een indicatie voor een schone werkomgeving.
           </p>
         </div>
       </section>

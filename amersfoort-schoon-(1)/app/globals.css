@@ -1,17 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --font-sans: "Manrope";
+    --font-display: "Cormorant Garamond";
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #f5f3ee;
+    color: #131d35;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Dit zorgt voor die mooie oranje kleur als iemand tekst selecteert */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), Georgia, serif;
+  }
+
   ::selection {
-    background-color: rgba(217, 119, 6, 0.2); 
+    background-color: rgba(0, 107, 87, 0.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-video {
+    display: none;
+  }
+
+  .hero-poster {
+    display: block;
   }
 }

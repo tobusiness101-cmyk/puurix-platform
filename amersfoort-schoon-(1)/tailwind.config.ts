@@ -9,33 +9,37 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"], 
-        serif: ["var(--font-fraunces)", "serif"],
-        display: ["var(--font-fraunces)", "serif"], 
+        serif: ["var(--font-display)", "serif"],
+        display: ["var(--font-display)", "serif"],
       },
       colors: {
         // Puurix Hoofdkleuren
-        ink: "#1A2B3C", // Charcoal Navy (Donkere tekst)
+        ink: "#131D35",
         stone: {
-          bg: "#F8FAF9", // Off-white (Lichte achtergrond)
-          200: "#E8EEF0", // Cool Gray (Lichte grijs voor borders)
-          600: "#4A5D70", // Aangepaste tint voor subtiele teksten
+          50: "#F5F3EE",
+          100: "#EEECE5",
+          bg: "#F5F3EE",
+          200: "#DDD9CC",
+          600: "#4A4E60",
+          700: "#343849",
         },
         accent: {
-          DEFAULT: "#1B7A4E", // Emerald Green (Primair)
-          hover: "#0F4C33", // Deep Forest (Hover-staten)
+          DEFAULT: "#006B57",
+          hover: "#0B5144",
         },
-        success: "#34C759", // Fresh Mint (Succes / Positief)
+        gold: "#C9A96E",
+        success: "#2F8A62",
 
         // Gekoppelde kleuren voor de UI-modules (Offerte & Rekentool)
-        primary: "#1A2B3C", // Charcoal Navy
-        background: "#F8FAF9", // Off-white
-        muted: "#E8EEF0", // Cool Gray
-        border: "#E8EEF0", // Cool Gray
+        primary: "#131D35",
+        background: "#F5F3EE",
+        muted: "#F5F3EE",
+        border: "#DDD9CC",
       },
       boxShadow: {
-        soft: "0 4px 20px rgba(0, 0, 0, 0.05)",
-        softer: "0 2px 10px rgba(0, 0, 0, 0.02)",
-        premium: "0 10px 40px -10px rgba(0,0,0,0.08)",
+        soft: "0 4px 20px rgba(19, 29, 53, 0.06)",
+        softer: "0 2px 10px rgba(19, 29, 53, 0.03)",
+        premium: "0 16px 48px -18px rgba(19, 29, 53, 0.16)",
       },
       animation: {
         marquee: "marquee 25s linear infinite",

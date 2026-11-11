@@ -1,18 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Minus, Plus, Home, Sparkles, Phone, Tag, ArrowRight } from "lucide-react";
+import { Minus, Plus, Home, Sparkles, Phone, ArrowRight } from "lucide-react";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
-// === 1. CENTRALE PROMO CONFIGURATIE ===
-const PROMO_CONFIG = {
-  isActive: true,
-  title: "10% Zomerkorting", 
-  discountPercentage: 0.10, 
-  icon: Tag 
-};
-
-// === 2. PRIJSOPBOUW & TEKSTEN ===
+// Prijsopbouw en teksten
 const ITEMS = [
   { 
     key: "kamer", 
@@ -87,7 +79,6 @@ const initialQuantities: Quantities = {
 
 export const ParticulierCalculator = () => {
   const [quantities, setQuantities] = useState<Quantities>(initialQuantities);
-  const PromoIcon = PROMO_CONFIG.icon;
 
   const updateQty = (key: ItemKey, delta: number) => {
     setQuantities((prev) => ({
@@ -112,12 +103,7 @@ export const ParticulierCalculator = () => {
       subtotalInclVat += lineTotal;
     }
 
-    const discount = PROMO_CONFIG.isActive ? subtotalInclVat * PROMO_CONFIG.discountPercentage : 0;
-    const total = subtotalInclVat - discount;
-    const finalVat9 = PROMO_CONFIG.isActive ? vat9 * (1 - PROMO_CONFIG.discountPercentage) : vat9;
-    const finalVat21 = PROMO_CONFIG.isActive ? vat21 * (1 - PROMO_CONFIG.discountPercentage) : vat21;
-
-    return { total, discount, vat9: finalVat9, vat21: finalVat21 };
+    return { total: subtotalInclVat, vat9, vat21 };
   }, [quantities]);
 
   return (
@@ -179,19 +165,6 @@ export const ParticulierCalculator = () => {
         ))}
       </div>
 
-      {PROMO_CONFIG.isActive && breakdown.total > 0 && (
-        <div className="relative overflow-hidden bg-gradient-to-r from-amber-400 to-amber-300 rounded-2xl p-5 mb-6 flex items-center justify-between shadow-sm border border-amber-500/20">
-          <div className="relative z-10">
-            <span className="inline-block bg-white/20 text-amber-900 px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest mb-1 backdrop-blur-sm">
-              Tijdelijke Actie
-            </span>
-            <h4 className="text-lg md:text-xl font-black text-slate-900">{PROMO_CONFIG.title}</h4>
-            <p className="text-sm font-medium text-amber-900/80">Uw voordeel: €{breakdown.discount.toFixed(2).replace(".", ",")} direct verrekend!</p>
-          </div>
-          <PromoIcon className="absolute -right-4 -top-6 w-32 h-32 text-white/20 pointer-events-none" />
-        </div>
-      )}
-
       {/* GECOMBINEERDE TOTAAL & CALL TO ACTION SECTIE (Stijl Rekentool) */}
       <div className="mt-8 bg-primary rounded-3xl p-8 md:p-10 text-white shadow-xl flex flex-col justify-center items-center text-center border border-white/10">
         
@@ -199,11 +172,6 @@ export const ParticulierCalculator = () => {
         <div className="w-full flex items-baseline justify-between mb-4">
           <span className="text-lg font-bold text-white/90">Totaal (incl. btw)</span>
           <div className="flex flex-col items-end">
-             {PROMO_CONFIG.isActive && breakdown.discount > 0 && (
-               <span className="text-sm text-white/40 line-through decoration-white/40 mb-1">
-                 €{(breakdown.total + breakdown.discount).toFixed(2).replace(".", ",")}
-               </span>
-             )}
              <span className="text-4xl font-black text-amber-400 tracking-tight">
                €{breakdown.total.toFixed(2).replace(".", ",")}
              </span>
@@ -225,7 +193,7 @@ export const ParticulierCalculator = () => {
         {breakdown.total > 0 ? (
           <div className="w-full flex flex-col items-center pt-6 border-t border-white/10">
             <h3 className="text-2xl font-bold font-serif mb-3 leading-tight tracking-tight">
-              {PROMO_CONFIG.isActive ? "Claim uw welkomstkorting" : "Akkoord met de prijs?"}
+              Indicatie aanvragen
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-8 max-w-sm">
               Leg vandaag nog de scherpe prijs van <span className="font-bold text-white">€{breakdown.total.toFixed(2).replace(".", ",")}</span> vast in een vrijblijvende offerte.

@@ -71,21 +71,9 @@ export const Rekentool = () => {
       normalPrice = Math.max(Math.round(normalPrice), 95);  
     }
 
-    // 6. Pas de 20% welkomstkorting toe (Marketing Trigger)
-    let discountedPrice = normalPrice * 0.80;
-    
-    // Handhaaf absolute bodemprijzen na korting (zodat je nooit verlies draait)
-    if (isOneTime) {
-      discountedPrice = Math.max(discountedPrice, 95); 
-    } else {
-      discountedPrice = Math.max(discountedPrice, 75); 
-    }
-
     return { 
-      amount: Math.round(discountedPrice), 
-      originalAmount: Math.round(normalPrice),
+      amount: Math.round(normalPrice),
       period: isOneTime ? "eenmalig" : "per maand",
-      savings: Math.round(normalPrice - discountedPrice),
       hasVolumeDiscount: volumeDiscount < 1.0,
       hasFixedCost: fixedCost > 0
     };
@@ -103,7 +91,7 @@ export const Rekentool = () => {
             Scherp geprijsd, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-500">altijd onder de concurrentie.</span>
           </h2>
           <p className="mt-4 text-primary/70 text-lg">
-            Profiteer tijdelijk van onze <strong className="text-amber-500 font-bold">20% welkomstkorting</strong>. Ontdek direct wat u gaat besparen.
+            Bekijk direct een prijsindicatie op basis van het type ruimte, de oppervlakte en de gewenste frequentie.
           </p>
         </div>
 
@@ -229,7 +217,7 @@ export const Rekentool = () => {
               </AnimatePresence>
             </div>
 
-            {/* Live Prijsindicatie MET Korting weergave & Prijsopbouw */}
+            {/* Live prijsindicatie en prijsopbouw */}
             <div className="mt-auto pt-6 border-t border-border/50">
               <div className="bg-white border border-amber-200 rounded-2xl p-6 shadow-[0_4px_20px_-4px_rgba(251,191,36,0.2)] relative overflow-hidden">
                 
@@ -240,15 +228,9 @@ export const Rekentool = () => {
                   <span className="text-sm font-bold text-primary/70 uppercase tracking-widest">
                     {priceIndication.period === "eenmalig" ? "Indicatie eenmalig" : "Scherpe indicatie"}
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 border border-amber-200 px-3 py-1 text-[10px] font-extrabold text-amber-700 uppercase tracking-wider shadow-sm">
-                    🎁 20% Welkomstkorting
-                  </span>
                 </div>
                 
                 <div className="flex items-baseline gap-3 relative z-10">
-                  <span className="text-2xl font-bold text-primary/30 line-through decoration-primary/30 decoration-2">
-                    €{priceIndication.originalAmount}
-                  </span>
                   <span className="text-5xl font-extrabold tracking-tighter text-primary">
                     €{priceIndication.amount}
                   </span>
@@ -289,8 +271,8 @@ export const Rekentool = () => {
                           </div>
                         )}
                         <div className="flex justify-between text-primary/70">
-                          <span>Basistarief ({sqm} m² - {spaceType})</span>
-                          <span>€{priceIndication.originalAmount}</span>
+                          <span>Indicatie ({sqm} m² - {spaceType})</span>
+                          <span>€{priceIndication.amount}</span>
                         </div>
                         
                         {priceIndication.hasVolumeDiscount && (
@@ -299,11 +281,6 @@ export const Rekentool = () => {
                             <span>Toegepast</span>
                           </div>
                         )}
-
-                        <div className="flex justify-between text-amber-600 font-bold bg-amber-50 p-2 rounded-lg">
-                          <span>Welkomstkorting (20%)</span>
-                          <span>- €{priceIndication.savings}</span>
-                        </div>
 
                         <div className="flex justify-between text-primary font-black pt-2 border-t border-border">
                           <span>Totaal {priceIndication.period}</span>
@@ -328,7 +305,7 @@ export const Rekentool = () => {
               Direct actie
             </h4>
             <h3 className="text-2xl font-bold font-serif mb-3 leading-tight tracking-tight">
-              Claim uw welkomstkorting
+              Vraag een offerte aan
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-8">
               Leg vandaag nog de scherpe prijs van <span className="font-bold text-white">€{priceIndication.amount} {priceIndication.period === "eenmalig" ? "" : "per maand"}</span> vast in een vrijblijvende offerte.

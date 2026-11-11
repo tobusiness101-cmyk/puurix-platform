@@ -1,19 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Mail, Building } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 import { trackConversion } from "@/lib/analytics";
+import { company } from "@/lib/company";
 
 export const QuoteCalculator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasCookieConsent, setHasCookieConsent] = useState(false);
   const router = useRouter();
   
   const [frequency, setFrequency] = useState<string>("Wekelijks");
   const [weeklyDays, setWeeklyDays] = useState<number>(1);
+
+  useEffect(() => {
+    const syncConsent = () => setHasCookieConsent(window.localStorage.getItem("puurix_consent") === "accepted");
+    syncConsent();
+    window.addEventListener("puurix:consent-updated", syncConsent);
+    return () => window.removeEventListener("puurix:consent-updated", syncConsent);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,21 +38,17 @@ export const QuoteCalculator = () => {
       .then(async (response) => {
         setIsSubmitting(false);
        if (response.status === 200) {
-          const submittedEmail = formData.get("Email")?.toString();
-
-     // 1. Fire Google Ads & GA4 (with Enhanced Conversions data)
+          // Registreer alleen de gebeurtenis. Verstuur geen e-mailadres naar advertentieplatforms.
           trackConversion("generate_lead", {
-            action: "submit", // <-- This required property was missing
+            action: "submit",
             category: "Form",
-            customData: { email: submittedEmail }
+            customData: { form_name: "Offerte aanvragen" },
           });
           // 2. Fire Meta Pixel & CAPI
           trackMetaEvent("Lead", { customData: { content_name: "Offerte Aanvragen formulier" } });
           
           // 3. Save state and redirect
-          if (submittedEmail) {
-            sessionStorage.setItem("puurix_lead_email", submittedEmail);
-          }
+          sessionStorage.setItem("puurix_lead_submitted", "true");
           
           router.push("/bedankt");
         } else {
@@ -57,7 +62,7 @@ export const QuoteCalculator = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-muted relative">
+    <section id="contact" className="relative bg-[#F5F3EE] py-20 sm:py-28">
       
       {/* CSS Hack om Trustoo reviewcount te verbergen */}
       <style dangerouslySetInnerHTML={{ __html: `
@@ -68,42 +73,45 @@ export const QuoteCalculator = () => {
         }
       `}} />
 
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-premium overflow-hidden border border-border/50 flex flex-col lg:flex-row">
+      <div className="container mx-auto max-w-[1300px] px-6 sm:px-8 lg:px-10">
+        <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           
           {/* Linkerpaneel: Contactgegevens */}
-          <div className="bg-primary p-10 md:p-12 lg:w-1/3 text-white flex flex-col justify-between">
+          <div className="flex flex-col justify-between text-ink">
             <div>
-              <h2 className="text-3xl font-bold mb-4">Neem Contact Op</h2>
-              <p className="text-white/70 mb-10 text-lg">
-                Heeft u direct een vraag of wilt u liever persoonlijk overleggen? Wij staan voor u klaar.
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-accent">Contact</span>
+              <h2 className="mb-5 mt-4 text-4xl font-medium leading-[1.02] text-ink sm:text-5xl lg:text-[3.75rem]">Benieuwd wat Puurix voor u kan doen?</h2>
+              <p className="mb-8 max-w-lg text-base leading-7 text-stone-600 sm:text-lg">
+                Plan een vrijblijvende kennismaking. U ontvangt een offerte op maat, zonder verplichtingen.
               </p>
               
               <ul className="space-y-8">
                 <li className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-accent">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-border bg-white text-accent">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-white/50 mb-1 uppercase tracking-wider font-bold">Bel Ons</div>
-                    <a href="tel:+31624473102" className="text-lg font-medium hover:text-accent transition-colors">+31 6 24 47 31 02</a>
+                    <div className="mb-1 text-xs font-bold uppercase tracking-wider text-stone-600">Telefoon</div>
+                    <a href="tel:+31624473102" className="text-lg font-semibold text-ink transition-colors hover:text-accent">+31 6 24 47 31 02</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-accent">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-border bg-white text-accent">
                     <Mail className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-sm text-white/50 mb-1 uppercase tracking-wider font-bold">E-mail Ons</div>
-                    <a href="mailto:info@puurix.nl" className="text-lg font-medium hover:text-accent transition-colors">info@puurix.nl</a>
+                    <div className="mb-1 text-xs font-bold uppercase tracking-wider text-stone-600">E-mail</div>
+                    <a href="mailto:info@puurix.nl" className="text-lg font-semibold text-ink transition-colors hover:text-accent">info@puurix.nl</a>
                   </div>
                 </li>
               </ul>
             </div>
 
+          {/* Reviewwidgets worden pas na toestemming van derden geladen. */}
+          {hasCookieConsent && <>
           {/* DIRECT INGEVOEGDE TRUST BADGES (Los, zonder box) */}
             <div className="mt-12 flex flex-col items-center w-full">
-              <div className="text-xs font-bold text-white/70 uppercase tracking-wider mb-6 text-center w-full">
+              <div className="mb-5 w-full text-xs font-bold uppercase tracking-wider text-stone-600">
                 Geverifieerd partner van
               </div>
               
@@ -122,14 +130,14 @@ export const QuoteCalculator = () => {
                     data-size="small"
                     data-type="landscape"
                     data-border="hidden"
-                    data-theme="dark" 
+                    data-theme="light"
                     data-background="transparent"
                     data-google="hidden"
                   />
                 </div>
 
                 {/* Subtiel lijntje tussen de twee widgets */}
-                <div className="w-12 h-px bg-white/20"></div>
+                <div className="h-px w-12 bg-border"></div>
 
                 {/* Trustpilot Widget */}
                 <div className="w-full flex justify-center">
@@ -151,35 +159,40 @@ export const QuoteCalculator = () => {
 
               </div>
             </div>
+          </>}
 
             {/* KVK Gedeelte (Dit heeft al de grijze lijn aan de bovenkant) */}
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <div className="flex items-center gap-3 text-white/50 text-sm">
+            <div className="mt-9 border-t border-[#C9C5B8] pt-6">
+              <div className="flex items-center gap-3 text-sm text-stone-600">
                 <Building className="h-4 w-4" />
-                KVK: 42149299
+                KVK: {company.registrationNumber}
               </div>
             </div>
           </div>
 
           {/* Rechterpaneel: Het Gestripte Offerteformulier */}
-          <div className="p-10 md:p-12 lg:w-2/3">
-            <h2 className="text-3xl font-bold text-primary mb-2">Vraag een offerte aan</h2>
-            <p className="text-primary/60 mb-8">Vul uw wensen in en ontvang snel een vrijblijvend voorstel op maat.</p>
+          <div className="border border-border bg-white p-6 sm:p-9 lg:p-10">
+            <h3 className="mb-2 text-3xl font-medium text-primary sm:text-4xl">Vraag een offerte aan</h3>
+            <p className="mb-8 text-sm leading-6 text-stone-600 sm:text-base">Vul uw wensen in en ontvang snel een vrijblijvend voorstel op maat.</p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               
               <input type="hidden" name="access_key" value="91b5c30f-03ca-4d2c-ae11-c56124f8f957" />
               <input type="hidden" name="subject" value="Nieuwe offerte aanvraag via Puurix!" />
               <input type="hidden" name="from_name" value="Puurix Website - Offerte Aanvraag" />
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Laat dit veld leeg</label>
+                <input id="website" name="botcheck" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="naam" className="text-sm font-medium text-primary/80">Naam / Bedrijfsnaam *</label>
-                  <input id="naam" required name="Naam" type="text" placeholder="Hoe mogen we u noemen?" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                  <input id="naam" required maxLength={100} name="Naam" type="text" placeholder="Hoe mogen we u noemen?" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-primary/80">E-mailadres *</label>
-                  <input id="email" required name="Email" type="email" placeholder="naam@bedrijf.nl" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
+                  <input id="email" required maxLength={254} name="Email" type="email" placeholder="naam@bedrijf.nl" className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" />
                 </div>
               </div>
 
@@ -272,8 +285,12 @@ export const QuoteCalculator = () => {
                 <label htmlFor="specifieke-wensen" className="text-sm font-medium text-primary/80">
                   Specifieke Wensen <span className="text-primary/50 font-normal">(optioneel)</span>
                 </label>
-                <textarea id="specifieke-wensen" name="Specifieke_Wensen" rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
+                <textarea id="specifieke-wensen" name="Specifieke_Wensen" maxLength={2000} rows={4} className="w-full bg-background border border-border rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none" placeholder="Vertel ons kort wat u precies zoekt..." />
               </div>
+
+              <p className="text-xs leading-5 text-stone-600">
+                We gebruiken uw gegevens om uw aanvraag te beantwoorden. Lees meer in het <a href="/privacybeleid" className="font-semibold text-accent underline">privacybeleid</a>.
+              </p>
 
               <motion.button 
                 whileHover={{ scale: 1.02 }}

@@ -4,19 +4,8 @@ import { sendGAEvent } from "@next/third-parties/google";
 
 declare global {
   interface Window {
-    fbq?: (...args: any[]) => void;
     gtag?: (...args: any[]) => void;
   }
-}
-
-function generateEventId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
-}
-
-function getCookie(name: string): string | undefined {
-  if (typeof document === "undefined") return undefined;
-  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
-  return match ? decodeURIComponent(match[1]) : undefined;
 }
 
 interface AnalyticsPayload {
@@ -27,21 +16,10 @@ interface AnalyticsPayload {
   customData?: Record<string, unknown>;
 }
 
-export async function trackConversion(eventName: string, payload: AnalyticsPayload) {
-  const eventId = generateEventId();
-  const eventSourceUrl = typeof window !== "undefined" ? window.location.href : "";
+export function trackConversion(eventName: string, payload: AnalyticsPayload) {
+  if (typeof window === "undefined" || window.localStorage.getItem("puurix_consent") !== "accepted") return;
 
-  // 1. Google Ads Enhanced Conversions
-  if (typeof window !== "undefined" && window.gtag && payload.customData?.email) {
-    const rawEmail = String(payload.customData.email);
-    const normalizedEmail = rawEmail.trim().toLowerCase();
-
-    window.gtag("set", "user_data", {
-      email: normalizedEmail,
-    });
-  }
-
-  // 2. Google Analytics (GA4) Event
+  // Google Analytics (GA4) Event
   try {
     sendGAEvent({
       event: eventName,
@@ -53,27 +31,4 @@ export async function trackConversion(eventName: string, payload: AnalyticsPaylo
     console.warn("GA Event error:", err);
   }
 
-  // 3. Meta Pixel (Browser-side)
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", eventName, payload.customData ?? {}, { eventID: eventId });
-  }
-
-  // 4. Meta Conversions API (Server-side via Next.js Route)
-  try {
-    await fetch("/api/meta-conversion", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        eventName,
-        eventId,
-        eventSourceUrl,
-        customData: payload.customData ?? {},
-        fbp: getCookie("_fbp"),
-        fbc: getCookie("_fbc"),
-      }),
-      keepalive: true,
-    });
-  } catch {
-    // Fail silently to keep user experience smooth
-  }
 }

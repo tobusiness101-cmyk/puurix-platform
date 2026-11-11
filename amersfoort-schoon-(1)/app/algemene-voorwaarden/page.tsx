@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
+import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Algemene Voorwaarden",
@@ -19,7 +20,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-bold text-primary mb-2">1. Toepasselijkheid</h2>
             <p>
-              Deze voorwaarden zijn van toepassing op alle offertes, overeenkomsten en diensten geleverd door Puurix Schoonmaakbedrijf (KvK: 42149299).
+              Deze voorwaarden zijn van toepassing op alle offertes, overeenkomsten en diensten geleverd door Puurix Schoonmaakbedrijf (KvK: {company.registrationNumber}).
             </p>
           </section>
 

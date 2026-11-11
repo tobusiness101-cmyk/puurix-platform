@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
 
 // Server-side Conversions API endpoint. De client (lib/meta-pixel.ts) stuurt
 // hier een event naartoe, en deze route stuurt 'm door naar Meta's Graph API
@@ -14,10 +13,8 @@ import crypto from "crypto";
 const PIXEL_ID = process.env.META_PIXEL_ID;
 const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 const GRAPH_API_VERSION = "v21.0";
-
-function sha256(value: string): string {
-  return crypto.createHash("sha256").update(value.trim().toLowerCase()).digest("hex");
-}
+const ALLOWED_EVENTS = new Set(["Contact", "Lead", "generate_lead"]);
+const ALLOWED_CUSTOM_FIELDS = new Set(["content_name", "form_name", "value", "currency"]);
 
 export async function POST(request: NextRequest) {
   // Zonder configuratie: stil niets doen, nooit de site breken voor de bezoeker
@@ -26,8 +23,58 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
+    const contentLength = Number(request.headers.get("content-length") ?? 0);
+    if (contentLength > 8192) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+
+    const origin = request.headers.get("origin");
+    if (origin && origin !== request.nextUrl.origin && origin !== "https://puurix.nl") {
+      return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+    }
+
+    const bodyText = await request.text();
+    if (bodyText.length > 8192) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+    const body = JSON.parse(bodyText);
     const { eventName, eventId, eventSourceUrl, customData, fbp, fbc } = body;
+
+    if (
+      typeof eventName !== "string" ||
+      !ALLOWED_EVENTS.has(eventName) ||
+      typeof eventId !== "string" ||
+      !eventId.trim() ||
+      eventId.length > 100
+    ) {
+      return NextResponse.json({ error: "Invalid event" }, { status: 400 });
+    }
+
+    let safeSourceUrl = request.nextUrl.origin;
+    if (typeof eventSourceUrl === "string") {
+      try {
+        const parsed = new URL(eventSourceUrl);
+        if (parsed.origin === request.nextUrl.origin || parsed.origin === "https://puurix.nl") {
+          safeSourceUrl = parsed.href;
+        }
+      } catch {
+        // Fall back to the current origin for malformed client values.
+      }
+    }
+
+    const safeCustomData =
+      customData && typeof customData === "object" && !Array.isArray(customData)
+        ? Object.fromEntries(
+            Object.entries(customData).filter(
+              ([key, value]) =>
+                ALLOWED_CUSTOM_FIELDS.has(key) &&
+                ((typeof value === "string" && value.length <= 200) ||
+                  (typeof value === "number" && Number.isFinite(value)))
+            )
+          )
+        : {};
+    const safeFbp = typeof fbp === "string" && fbp.length <= 200 ? fbp : undefined;
+    const safeFbc = typeof fbc === "string" && fbc.length <= 200 ? fbc : undefined;
 
     const clientIp =
       request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
@@ -41,15 +88,15 @@ export async function POST(request: NextRequest) {
           event_name: eventName,
           event_time: Math.floor(Date.now() / 1000),
           event_id: eventId,
-          event_source_url: eventSourceUrl,
+          event_source_url: safeSourceUrl,
           action_source: "website",
           user_data: {
             client_ip_address: clientIp,
             client_user_agent: userAgent,
-            fbp: fbp || undefined,
-            fbc: fbc || undefined,
+            fbp: safeFbp,
+            fbc: safeFbc,
           },
-          custom_data: customData ?? {},
+          custom_data: safeCustomData,
         },
       ],
     };
@@ -75,8 +122,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false }, { status: 200 });
   }
 }
-
-// Let op: Next.js Route Handlers mogen alleen HTTP-methode-exports (GET,
-// POST, etc.) hebben. sha256 blijft daarom lokaal in dit bestand — verplaats
-// 'm naar een apart lib-bestand als je 'm elders ook nodig hebt (bijv. voor
-// het hashen van e-mail/telefoon bij een toekomstig Lead-event met PII).

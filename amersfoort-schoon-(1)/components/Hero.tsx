@@ -1,88 +1,69 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Info, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const Hero = () => {
   return (
-    <section className="relative flex h-[100svh] min-h-[750px] w-full items-center justify-center overflow-hidden bg-primary">
-      
+    <section className="relative isolate flex min-h-[690px] w-full items-center overflow-hidden bg-[#0B2E27] pt-20 sm:min-h-[760px]">
       <video
+        className="hero-video absolute inset-0 h-full w-full scale-[1.04] object-cover"
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        preload="auto"
+        poster="/hero-background-poster.jpg"
+        aria-hidden="true"
       >
         <source src="/videos/hero-background.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
+      <div
+        aria-hidden="true"
+        className="hero-poster absolute inset-0 hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero-background-poster.jpg')" }}
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-[#06241E]/75" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06241E]/50 via-transparent to-[#06241E]/15" />
 
-      <div className="container relative z-10 mx-auto px-4 md:px-12 flex items-center justify-center pt-16">
+      <div className="container relative z-10 mx-auto max-w-[1300px] px-6 py-24 sm:px-8 lg:px-10 lg:py-32">
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-4xl rounded-3xl border border-white/20 bg-white/10 p-6 sm:p-8 text-center backdrop-blur-md shadow-[0_30px_60px_rgba(0,0,0,0.2)] md:p-14"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl"
         >
-          <span className="mb-6 mx-auto inline-block rounded-full border border-white/30 bg-white/10 px-5 py-2 text-xs font-extrabold tracking-widest text-white uppercase backdrop-blur-sm">
-            Puurix
-          </span>
+          <div className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#E6D3AC] sm:text-sm">
+            <span className="h-px w-10 bg-gold" />
+            Professionele schoonmaak
+          </div>
 
-          <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl lg:leading-[1.1]">
-            Laat uw ruimte <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
-              {" "}weer stralen.
-            </span>
+          <h1 className="max-w-4xl text-[clamp(3.6rem,8vw,7rem)] font-medium leading-[0.94] tracking-tight text-[#F5F3EE]">
+            Rust in <em className="font-medium not-italic text-[#E6D3AC]">elke</em> ruimte.
           </h1>
 
-          <p className="mb-10 text-base sm:text-lg leading-relaxed text-white/90 font-medium max-w-2xl mx-auto px-4">
-            Verander uw zakelijke ruimte in een vlekkeloos toevluchtsoord met onze op maat gemaakte, milieuvriendelijke schoonmaakdiensten.
+          <p className="mt-7 max-w-2xl text-base leading-8 text-[#E9EEEA] sm:text-lg">
+            Puurix verzorgt de schoonmaak van kantoren, horeca, zorgpraktijken en opleveringen. Een vast team, heldere afspraken en een resultaat dat u direct ziet.
           </p>
 
-          {/* GEÜPDATETE KNOPPEN (Onder elkaar op mobiel, strak naast elkaar op laptop) */}
-          <div className="flex w-full flex-col lg:flex-row items-center justify-center gap-4 px-2 sm:px-0">
-
-            <a
-              href="tel:+31624473102"
-              className="w-full lg:w-auto"
-              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Hero Bel Nu" } })}
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
+            <Link
+              href="/#contact"
+              onClick={() => trackMetaEvent("Contact", { customData: { content_name: "Hero Offerte Aanvragen" } })}
+              className="inline-flex min-h-14 items-center justify-center gap-3 bg-[#F5F3EE] px-7 text-sm font-bold text-accent transition-colors hover:bg-[#E6D3AC] sm:text-base"
             >
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="group flex w-full lg:w-auto items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-4 sm:px-8 sm:py-5 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white shadow-[0_10px_40px_-10px_rgba(16,185,129,0.6)] transition-all hover:bg-emerald-600 whitespace-nowrap"
-              >
-                <Phone className="h-4 w-4 shrink-0" />
-                Bel Nu: 06 24 47 31 02
-              </motion.button>
-            </a>
-
-            <Link href="#contact" className="w-full lg:w-auto">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="group flex w-full lg:w-auto items-center justify-center gap-2 rounded-full bg-white px-6 py-4 sm:px-8 sm:py-5 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-primary shadow-premium transition-all hover:bg-white/90 whitespace-nowrap"
-              >
-                Contact Opnemen
-                <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
-              </motion.button>
+              Vraag een offerte aan
+              <ArrowRight className="h-4 w-4" />
             </Link>
-            
-            <Link href="#meer-weten" className="w-full lg:w-auto">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="group flex w-full lg:w-auto items-center justify-center gap-2 rounded-full border-2 border-white/50 bg-white/10 px-6 py-4 sm:px-8 sm:py-5 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/70 whitespace-nowrap"
-              >
-                <Info className="h-4 w-4 shrink-0" />
-                Meer Weten
-              </motion.button>
+            <Link
+              href="/#diensten"
+              className="inline-flex min-h-14 items-center justify-center border border-[#F5F3EE]/80 px-7 text-sm font-bold text-[#F5F3EE] transition-colors hover:bg-[#F5F3EE] hover:text-accent sm:text-base"
+            >
+              Bekijk onze diensten
             </Link>
-
           </div>
         </motion.div>
       </div>

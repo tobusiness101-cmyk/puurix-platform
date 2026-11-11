@@ -5,6 +5,7 @@ interface MetadataProps {
   description: string;
   path: string; // Bijv. "/schoonmaakbedrijf/barneveld" of "/zakelijke-tarieven"
   image?: string;
+  robots?: Metadata["robots"];
 }
 
 export function constructMetadata({
@@ -12,6 +13,7 @@ export function constructMetadata({
   description,
   path,
   image = "/logo.jpg",
+  robots,
 }: MetadataProps): Metadata {
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   const url = `https://puurix.nl${cleanPath}`;
@@ -19,6 +21,7 @@ export function constructMetadata({
   return {
     title, // layout.tsx template plakt hier automatisch '| Puurix' achter voor de browser tab
     description,
+    ...(robots ? { robots } : {}),
     alternates: {
       canonical: url,
     },

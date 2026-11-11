@@ -12,11 +12,11 @@ export const features = {
   leadMagnet: true,
   footer: true,
   stickyContact: true,
-  promoBanner: true,
+  promoBanner: false,
 } as const;
 
 export const promoConfig = {
-  isEnabled: true,
+  isEnabled: false,
   discountPercentage: 20,
 
   // Laatste seconde van 30 september 2026 in Nederlandse tijd.

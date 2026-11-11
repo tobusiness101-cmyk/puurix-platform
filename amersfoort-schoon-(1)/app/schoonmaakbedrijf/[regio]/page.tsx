@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Services } from "@/components/Services";
 import { QuoteCalculator } from "@/components/QuoteCalculator";
@@ -6,23 +7,8 @@ import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { TrustMarquee } from "@/components/TrustMarquee";
 import { HowItWorks } from "@/components/HowItWorks";
-import { getRegioInfo, regioData } from "@/lib/regios";
+import { formatCityName, getRegioInfo, regioData } from "@/lib/regios";
 import { constructMetadata } from "@/lib/seo";
-
-// Zorgt voor nette weergave van steden met koppeltekens
-function formatCityName(slug: string): string {
-  const overrides: Record<string, string> = {
-    "etten-leur": "Etten-Leur",
-    "alphen-chaam": "Alphen-Chaam",
-    "gilze-en-rijen": "Gilze en Rijen",
-    "loon-op-zand": "Loon op Zand",
-  };
-  if (overrides[slug]) return overrides[slug];
-  return slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
 
 export function generateStaticParams() {
   return Object.keys(regioData).map((regio) => ({ regio }));
@@ -74,7 +60,7 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
             Waarom kiezen voor ons in {city}?
           </h2>
           <p className="mb-6 text-lg leading-relaxed text-primary/70">
-            Een schone werkplek is het visitekaartje van uw onderneming. Of u nu een kantoor, winkel of horecazaak heeft in {city}, wij leveren maatwerk. {info.highlight}
+            Een schone werkplek is het visitekaartje van uw onderneming. Voor kantoren, praktijken, horeca en accommodaties stemmen we het schoonmaakplan af op het gebruik van uw locatie en de gewenste werktijden.
           </p>
           {info.omgeving.length > 0 && (
             <p className="text-sm font-semibold tracking-wide text-primary/60">
@@ -86,6 +72,22 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
 
       <HowItWorks />
       <Services />
+      <section className="bg-[#F5F3EE] py-16">
+        <div className="container mx-auto max-w-4xl px-6 text-center">
+          <h2 className="text-2xl font-semibold text-primary">Schoonmaakdiensten in {city}</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-primary/70">Bekijk onze diensten en ontdek welke aanpak past bij uw locatie.</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {[
+              ["Kantoorschoonmaak", "/kantoorschoonmaak"],
+              ["Medische schoonmaak", "/medische-schoonmaak"],
+              ["Opleveringsschoonmaak", "/opleveringsschoonmaak"],
+              ["Short-stay schoonmaak", "/short-stay"],
+            ].map(([label, href]) => (
+              <Link key={href} href={href} className="border border-[#DDD9CC] bg-white px-4 py-3 text-sm font-semibold text-accent hover:border-accent">{label}</Link>
+            ))}
+          </div>
+        </div>
+      </section>
       <QuoteCalculator />
       <Footer />
       <StickyContact />

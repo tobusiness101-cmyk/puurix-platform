@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
-import { MetaPixel } from "@/components/MetaPixel";
-
-const inter = Inter({ subsets: ["latin"] });
+import { PrivacyConsent } from "@/components/PrivacyConsent";
+import { company } from "@/lib/company";
+import { formatCityName, regioData } from "@/lib/regios";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://puurix.nl"),
@@ -24,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Puurix Schoonmaakbedrijf | Premium Schoonmaakdiensten",
     description:
-      "Vaste schoonmaakploeg, transparante tarieven en 20% welkomstkorting op zakelijke schoonmaak.",
+      "Professionele schoonmaak voor bedrijven en particulieren in Brabant, Gelderland en Utrecht. Vraag vrijblijvend een offerte aan.",
     siteName: "Puurix Schoonmaakbedrijf",
     locale: "nl_NL",
     type: "website",
@@ -52,72 +49,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl">
-      <body className={inter.className}>
+      <body className="font-sans">
         <Navbar />
         {children}
 
-        {/* Gestructureerde Data voor Lokale SEO */}
+        {/* Eén consistente bedrijfsvermelding vanuit lib/company.ts. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Puurix",
+              "@type": "ProfessionalService",
+              "@id": "https://puurix.nl/#business",
+              name: company.name,
               image: "https://puurix.nl/logo.jpg",
-              url: "https://puurix.nl",
-              telephone: "+31624473102",
-              email: "info@puurix.nl",
-              areaServed: [
-                { "@type": "City", name: "Oosterhout" },
-                { "@type": "City", name: "Breda" },
-                { "@type": "City", name: "Tilburg" },
-                { "@type": "City", name: "Etten-Leur" },
-                { "@type": "City", name: "Teteringen" },
-                { "@type": "City", name: "Waalwijk" },
-                { "@type": "City", name: "Kaatsheuvel" },
-                { "@type": "City", name: "Amersfoort" },
-              ],
-              address: {
-                "@type": "PostalAddress",
-                postalCode: "4904",
-                addressLocality: "Oosterhout",
-                addressRegion: "Noord-Brabant",
-                addressCountry: "NL",
-              },
-              priceRange: "€€",
+              url: company.url,
+              telephone: company.telephone,
+              email: company.email,
+              areaServed: Object.keys(regioData).map((slug) => ({
+                "@type": "City",
+                name: formatCityName(slug),
+              })),
             }),
           }}
         />
 
-        {/* Google Ads Tracking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-8023888101"
-          strategy="afterInteractive"
-        />
-        <Script id="google-ads-tag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-8023888101');
-          `}
-        </Script>
-
-        {/* Microsoft Clarity Tracking */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "yicfm7kwkq");
-          `}
-        </Script>
-
-        {/* Analytics & Meta Pixel */}
-        <GoogleAnalytics gaId="G-L4GV9859J5" />
-        <MetaPixel />
+        <PrivacyConsent />
       </body>
     </html>
   );

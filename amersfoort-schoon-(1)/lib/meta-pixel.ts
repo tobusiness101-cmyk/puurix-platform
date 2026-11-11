@@ -36,11 +36,12 @@ interface TrackOptions {
  * Gebruik: trackMetaEvent("Contact", { customData: { content_name: "Hero Bel Nu" } })
  */
 export async function trackMetaEvent(eventName: string, options: TrackOptions = {}) {
+  if (typeof window === "undefined" || window.localStorage.getItem("puurix_consent") !== "accepted") return;
   const eventId = generateEventId();
-  const eventSourceUrl = typeof window !== "undefined" ? window.location.href : "";
+  const eventSourceUrl = window.location.href;
 
   // 1. Browser-Pixel (client-side)
-  if (typeof window !== "undefined" && window.fbq) {
+  if (window.fbq) {
     window.fbq("track", eventName, options.customData ?? {}, { eventID: eventId });
   }
 

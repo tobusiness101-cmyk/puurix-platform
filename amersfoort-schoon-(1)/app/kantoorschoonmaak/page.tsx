@@ -5,8 +5,8 @@ import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "KKantoorschoonmaak Brabant & Gelderland",
-  description: "PProfessionele kantoorschoonmaak voor de zakelijke markt in Brabant en de regio Amersfoort-Gelderland. Vaste schoonmaakploeg, transparante prijzen, geen wurgcontracten.",
+  title: "Kantoorschoonmaak in Brabant, Gelderland en Utrecht",
+  description: "Professionele kantoorschoonmaak voor bedrijven in Brabant, Gelderland en Utrecht. Een vast team, heldere afspraken en een offerte op maat.",
   path: "/kantoorschoonmaak",
 });
 
@@ -21,10 +21,10 @@ export default function KantoorSchoonmaakPage() {
               Kantoorschoonmaak Oosterhout, Breda & Tilburg
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-              Productiviteit Verhogen? Schone Werkplek Geeft <span className="text-accent">+15% Focus.</span>
+              Een schoon kantoor dat <span className="text-accent">prettig werkt.</span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl">
-              Kantoorschoonmaak is geen kostenpost, maar een strategische investering. Puurix Schoonmaak transformeert uw kantoor van een verzuimrisico naar een productieve, ultra-schone werkomgeving.
+              Met een vaste schoonmaakaanpak blijven werkplekken, sanitair en vergaderruimtes verzorgd. We stemmen de planning af op uw bedrijf en de ruimtes die u gebruikt.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/zakelijke-tarieven" className="bg-accent text-primary font-bold py-4 px-8 rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2">
@@ -39,15 +39,15 @@ export default function KantoorSchoonmaakPage() {
         </div>
       </section>
 
-      {/* ROI & DATA SECTION (Jouw Copywriting!) */}
+      {/* Praktische voordelen van structureel kantooronderhoud */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-primary sm:text-4xl mb-6">
-              De Onzichtbare Kosten Van Een Stoffige Werkplek
+              Een verzorgde werkplek maakt verschil
             </h2>
             <p className="text-lg text-stone-600 leading-relaxed">
-              Een gemiddeld bureau bevat 400 keer meer bacteriën dan een toiletbril. Dit leidt direct tot uitval en verloren werktijd. Ontdek de harde ROI van een schoon kantoor.
+              Een schone, opgeruimde omgeving geeft medewerkers en bezoekers een prettige ontvangst. Puurix maakt afspraken over taken, planning en aanspreekpunt vooraf duidelijk.
             </p>
           </div>
 
@@ -57,9 +57,9 @@ export default function KantoorSchoonmaakPage() {
               <div className="bg-primary/5 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
                 <TrendingUp className="text-accent h-7 w-7" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Verlaag Ziekteverzuim met 46%</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">Tot 46% minder verzuim gerapporteerd</h3>
               <p className="text-stone-600 leading-relaxed">
-                Stijgend ziekteverzuim kost u duizenden euro's. Professionele kantoordesinfectie en gerichte oppervlaktehygiëne dringen het verzuim drastisch terug.
+                Een ISSA-whitepaper beschrijft tot 46% minder verzuim bij het Healthy Workplace Project. Dat programma combineerde gedragsverandering met hand- en oppervlakthygiëne; het is geen garantie voor elk kantoor of schoonmaakcontract. <a href="https://www.aics.com/wp-content/uploads/ISSA-Value-of-Clean-White-Paper.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent underline">Lees de ISSA-whitepaper</a>.
               </p>
             </div>
 
@@ -68,9 +68,9 @@ export default function KantoorSchoonmaakPage() {
               <div className="bg-primary/5 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
                 <ShieldCheck className="text-accent h-7 w-7" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">+101% Cognitieve Scores</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">101% hogere testscores in Green+ omstandigheden</h3>
               <p className="text-stone-600 leading-relaxed">
-                Uit Harvard-onderzoek blijkt dat goede luchtkwaliteit en lage stofconcentraties leiden tot aanzienlijk hogere testscores. Wij zorgen voor schone lucht en focus.
+                Een gecontroleerde studie met 24 deelnemers vond hogere cognitieve testscores bij meer ventilatie en lagere VOC-niveaus dan in de conventionele kantoorconditie. Dit meet binnenmilieu, niet schoonmaak alleen. <a href="https://dash.harvard.edu/entities/publication/73120379-1584-6bd4-e053-0100007fdf3b" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent underline">Bekijk de Harvard-studie</a>.
               </p>
             </div>
 
@@ -79,9 +79,9 @@ export default function KantoorSchoonmaakPage() {
               <div className="bg-primary/5 w-14 h-14 rounded-xl flex items-center justify-center mb-6">
                 <HeartHandshake className="text-accent h-7 w-7" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-4">Voorkom Talentverlies</h3>
+              <h3 className="text-xl font-bold text-primary mb-4">Meer dan 1 op 3 noemt hygiëne als vertrekfactor</h3>
               <p className="text-stone-600 leading-relaxed">
-                Wist u dat 42% van de werknemers ontslag overweegt bij structureel slechte hygiëne? 76% eist het. Een schoon kantoor is een direct teken van goed werkgeverschap.
+                In een Ambius-enquête onder 3.000 Noord-Amerikaanse volwassenen noemde meer dan een derde slechte hygiëne en netheid als mogelijke reden om een baan te verlaten. De 76% in dezelfde enquête betrof een combinatie van factoren, waaronder werk-privébalans, luchtkwaliteit en mentale ondersteuning. <a href="https://pub-int.ambius.com/resources/insights/smarter-healthier-spaces-study" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent underline">Bekijk de enquêteresultaten</a>.
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function KantoorSchoonmaakPage() {
                 Uw kantoor, vlekkeloos en representatief. Elke dag weer.
               </h2>
               <p className="text-lg text-stone-600 mb-8 leading-relaxed">
-                Naast de harde data over productiviteit en gezondheid, zorgen we er simpelweg voor dat uw pand er altijd perfect uitziet voor uw medewerkers en bezoekers. Geen visuele rommel meer die uw team mentaal uitput.
+                We beginnen met uw wensen, de indeling van het kantoor en de momenten waarop schoonmaak het beste uitkomt. Daarna leggen we de taken en frequentie vast, zodat u weet wat het team wanneer oppakt.
               </p>
               
               <ul className="space-y-4">
