@@ -8,8 +8,9 @@ import { LogoIcon } from "@/components/LogoIcon";
 
 const links = [
   { label: "Diensten", href: "/#diensten" },
+  { label: "Werkgebied", href: "/werkgebied" },
+  { label: "Rekentool", href: "/zakelijke-tarieven" },
   { label: "Werkwijze", href: "/#werkwijze" },
-  { label: "Kwaliteit", href: "/#kwaliteit" },
   { label: "Contact", href: "/#contact" },
 ];
 

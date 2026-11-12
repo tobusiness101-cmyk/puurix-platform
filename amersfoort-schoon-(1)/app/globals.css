@@ -37,12 +37,4 @@
   html {
     scroll-behavior: auto;
   }
-
-  .hero-video {
-    display: none;
-  }
-
-  .hero-poster {
-    display: block;
-  }
 }

@@ -1,31 +1,39 @@
+// components/Hero.tsx
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      // Forceert de browser autoplay door React's hydration lifecycle heen
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <section className="relative isolate flex min-h-[690px] w-full items-center overflow-hidden bg-[#0B2E27] pt-20 sm:min-h-[760px]">
       <video
-        className="hero-video absolute inset-0 h-full w-full scale-[1.04] object-cover"
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full scale-[1.04] object-cover"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        poster="/hero-background-poster.jpg"
         aria-hidden="true"
       >
         <source src="/videos/hero-background.mp4" type="video/mp4" />
       </video>
 
-      <div
-        aria-hidden="true"
-        className="hero-poster absolute inset-0 hidden bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-background-poster.jpg')" }}
-      />
       <div aria-hidden="true" className="absolute inset-0 bg-[#06241E]/75" />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06241E]/50 via-transparent to-[#06241E]/15" />
 
@@ -36,7 +44,7 @@ export const Hero = () => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl"
         >
-          <div className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-[#E6D3AC] sm:text-sm">
+          <div className="mb-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#E6D3AC] sm:text-sm">
             <span className="h-px w-10 bg-gold" />
             Professionele schoonmaak
           </div>
