@@ -5,8 +5,8 @@ import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 
 export const metadata = constructMetadata({
-  title: "Medische Schoonmaak Brabant & Gelderland",
-  description: "Gespecialiseerde schoonmaak voor tandartspraktijken en zorginstellingen in Brabant en de regio Amersfoort-Gelderland, conform de WIP-richtlijnen infectiepreventie.",
+  title: "Medische Schoonmaak",
+  description: "Gespecialiseerde schoonmaak voor tandartspraktijken en zorginstellingen, conform de WIP-richtlijnen infectiepreventie.",
   path: "/medische-schoonmaak",
 });
 

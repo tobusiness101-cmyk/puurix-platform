@@ -5,12 +5,7 @@ import { Footer } from "@/components/Footer";
 import { formatCityName, regioData } from "@/lib/regios";
 import { constructMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = constructMetadata({
-  title: "Werkgebied: schoonmaak in Brabant, Gelderland en Utrecht",
-  description:
-    "Bekijk in welke steden Puurix zakelijke en particuliere schoonmaak verzorgt. Vraag naar de mogelijkheden in uw plaats en directe omgeving.",
-  path: "/werkgebied",
-});
+
 
 export default function WerkgebiedPage() {
   const regions = Object.entries(regioData);

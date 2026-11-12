@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "Schoonmaakbedrijf voor bedrijven en particulieren",
   description:
-    "Puurix verzorgt zakelijke en particuliere schoonmaak in Brabant, Gelderland en Utrecht. Een vast team, heldere afspraken en een offerte op maat.",
+    "Puurix verzorgt zakelijke en particuliere schoonmaak. Een vast team, heldere afspraken en een offerte op maat.",
 };
 
 export default function Home() {
