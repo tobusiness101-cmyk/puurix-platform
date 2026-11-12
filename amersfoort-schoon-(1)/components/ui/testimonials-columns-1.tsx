@@ -6,16 +6,16 @@ import { motion } from "framer-motion";
 // Premium placeholder data tailored to the hospitality/B2B aesthetic
 const testimonials = [
   {
-    text: "Sinds we Puurix inzetten voor onze short-stay appartementen in Breda, zijn onze 5-sterren reviews qua hygiëne door het dak gegaan. Vlekkeloos en altijd op tijd.",
+    text: "Heel tevreden over de service, kwaliteit en de fijne mensen.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop",
-    name: "Jan-Willem de Vries",
-    role: "Eigenaar, Stay & Co."
+    name: "Carin Smand",
+    role: "Allegoeds groepshotel Het Bosgoed Lunteren."
   },
   {
-    text: "Als beheerder van kantoorpanden in Amersfoort is betrouwbaarheid alles. Dit team werkt datagedreven en onzichtbaar. Het visitekaartje van ons pand is altijd perfect.",
+    text: "Helder communicatie.. en de problemen goed opgelost",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop",
-    name: "Sophie van den Berg",
-    role: "Facility Manager, ABC"
+    name: "Minerva",
+    role: "Particulierhuis In Barneveld"
   },
   {
     text: "De opleveringsschoonmaak na onze renovatie was in één woord fantastisch. Geen stress, snelle communicatie en een resultaat dat direct klaar was voor de verhuur.",
