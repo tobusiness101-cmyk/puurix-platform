@@ -6,19 +6,19 @@ import { motion } from "framer-motion";
 // Premium placeholder data tailored to the hospitality/B2B aesthetic
 const testimonials = [
   {
-    text: "Heel tevreden over de service, kwaliteit en de fijne mensen.",
-    image: "1772042773309.jpg",
+    text: "Heel tevreden over de service, kwaliteit en de fijne mensen. Ze hebben onze groepsaccommodatie in Lunteren weer tot in de puntjes verzorgd. Een betrouwbare partner voor hotelschoonmaak en housekeeping.",
+    image: "/1772042773309.jpg", 
     name: "Carin Smand",
-    role: "Allegoeds groepshotel Het Bosgoed Lunteren."
+    role: "Allegoeds groepshotel Het Bosgoed Lunteren"
   },
   {
-    text: "Helder communicatie.. en de problemen goed opgelost",
-    image: "huis.jpg",
+    text: "Heldere communicatie en de problemen bij onze dieptereiniging supergoed opgelost. Ze werken heel precies, waardoor ons pand in de Gelderse Vallei er weer als nieuw uitziet.",
+    image: "/huis.jpg",
     name: "Minerva",
-    role: "Particulierhuis In Barneveld"
+    role: "Particulierhuis in Barneveld"
   },
   {
-    text: "De opleveringsschoonmaak na onze renovatie was in één woord fantastisch. Geen stress, snelle communicatie en een resultaat dat direct klaar was voor de verhuur.",
+    text: "De bouwschoonmaak en opleveringsschoonmaak na onze renovatie was in één woord fantastisch. Geen stress, flexibele planning en een bedrijfspand dat direct instapklaar was voor de verhuur.",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=150&auto=format&fit=crop",
     name: "Thomas Bakker",
     role: "Vastgoed Beheer Groep"
