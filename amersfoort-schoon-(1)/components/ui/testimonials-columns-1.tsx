@@ -7,13 +7,13 @@ import { motion } from "framer-motion";
 const testimonials = [
   {
     text: "Heel tevreden over de service, kwaliteit en de fijne mensen.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop",
+    image: "1772042773309.jpg",
     name: "Carin Smand",
     role: "Allegoeds groepshotel Het Bosgoed Lunteren."
   },
   {
     text: "Helder communicatie.. en de problemen goed opgelost",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&auto=format&fit=crop",
+    image: "huis.jpg",
     name: "Minerva",
     role: "Particulierhuis In Barneveld"
   },
