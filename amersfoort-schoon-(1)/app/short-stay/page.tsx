@@ -1,15 +1,15 @@
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { Testimonials } from "@/components/Testimonials";
-import { Star, Clock, Sparkles, CheckCircle2, ArrowRight, MapPin } from "lucide-react";
+import { Star, Clock, Sparkles, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 import { formatCityName, regioData } from "@/lib/regios";
 
 export const metadata = constructMetadata({
-  title: "Hotelschoonmaak, Vakantieparken & Short-stay | Veluwe, Dordrecht & Brabant",
+  title: "Hotelschoonmaak, Vakantieparken & Short-stay",
   description:
-    "Professionele housekeeping, hotelschoonmaak en wisselschoonmaak voor hotels, vakantieparken, B&B's en short-stay in Barneveld, Amersfoort, Dordrecht en Brabant.",
+    "Professionele housekeeping, hotelschoonmaak en wisselschoonmaak voor hotels, vakantieparken, B&B's en zakelijke short-stay verhuurders.",
   path: "/short-stay",
 });
 
@@ -23,7 +23,7 @@ export default function ShortStaySchoonmaakPage() {
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 py-1.5 px-4 bg-white/10 text-[#E6D3AC] text-xs font-bold tracking-wider uppercase mb-6 border border-white/20">
-              <MapPin className="h-3.5 w-3.5" /> Hotels, Vakantieparken &amp; Short-stay • Veluwe, Amersfoort, Dordrecht &amp; Brabant
+              <Star className="h-3.5 w-3.5" /> Hotels, Vakantieparken &amp; Short-stay
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 leading-tight">
               Maximale gastwaardering door <span className="text-[#E6D3AC]">vlekkeloze kamers &amp; wissels.</span>
@@ -57,7 +57,7 @@ export default function ShortStaySchoonmaakPage() {
               Betrouwbare uitvoering voor hospitality &amp; verblijfsrecreatie
             </h2>
             <p className="text-lg text-stone-600 leading-relaxed">
-              Of u nu een hotel in Amersfoort of Dordrecht runt, een vakantiepark op de Veluwe bij Barneveld/Voorthuizen beheert, of short-stay appartementen in Breda verhuurt: elke nieuwe gast verwacht een frisse, tot in de puntjes verzorgde ruimte.
+              Of u nu een hotel runt, een vakantiepark of groepsaccommodatie beheert, of zakelijke short-stay appartementen verhuurt: elke nieuwe gast verwacht een frisse, tot in de puntjes verzorgde ruimte.
             </p>
           </div>
 

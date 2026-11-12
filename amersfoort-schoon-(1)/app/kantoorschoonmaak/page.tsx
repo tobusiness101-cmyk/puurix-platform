@@ -1,15 +1,15 @@
 import { Footer } from "@/components/Footer";
 import { StickyContact } from "@/components/StickyContact";
 import { Testimonials } from "@/components/Testimonials";
-import { TrendingUp, ShieldCheck, HeartHandshake, CheckCircle2, ArrowRight, MapPin } from "lucide-react";
+import { TrendingUp, ShieldCheck, HeartHandshake, CheckCircle2, ArrowRight, Briefcase } from "lucide-react";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/seo";
 import { formatCityName, regioData } from "@/lib/regios";
 
 export const metadata = constructMetadata({
-  title: "Kantoorschoonmaak Amersfoort, Barneveld, Dordrecht & Brabant",
+  title: "Professionele Kantoorschoonmaak op Maat",
   description:
-    "Professionele kantoorschoonmaak voor bedrijven in regio Amersfoort, Barneveld (Gelderse Vallei), Dordrecht (Drechtsteden) en Noord-Brabant. Vaste schoonmaakploeg en heldere prijzen.",
+    "Professionele kantoorschoonmaak voor het bedrijfsleven. Een vast schoonmaakteam, heldere afspraken en directe prijsindicatie zonder wurgcontracten.",
   path: "/kantoorschoonmaak",
 });
 
@@ -23,13 +23,13 @@ export default function KantoorSchoonmaakPage() {
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 py-1.5 px-4 bg-white/10 text-[#E6D3AC] text-xs font-bold tracking-wider uppercase mb-6 border border-white/20">
-              <MapPin className="h-3.5 w-3.5" /> Kantoorschoonmaak • Gelderse Vallei, Amersfoort, Drechtsteden &amp; Brabant
+              <Briefcase className="h-3.5 w-3.5" /> Zakelijke Kantoorschoonmaak
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6 leading-tight">
               Een schoon kantoor dat <span className="text-[#E6D3AC]">prettig werkt.</span>
             </h1>
             <p className="text-lg md:text-xl text-white/85 mb-10 leading-relaxed max-w-2xl">
-              Met een vaste schoonmaakaanpak blijven werkplekken, sanitair, ontvangstruimtes en vergaderzalen dagelijks of wekelijks verzorgd. Wij stemmen onze werktijden af op uw kantoor in regio Amersfoort, Barneveld, Dordrecht of Brabant.
+              Met een vaste schoonmaakaanpak blijven werkplekken, sanitair, ontvangstruimtes en vergaderzalen dagelijks of wekelijks verzorgd. Wij stemmen onze werktijden en schoonmaakroutine volledig af op uw bedrijfsvoering.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link

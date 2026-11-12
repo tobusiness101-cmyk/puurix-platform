@@ -42,7 +42,7 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
       <section className="relative bg-[#0B2E27] pt-40 pb-24 text-center">
         <div className="container relative z-10 mx-auto max-w-4xl px-6">
           <span className="mb-6 inline-flex items-center gap-2 border border-white/25 bg-white/10 px-5 py-2 text-xs font-extrabold uppercase tracking-widest text-[#E6D3AC]">
-            <MapPin className="h-3.5 w-3.5" /> {info.cluster} • {city}
+            <MapPin className="h-3.5 w-3.5" /> Werkzaam in {city} &amp; omgeving
           </span>
           <h1 className="mb-6 text-4xl font-medium text-white md:text-6xl">
             Schoonmaakbedrijf <span className="text-[#E6D3AC]">{city}</span>
@@ -80,7 +80,7 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
             <div className="border border-[#DDD9CC] bg-[#F5F3EE] p-8">
               <div className="flex items-center gap-3 text-accent font-bold text-sm uppercase tracking-wider mb-3">
                 <Building2 className="h-5 w-5" />
-                Bedrijventerreinen & Locaties in {city}
+                Bedrijventerreinen &amp; Locaties in {city}
               </div>
               <p className="text-base font-semibold text-ink mb-3">
                 {info.bedrijventerreinen}
@@ -135,7 +135,7 @@ export default function RegioPage({ params }: { params: { regio: string } }) {
           {nearbyClusterSlugs.length > 0 && (
             <div className="mt-12 pt-8 border-t border-[#DDD9CC] text-center">
               <p className="text-xs font-bold uppercase tracking-wider text-stone-600 mb-4">
-                Ook actief in omliggende gemeenten ({info.cluster})
+                Ook actief in omliggende gemeenten rond {city}
               </p>
               <div className="flex flex-wrap justify-center gap-2.5">
                 {nearbyClusterSlugs.map((slug) => (

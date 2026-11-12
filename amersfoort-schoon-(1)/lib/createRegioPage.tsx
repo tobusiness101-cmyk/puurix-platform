@@ -123,9 +123,7 @@ export function createRegioPage({ serviceName, basePath }: RegioPageConfig) {
           <div className="container mx-auto max-w-[1150px] px-6 sm:px-8">
             <div className="mb-4 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-[#E6D3AC]">
               <MapPin className="h-4 w-4" />
-              <span>{info.cluster}</span>
-              <span>•</span>
-              <span>{city}</span>
+              <span>Zakelijke schoonmaak • {city} &amp; omgeving</span>
             </div>
 
             <h1 className="max-w-4xl font-display text-4xl font-medium leading-tight sm:text-6xl">
@@ -172,7 +170,7 @@ export function createRegioPage({ serviceName, basePath }: RegioPageConfig) {
                   Maatwerk voor {city}
                 </span>
                 <h2 className="mt-3 text-3xl font-medium text-ink sm:text-4xl">
-                  { serviceData?.title ?? `${serviceName} afgestemd op uw locatie in ${city}` }
+                  {serviceData?.title ?? `${serviceName} afgestemd op uw locatie in ${city}`}
                 </h2>
                 <p className="mt-4 text-base leading-7 text-stone-600">
                   {serviceData?.intro}{" "}
@@ -289,7 +287,7 @@ export function createRegioPage({ serviceName, basePath }: RegioPageConfig) {
                   {serviceName} in de regio rond {city}
                 </h2>
                 <p className="mt-2 text-sm text-stone-600">
-                  Ons team rijdt dagelijks door heel {info.cluster}:
+                  Ons team is dagelijks actief in de directe omgeving van {city}:
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2.5">
                   {nearbyClusterSlugs.map((slug) => (
