@@ -12,7 +12,7 @@ const testimonials = [
     role: "Allegoeds groepshotel Het Bosgoed Lunteren"
   },
   {
-    text: "Heldere communicatie en de problemen bij onze dieptereiniging supergoed opgelost. Ze werken heel precies, waardoor ons pand in de Gelderse Vallei er weer als nieuw uitziet.",
+    text: "Heldere communicatie en de dieptereiniging supergoed gegaan.",
     image: "/huis.jpg",
     name: "Minerva",
     role: "Particulierhuis in Barneveld"
